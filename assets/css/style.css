@@ -212,15 +212,18 @@ header .navbar ul li a:hover {
   z-index: 1;
 }
 .home .image img {
-  width: 70%;
-  margin-left: 6rem;
+  width: 100%;
+  max-width: 350px;
+  aspect-ratio: 1/1;
+  height: auto;
+  object-fit: cover;
+  margin: 0 auto;
+  display: block;
   border-radius: 50%;
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
   cursor: pointer;
 }
-.home .image img:hover {
-  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.5);
-}
+/* Removed .home .image img:hover to disable hover effects on hero image */
 .home .content h2 {
   font-size: 5rem;
   font-weight: 800;
@@ -332,7 +335,11 @@ header .navbar ul li a:hover {
     margin-top: 12rem;
   }
   .home .image img {
-    margin-top: -12rem;
+    max-width: 200px;
+    aspect-ratio: 1/1;
+    object-fit: cover;
+    margin: 0 auto;
+    display: block;
   }
   .home .content p {
     font-size: 2.2rem;
@@ -369,9 +376,7 @@ header .navbar ul li a:hover {
   transition: 0.3s;
   cursor: pointer;
 }
-.about .row .image img:hover {
-  mix-blend-mode: normal;
-}
+/* Removed .about .row .image img:hover to disable hover effects on about image */
 .about .row .content {
   flex: 1 1 45rem;
   padding: 3rem;
@@ -1223,3 +1228,63 @@ form .button-area {
   top: calc(100% - 12rem);
 }
 /* scroll top ends */
+
+/* certificates section starts */
+.certificates {
+  background: #fff;
+  padding: 4rem 0;
+}
+.certificates .heading {
+  text-align: center;
+  font-size: 2.5rem;
+  color: #002057;
+  margin-bottom: 2rem;
+}
+.certificates .qoute {
+  text-align: center;
+  font-size: 1.3rem;
+  color: #555;
+  margin-bottom: 3rem;
+}
+.certificates-container {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 2rem;
+}
+.certificate {
+  background: #f7f7f7;
+  border-radius: 1rem;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+  padding: 2rem;
+  max-width: 260px;
+  text-align: center;
+  transition: box-shadow 0.3s;
+}
+.certificate img {
+  width: 100%;
+  max-width: 200px;
+  height: 140px;
+  object-fit: cover;
+  border-radius: 0.5rem;
+  margin-bottom: 1rem;
+}
+.certificate h3 {
+  font-size: 1.2rem;
+  color: #002057;
+  margin: 0.5rem 0 0.2rem 0;
+}
+.certificate p {
+  font-size: 1rem;
+  color: #555;
+}
+@media (max-width: 700px) {
+  .certificates-container {
+    flex-direction: column;
+    align-items: center;
+  }
+  .certificate {
+    max-width: 90vw;
+  }
+}
+/* certificates section ends */
