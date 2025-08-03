@@ -291,50 +291,55 @@
       </div>
     </div>
   </section>
-  <!-- projects section ends -->
+ 
 
-  <!-- work project section starts -->
-  
+ 
 
   <!-- contact section starts -->
-  <!-- <section class="contact" id="contact">
+ <section class="contact" id="contact">
+  <h2 class="heading"><i class="fas fa-headset"></i> Get in <span>Touch</span></h2>
 
-    <h2 class="heading"><i class="fas fa-headset"></i> Get in <span>Touch</span></h2>
-
-    <div class="container">
-      <div class="content">
-        <div class="image-box">
-          <img draggable="false" src="./assets/images/contact1.png" alt="">
-        </div>
-        <form id="contact-form">
-
-          <div class="form-group">
-            <div class="field">
-              <input type="text" name="name" placeholder="Name" required>
-              <i class='fas fa-user'></i>
-            </div>
-            <div class="field">
-              <input type="text" name="email" placeholder="Email" required>
-              <i class='fas fa-envelope'></i>
-            </div>
-            <div class="field">
-              <input type="text" name="phone" placeholder="Phone">
-              <i class='fas fa-phone-alt'></i>
-            </div>
-            <div class="message">
-              <textarea placeholder="Message" name="message" required></textarea>
-              <i class="fas fa-comment-dots"></i>
-            </div>
-          </div>
-          <div class="button-area">
-            <button type="submit">
-              Submit <i class="fa fa-paper-plane"></i></button>
-          </div>
-        </form>
+  <div class="container">
+    <div class="content">
+      <div class="image-box">
+        <img draggable="false" src="./assets/images/contact1.png" alt="">
       </div>
+
+      <!-- ✅ Corrected Form -->
+      <form action="https://api.web3forms.com/submit" method="POST">
+        
+        <!-- ✅ Your Web3Forms Access Key -->
+        <input type="hidden" name="access_key" value="faa64dea-ddbf-4604-8185-c6dbb175c6f9">
+
+        <div class="form-group">
+          <div class="field">
+            <input type="text" name="name" placeholder="Name" required>
+            <i class='fas fa-user'></i>
+          </div>
+          <div class="field">
+            <input type="email" name="email" placeholder="Email" required>
+            <i class='fas fa-envelope'></i>
+          </div>
+          <div class="field">
+            <input type="text" name="phone" placeholder="Phone">
+            <i class='fas fa-phone-alt'></i>
+          </div>
+          <div class="message">
+            <textarea placeholder="Message" name="message" required></textarea>
+            <i class="fas fa-comment-dots"></i>
+          </div>
+        </div>
+
+        <div class="button-area">
+          <button type="submit">
+            Submit <i class="fa fa-paper-plane"></i>
+          </button>
+        </div>
+      </form>
     </div>
-  </section> -->
-  <!-- contact section ends -->
+  </div>
+</section>
+
 
 
   <!-- footer section starts -->
@@ -396,13 +401,8 @@
     crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 
   <!-- particle.js links -->
-  <script src="./assets/js/particles.min.js"></script>
-  <script src="./assets/js/app.js"></script>
+  
 
-  <!-- vanilla tilt.js links -->
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/vanilla-tilt/1.7.0/vanilla-tilt.min.js"
-    integrity="sha512-SttpKhJqONuBVxbRcuH0wezjuX+BoFoli0yPsnrAADcHsQMW8rkR84ItFHGIkPvhnlRnE2FaifDOUw+EltbuHg=="
-    crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 
   <!-- scroll reveal anim -->
   <script src="https://unpkg.com/scrollreveal"></script>
