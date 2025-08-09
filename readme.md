@@ -33,7 +33,7 @@ cd Portfolio
 Simply open index.html in your browser to view the website locally.
 
 🌐 Live Demo
-🔗 View My Portfolio (Add your hosted link here)
+🔗 View My Portfolio (https://krushna5000.github.io/Portfolio/)
 
 📬 Contact
 If you have any questions or would like to collaborate, feel free to connect:
