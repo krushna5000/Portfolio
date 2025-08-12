@@ -43,12 +43,3 @@ Email: krushnak5000@gmail.com
 LinkedIn: www.linkedin.com/in/krushna5000
 
 GitHub: krushna5000
-
-⭐ If you like this project, don’t forget to star the repo!
-
-
----
-
-If you want, I can tailor this README to exactly match your portfolio’s actual **tech stack, features, and hosted link** after I quickly check your repo files.  
-
-Do you want me to fetch your repo’s contents so I can make the README perfectly accurate?
