@@ -21,6 +21,13 @@ body {
   font-family: "Poppins", sans-serif;
 }
 
+/* Global responsive image behavior */
+img {
+  max-width: 100%;
+  height: auto;
+  display: block;
+}
+
 *::selection {
   background: #2b3dda;
   color: #fff;
@@ -248,7 +255,7 @@ header .navbar ul li a:hover {
 }
 .home .btn {
   margin-top: 1rem;
-  position: absolute;
+  position: relative;
   line-height: 0;
   padding: 1.6rem 3rem;
   border-radius: 4em;
@@ -372,7 +379,7 @@ header .navbar ul li a:hover {
   height: auto;
   border-radius: 5%;
   box-shadow: 0 5px 10px rgba(0, 0, 0, 0.6);
-  mix-blend-mode: luminosity;
+  mix-blend-mode: normal;
   transition: 0.3s;
   cursor: pointer;
 }
@@ -1358,3 +1365,87 @@ form .button-area {
   }
 }
 /* github projects section ends */
+
+/* Additional responsive enhancements */
+@media (max-width: 1200px) {
+  .home .content h2 {
+    font-size: 4rem;
+  }
+  .home .content h2 span {
+    font-size: 4rem;
+  }
+  .home .image img {
+    max-width: 320px;
+  }
+  .skills .container .row {
+    grid-template-columns: repeat(4, 1fr);
+  }
+}
+
+@media (max-width: 992px) {
+  section {
+    padding: 2rem 6%;
+  }
+  .home .content p {
+    font-size: 2rem;
+  }
+  .about .row {
+    padding: 2rem;
+  }
+  .about .row .image img {
+    width: 26rem;
+    margin: 2rem auto;
+  }
+  .education .box-container .box {
+    width: 90%;
+  }
+  .skills .container .row {
+    grid-template-columns: repeat(3, 1fr);
+  }
+  .github-projects .projects-container {
+    gap: 1.5rem;
+  }
+}
+
+@media (max-width: 768px) {
+  header .navbar ul li a {
+    font-size: 1.8rem;
+  }
+  .home {
+    padding-top: 6rem; /* spacing under fixed header */
+  }
+  .home .content h2 {
+    font-size: 3.6rem;
+  }
+  .home .content h2 span {
+    font-size: 3.6rem;
+  }
+  .home .image img {
+    max-width: 260px;
+  }
+  .projects-container {
+    gap: 1.2rem;
+  }
+}
+
+@media (max-width: 600px) {
+  .home .content p {
+    font-size: 2rem;
+  }
+  .about .row .content p {
+    font-size: 1.4rem;
+  }
+  .github-projects .heading,
+  .certificates .heading {
+    font-size: 2rem;
+  }
+}
+
+@media (max-width: 450px) {
+  .heading {
+    font-size: 3rem;
+  }
+  header .navbar ul li a {
+    font-size: 1.7rem;
+  }
+}
