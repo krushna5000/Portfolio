@@ -24,11 +24,11 @@ $(document).ready(function () {
         // Enhanced scroll spy with smooth transitions
         $('section').each(function () {
             let height = $(this).height();
-            let offset = $(this).offset().top - 200;
+            let offset = $(this).offset().top - 150;
             let top = $(window).scrollTop();
             let id = $(this).attr('id');
 
-            if (top > offset && top < offset + height) {
+            if (top >= offset && top < offset + height) {
                 $('.navbar ul li a').removeClass('active');
                 $('.navbar').find(`[href="#${id}"]`).addClass('active');
             }
@@ -37,12 +37,36 @@ $(document).ready(function () {
 
     // Enhanced smooth scrolling with easing
     $('a[href*="#"]').on('click', function (e) {
+        const href = $(this).attr('href');
+
+        // Skip if it's an external link or doesn't start with #
+        if (!href || !href.startsWith('#') || href === '#') {
+            return;
+        }
+
         e.preventDefault();
-        const target = $($(this).attr('href'));
+        const target = $(href);
+
         if (target.length) {
+            // Close mobile menu if open
+            $('#menu').removeClass('fa-times');
+            $('.navbar').removeClass('nav-toggle');
+            $('body').removeClass('menu-open');
+
+            // Update active state immediately
+            $('.navbar ul li a').removeClass('active');
+            $(this).addClass('active');
+
+            // Smooth scroll to target
             $('html, body').animate({
-                scrollTop: target.offset().top - 70,
-            }, 800, 'easeInOutCubic');
+                scrollTop: target.offset().top - 80,
+            }, 800, 'swing', function() {
+                // Callback after animation completes
+                // Update URL hash without jumping
+                if (history.pushState) {
+                    history.pushState(null, null, href);
+                }
+            });
         }
     });
 
@@ -67,6 +91,18 @@ $(document).ready(function () {
 
     // Initialize modern animations and effects
     initializeModernEffects();
+
+    // Handle hash navigation on page load
+    if (window.location.hash) {
+        const target = $(window.location.hash);
+        if (target.length) {
+            setTimeout(() => {
+                $('html, body').animate({
+                    scrollTop: target.offset().top - 80,
+                }, 800, 'swing');
+            }, 100);
+        }
+    }
 });
 
 // Modern page visibility handling

@@ -50,8 +50,6 @@ cd Portfolio
 If you have any questions or would like to collaborate, feel free to connect:
 
 Email: krushnak5000@gmail.com
-
 LinkedIn: www.linkedin.com/in/krushna5000
-
 GitHub: krushna5000
 ````
