@@ -2111,7 +2111,7 @@ form .button-area {
 /* Modern Certificate Cards Grid */
 .certificates-container {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(32rem, 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(26rem, 1fr));
   gap: var(--space-xl);
   max-width: 140rem;
   margin: 0 auto;
@@ -2126,7 +2126,7 @@ form .button-area {
   -webkit-backdrop-filter: var(--glass-backdrop);
   border: 1px solid var(--glass-border);
   border-radius: var(--radius-xl);
-  padding: var(--space-xl);
+  padding: var(--space-lg);
   text-align: center;
   transition: var(--transition-normal);
   position: relative;
@@ -2156,7 +2156,7 @@ form .button-area {
 }
 
 .certificate h3 {
-  font-size: 2rem;
+  font-size: 1.8rem;
   font-family: var(--font-secondary);
   color: var(--white);
   font-weight: 700;
@@ -2165,7 +2165,7 @@ form .button-area {
 }
 
 .certificate .cert-desc {
-  font-size: 1.5rem;
+  font-size: 1.4rem;
   color: rgba(255, 255, 255, 0.8);
   line-height: 1.6;
   margin-bottom: var(--space-lg);
@@ -2175,13 +2175,13 @@ form .button-area {
   display: inline-flex;
   align-items: center;
   gap: var(--space-sm);
-  padding: var(--space-md) var(--space-lg);
+  padding: var(--space-sm) var(--space-lg);
   background: var(--gradient-primary);
   color: var(--white);
   text-decoration: none;
   border-radius: var(--radius-full);
   font-weight: 600;
-  font-size: 1.4rem;
+  font-size: 1.3rem;
   transition: var(--transition-normal);
   box-shadow: var(--shadow-md);
 }
@@ -2273,8 +2273,8 @@ form .button-area {
 /* Modern Projects Grid */
 .projects-container {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(35rem, 1fr));
-  gap: var(--space-xl);
+  grid-template-columns: repeat(auto-fit, minmax(30rem, 1fr));
+  gap: var(--space-lg);
   max-width: 140rem;
   margin: 0 auto;
   padding: 0 var(--space-lg);
@@ -2288,7 +2288,7 @@ form .button-area {
   -webkit-backdrop-filter: var(--glass-backdrop);
   border: 1px solid var(--glass-border);
   border-radius: var(--radius-xl);
-  padding: var(--space-xl);
+  padding: var(--space-lg);
   transition: var(--transition-normal);
   position: relative;
   overflow: hidden;
@@ -2320,7 +2320,7 @@ form .button-area {
 
 .project-card .project-image {
   width: 100%;
-  height: 20rem;
+  height: 16rem;
   background: var(--gradient-secondary);
   border-radius: var(--radius-lg);
   margin-bottom: var(--space-lg);
@@ -2333,7 +2333,7 @@ form .button-area {
 }
 
 .project-card h3 {
-  font-size: 2rem;
+  font-size: 1.8rem;
   font-family: var(--font-secondary);
   color: var(--gray-900);
   font-weight: 700;
@@ -2341,7 +2341,7 @@ form .button-area {
 }
 
 .project-card p {
-  font-size: 1.5rem;
+  font-size: 1.4rem;
   color: var(--gray-600);
   line-height: 1.6;
   margin-bottom: var(--space-lg);
@@ -2360,7 +2360,7 @@ form .button-area {
   background: var(--primary-color);
   color: var(--white);
   border-radius: var(--radius-full);
-  font-size: 1.2rem;
+  font-size: 1.1rem;
   font-weight: 500;
 }
 
@@ -2381,7 +2381,7 @@ form .button-area {
   text-decoration: none;
   border-radius: var(--radius-lg);
   font-weight: 600;
-  font-size: 1.4rem;
+  font-size: 1.3rem;
   transition: var(--transition-normal);
   box-shadow: var(--shadow-md);
 }
