@@ -106,14 +106,12 @@ $(document).ready(function () {
 });
 
 // Modern page visibility handling
+// Adjusted: Do not change title or favicon when tab is hidden.
 document.addEventListener('visibilitychange', function () {
     if (document.visibilityState === "visible") {
         document.title = "Portfolio | Krushna Kakde";
-        $("#favicon").attr("href", "assets/images/favicon.png");
-    } else {
-        document.title = "Come Back! | Krushna Kakde";
-        $("#favicon").attr("href", "assets/images/favhand.png");
     }
+    // When the tab is hidden, keep the current title and favicon unchanged.
 });
 
 // Modern effects initialization
