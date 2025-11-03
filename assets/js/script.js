@@ -255,6 +255,7 @@ function initializeProjectFilters() {
     const projectCards = document.querySelectorAll('.project-card');
     const searchInput = document.getElementById('project-search');
     const countEl = document.getElementById('project-count');
+    const container = projectsSection?.querySelector('.projects-container');
 
     function matchesFilter(card, filterValue) {
         if (!filterValue || filterValue === 'all') return true;
