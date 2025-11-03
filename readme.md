@@ -21,14 +21,6 @@ This project showcases my work, skills, and achievements in an interactive and v
 
 ## 📂 Project Structure
 
-````bash
-Portfolio/
-├── index.html         # Main HTML file
-├── css/               # Stylesheets
-├── js/                # JavaScript files
-├── assets/            # Images, icons, and other assets
-└── README.md          # Project documentation
-
 git clone https://github.com/krushna5000/Portfolio.git
 cd Portfolio
 
