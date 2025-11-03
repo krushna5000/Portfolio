@@ -2733,6 +2733,30 @@ form .button-area {
 
 /* github projects section ends */
 
+/* Education: professional grid overrides */
+.education .box-container {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(32rem, 1fr));
+  gap: var(--space-2xl);
+  max-width: 120rem;
+  margin: 0 auto;
+  padding: var(--space-2xl) 0;
+}
+
+.education .box-container::before { display: none; }
+.education .box-container .box { width: auto; margin: 0; left: auto !important; }
+.education .box-container .box:nth-child(odd),
+.education .box-container .box:nth-child(even) { left: auto !important; }
+.education .box-container .box::before { display: none; }
+
+/* Left-align content for a cleaner card look */
+.education .box-container .box .content h3,
+.education .box-container .box .content p { text-align: left; }
+
+@media (max-width: 768px) {
+  .education .box-container { grid-template-columns: 1fr; gap: var(--space-xl); }
+}
+
 /* Additional responsive enhancements */
 @media (max-width: 1200px) {
   .home .content h2 {
