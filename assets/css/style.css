@@ -73,6 +73,7 @@
   --transition-slow: 0.5s ease-out;
 }
 
+
 /* Dark mode variables */
 @media (prefers-color-scheme: dark) {
   :root {
