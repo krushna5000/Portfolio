@@ -251,41 +251,79 @@ function initializeProjectFilters() {
         }
     }
 
-    // Add filter functionality
     const filterBtns = document.querySelectorAll('.filter-btn');
     const projectCards = document.querySelectorAll('.project-card');
+    const searchInput = document.getElementById('project-search');
+    const countEl = document.getElementById('project-count');
 
+    function matchesFilter(card, filterValue) {
+        if (!filterValue || filterValue === 'all') return true;
+        const category = card.getAttribute('data-category');
+        return category === filterValue;
+    }
+
+    function matchesQuery(card, query) {
+        if (!query) return true;
+        const name = (card.querySelector('h3')?.textContent || '').toLowerCase();
+        const desc = (card.querySelector('p')?.textContent || '').toLowerCase();
+        const techs = Array.from(card.querySelectorAll('.project-tech .tech-tag')).map(t => t.textContent.toLowerCase()).join(' ');
+        const haystack = `${name} ${desc} ${techs}`;
+        return haystack.includes(query);
+    }
+
+    function applyFilters() {
+        const activeBtn = document.querySelector('.filter-btn.active');
+        const filterValue = activeBtn ? activeBtn.getAttribute('data-filter') : 'all';
+        const query = (searchInput?.value || '').trim().toLowerCase();
+        let visible = 0;
+
+        projectCards.forEach(card => {
+            const show = matchesFilter(card, filterValue) && matchesQuery(card, query);
+            if (show) {
+                card.style.display = 'flex';
+                card.style.animation = 'fadeInUp 0.6s ease forwards';
+                visible++;
+            } else {
+                card.style.animation = 'fadeOutDown 0.4s ease forwards';
+                setTimeout(() => { card.style.display = 'none'; }, 400);
+            }
+        });
+
+        if (countEl) {
+            if (query || filterValue !== 'all') {
+                countEl.textContent = `Showing ${visible} project${visible === 1 ? '' : 's'}`;
+            } else {
+                countEl.textContent = 'Showing all';
+            }
+        }
+    }
+
+    // Button click filtering
     filterBtns.forEach(btn => {
         btn.addEventListener('click', () => {
-            // Remove active class from all buttons
             filterBtns.forEach(b => b.classList.remove('active'));
-            // Add active class to clicked button
             btn.classList.add('active');
-
-            const filterValue = btn.getAttribute('data-filter');
-
-            projectCards.forEach(card => {
-                if (filterValue === 'all') {
-                    card.style.display = 'flex';
-                    card.style.animation = 'fadeInUp 0.6s ease forwards';
-                } else {
-                    // Simple filtering based on project names (you can enhance this)
-                    const projectName = card.querySelector('h3').textContent.toLowerCase();
-                    const shouldShow = checkProjectCategory(projectName, filterValue);
-
-                    if (shouldShow) {
-                        card.style.display = 'flex';
-                        card.style.animation = 'fadeInUp 0.6s ease forwards';
-                    } else {
-                        card.style.animation = 'fadeOutDown 0.4s ease forwards';
-                        setTimeout(() => {
-                            card.style.display = 'none';
-                        }, 400);
-                    }
-                }
-            });
+            applyFilters();
         });
     });
+
+    // Live search (debounced)
+    if (searchInput) {
+        const debounced = debounce(applyFilters, 150);
+        searchInput.addEventListener('input', debounced);
+    }
+
+    // Initial state
+    applyFilters();
+}
+
+// Simple debounce utility
+function debounce(fn, wait) {
+    let t;
+    return function(...args) {
+        clearTimeout(t);
+        t = setTimeout(() => fn.apply(this, args), wait);
+    };
 }
 
 function checkProjectCategory(projectName, category) {
@@ -388,9 +426,11 @@ fetchData().then(data => {
     showSkills(data);
 });
 
-fetchData("projects").then(data => {
-    showProjects(data);
-});
+if (document.querySelector('#work')) {
+    fetchData("projects").then(data => {
+        showProjects(data);
+    });
+}
 
 // <!-- tilt js effect starts -->
 VanillaTilt.init(document.querySelectorAll(".tilt"), {
