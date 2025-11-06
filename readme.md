@@ -30,20 +30,3 @@ Simply open index.html in your browser to view the website locally.
 🌐 Live Demo
 🔗 View My Portfolio (https://krushna5000.github.io/Portfolio/)
 
-
-## 🚀 Getting Started
-
-### 1️⃣ Clone the Repository
-```bash
-git clone https://github.com/krushna5000/Portfolio.git
-cd Portfolio
-
-📬 Contact
-If you have any questions or would like to collaborate, feel free to connect:
-
-Email: krushnak5000@gmail.com
-LinkedIn: www.linkedin.com/in/krushna5000
-GitHub: krushna5000
-````
-
-URL : https://krushna5000.github.io/Portfolio/
