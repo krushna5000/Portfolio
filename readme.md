@@ -19,14 +19,6 @@ This project showcases my work, skills, and achievements in an interactive and v
 - **Icons & Assets:** FontAwesome / Icons8
 - **Deployment:** GitHub
 
-## 📂 Project Structure
-
-git clone https://github.com/krushna5000/Portfolio.git
-cd Portfolio
-
-2️⃣ Open in Browser
-Simply open index.html in your browser to view the website locally.
-
 🌐 Live Demo
 🔗 View My Portfolio (https://krushna5000.github.io/Portfolio/)
 
