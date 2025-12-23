@@ -65,9 +65,9 @@ Welcome to my portfolio! I am a Computer Science graduate with strong hands-on e
 
 ## 📬 Connect With Me
 
-- 💼 LinkedIn: *([Add your LinkedIn URL here](https://www.linkedin.com/in/krushna5000/))*  
+- 💼 LinkedIn: *(https://www.linkedin.com/in/krushna5000/)*  
 - 📧 Email: *(krushnak5000@gmail.com)*  
-- 🌐 Portfolio: *([Add your portfolio website link here](https://krushna5000.github.io/Portfolio/))*  
+- 🌐 Portfolio: *(https://krushna5000.github.io/Portfolio/)*  
 
 ---
 
