@@ -116,14 +116,16 @@ document.addEventListener('visibilitychange', function () {
 
 // Modern effects initialization
 function initializeModernEffects() {
-    // Initialize ScrollReveal animations
-    if (typeof ScrollReveal !== 'undefined') {
+    const reduceMotion = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    if (typeof ScrollReveal !== 'undefined' && !reduceMotion) {
         const sr = ScrollReveal({
             origin: 'bottom',
             distance: '60px',
-            duration: 1000,
-            delay: 200,
+            duration: 900,
+            delay: 150,
             easing: 'cubic-bezier(0.25, 0.46, 0.45, 0.94)',
+            interval: 80,
+            viewFactor: 0.15,
             reset: false
         });
 
@@ -137,7 +139,7 @@ function initializeModernEffects() {
         sr.reveal('.home .content h2', {
             origin: 'left',
             distance: '100px',
-            duration: 1000
+            duration: 900
         });
 
         sr.reveal('.home .content p', {
@@ -173,40 +175,29 @@ function initializeModernEffects() {
             delay: 300
         });
 
-        sr.reveal('.skills .container .bar', {
-            interval: 100,
-            scale: 0.8
-        });
+        sr.reveal('.skills .container .bar', { interval: 80, scale: 0.9 });
 
-        sr.reveal('.education .box-container .box', {
-            interval: 200,
-            scale: 0.9
-        });
+        sr.reveal('.education .box-container .box', { interval: 120, scale: 0.95 });
 
-        sr.reveal('.certificate', {
-            interval: 150,
-            scale: 0.9
-        });
+        sr.reveal('.certificate', { interval: 100, scale: 0.95 });
 
-        sr.reveal('.project-card', {
-            interval: 200,
-            scale: 0.8
-        });
+        sr.reveal('.project-card', { interval: 100, scale: 0.95 });
 
-        sr.reveal('.contact .container', {
-            scale: 0.9,
-            duration: 1200
-        });
+        sr.reveal('.contact .container', { scale: 0.95, duration: 1000 });
     }
 
     // Initialize project filtering
     initializeProjectFilters();
 
-    // Initialize particle effects for hero section
-    initializeParticles();
+    if (!reduceMotion) {
+        initializeParticles();
+    }
 
     // Initialize typing animation enhancements
     enhanceTypingAnimation();
+
+    setupParallax();
+    setupSoftSkillObserver();
 }
 
 
@@ -482,33 +473,37 @@ var Tawk_API = Tawk_API || {}, Tawk_LoadStart = new Date();
 // End of Tawk.to Live Chat
 
 
-/* ===== SCROLL REVEAL ANIMATION ===== */
-const srtop = ScrollReveal({
-    origin: 'top',
-    distance: '80px',
-    duration: 1000,
-    reset: true
-});
+/* ===== SCROLL REVEAL ANIMATION (legacy block gated) ===== */
+(function(){
+    const reduceMotion = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    if (typeof ScrollReveal === 'undefined' || reduceMotion) return;
+    const srtop = ScrollReveal({
+        origin: 'top',
+        distance: '80px',
+        duration: 900,
+        reset: false
+    });
 
-/* SCROLL HOME */
-srtop.reveal('.home .content h3', { delay: 200 });
-srtop.reveal('.home .content p', { delay: 200 });
-srtop.reveal('.home .content .btn', { delay: 200 });
+    /* SCROLL HOME */
+    srtop.reveal('.home .content h3', { delay: 200 });
+    srtop.reveal('.home .content p', { delay: 200 });
+    srtop.reveal('.home .content .btn', { delay: 200 });
 
-srtop.reveal('.home .image', { delay: 400 });
-srtop.reveal('.home .linkedin', { interval: 600 });
-srtop.reveal('.home .github', { interval: 800 });
-srtop.reveal('.home .twitter', { interval: 1000 });
-srtop.reveal('.home .telegram', { interval: 600 });
-srtop.reveal('.home .instagram', { interval: 600 });
-srtop.reveal('.home .dev', { interval: 600 });
+    srtop.reveal('.home .image', { delay: 400 });
+    srtop.reveal('.home .linkedin', { interval: 400 });
+    srtop.reveal('.home .github', { interval: 500 });
+    srtop.reveal('.home .twitter', { interval: 600 });
+    srtop.reveal('.home .telegram', { interval: 400 });
+    srtop.reveal('.home .instagram', { interval: 400 });
+    srtop.reveal('.home .dev', { interval: 400 });
 
-/* ENHANCED SCROLL ANIMATIONS */
-srtop.reveal('.about .content h3', { delay: 200 });
-srtop.reveal('.about .content .tag', { delay: 200 });
-srtop.reveal('.about .content p', { delay: 200 });
-srtop.reveal('.about .content .box-container', { delay: 200 });
-srtop.reveal('.about .content .resumebtn', { delay: 200 });
+    /* ENHANCED SCROLL ANIMATIONS */
+    srtop.reveal('.about .content h3', { delay: 150 });
+    srtop.reveal('.about .content .tag', { delay: 180 });
+    srtop.reveal('.about .content p', { delay: 210 });
+    srtop.reveal('.about .content .box-container', { delay: 240 });
+    srtop.reveal('.about .content .resumebtn', { delay: 270 });
+})();
 
 // Initialize particle effects
 function initializeParticles() {
