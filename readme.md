@@ -1,4 +1,4 @@
-# 👋 Hi, I'm Krushna Kakde
+# 👋 Hi, I'm Kakde Krushna Vasant
 
 🚀 Passionate Full-Stack Developer | 🌱 Continuous Learner | 💡 Problem Solver  
 
@@ -63,11 +63,14 @@ Welcome to my portfolio! I am a Computer Science graduate with strong hands-on e
 
 ---
 
-## 📬 Connect With Me
-
-- 💼 LinkedIn: *(https://www.linkedin.com/in/krushna5000/)*  
-- 📧 Email: *(krushnak5000@gmail.com)*  
-- 🌐 Portfolio: *(https://krushna5000.github.io/Portfolio/)*  
+### 🌐 Connect with me:
+<p align="left">
+  🔗 <a href="https://linkedin.com/in/krushna5000">LinkedIn</a> |
+  📸 <a href="https://instagram.com/krushna5000">Instagram</a> |
+  ✉️ <a href="mailto:krushna5000@gmail.com">Email</a> |
+  🌐 <a href="https://krushna5000.github.io/Portfolio/">Portfolio</a> |
+  💬 <a href="https://wa.me/7743891860">WhatsApp</a>
+</p>
 
 ---
 
@@ -76,8 +79,6 @@ Welcome to my portfolio! I am a Computer Science graduate with strong hands-on e
 - 🔥 Consistent contributor  
 - 📦 Focus on clean code & documentation  
 - 🚀 Open to collaboration on real-world projects  
-
----
 
 ### 🙏 Thank You for Visiting!
 
