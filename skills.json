@@ -1,19 +1,23 @@
 [
     {
-    "name": "Spring Boot",
-    "icon": "https://img.icons8.com/color/48/000000/spring-logo.png"
+        "name": "React.js",
+        "icon": "https://img.icons8.com/plasticine/48/000000/react.png"
     },
-   {
+    {
+        "name": "Node.js",
+        "icon": "https://img.icons8.com/color/48/000000/nodejs.png"
+    },
+    {
+        "name": "Express.js",
+        "icon": "https://img.icons8.com/ios-filled/48/ffffff/express-js.png"
+    },
+    {
         "name": "React Native",
         "icon": "https://img.icons8.com/external-tal-revivo-color-tal-revivo/48/000000/external-react-a-javascript-library-for-building-user-interfaces-logo-color-tal-revivo.png"
     },
     {
-        "name": "Firebase",
-        "icon": "https://img.icons8.com/color/48/000000/firebase.png"
-    },
-    {
-        "name": "Bootstrap",
-        "icon": "https://img.icons8.com/color/48/000000/bootstrap.png"
+        "name": "JavaScript",
+        "icon": "https://img.icons8.com/color/48/000000/javascript--v1.png"
     },
     {
         "name": "HTML5",
@@ -24,8 +28,12 @@
         "icon": "https://img.icons8.com/color/48/000000/css3.png"
     },
     {
-        "name": "JavaScript",
-        "icon": "https://img.icons8.com/color/48/000000/javascript--v1.png"
+        "name": "Tailwind CSS",
+        "icon": "https://img.icons8.com/color/48/000000/tailwindcss.png"
+    },
+    {
+        "name": "Spring Boot",
+        "icon": "https://img.icons8.com/color/48/000000/spring-logo.png"
     },
     {
         "name": "Java",
@@ -36,27 +44,35 @@
         "icon": "https://img.icons8.com/color/48/000000/mongodb.png"
     },
     {
+        "name": "PostgreSQL",
+        "icon": "https://img.icons8.com/color/48/000000/postgresql.png"
+    },
+    {
         "name": "MySQL",
         "icon": "https://img.icons8.com/color/48/000000/mysql-logo.png"
     },
     {
-        "name": "GitHub",
-        "icon": "https://img.icons8.com/glyph-neue/48/ffffff/github.png"
+        "name": "Firebase",
+        "icon": "https://img.icons8.com/color/48/000000/firebase.png"
+    },
+    {
+        "name": "Supabase",
+        "icon": "https://img.icons8.com/external-tal-revivo-color-tal-revivo/48/external-supabase-an-open-source-firebase-alternative-logo-color-tal-revivo.png"
+    },
+    {
+        "name": "AWS",
+        "icon": "https://img.icons8.com/color/48/000000/amazon-web-services.png"
     },
     {
         "name": "Git",
         "icon": "https://img.icons8.com/color/48/000000/git.png"
     },
     {
+        "name": "GitHub",
+        "icon": "https://img.icons8.com/glyph-neue/48/ffffff/github.png"
+    },
+    {
         "name": "Postman",
         "icon": "https://img.icons8.com/color/48/000000/postman.png"
-    },
-    {
-        "name": "Hibernate",
-        "icon": "https://img.icons8.com/color/48/000000/hibernate.png"
-    },
-    {
-       "name": "Maven",
-        "icon": "https://img.icons8.com/color/48/000000/apache-maven.png"
     }
 ]
