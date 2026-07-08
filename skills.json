@@ -74,5 +74,29 @@
     {
         "name": "Postman",
         "icon": "https://img.icons8.com/color/48/000000/postman.png"
+    },
+    {
+        "name": "SQL",
+        "icon": "https://img.icons8.com/color/48/000000/sql.png"
+    },
+    {
+        "name": "Drizzle ORM",
+        "icon": "https://img.icons8.com/color/48/000000/database.png"
+    },
+    {
+        "name": "RESTful APIs",
+        "icon": "https://img.icons8.com/color/48/000000/api-settings.png"
+    },
+    {
+        "name": "JWT Auth",
+        "icon": "https://img.icons8.com/color/48/000000/key-security.png"
+    },
+    {
+        "name": "VS Code",
+        "icon": "https://img.icons8.com/color/48/000000/visual-studio-code-2019.png"
+    },
+    {
+        "name": "Jenkins",
+        "icon": "https://img.icons8.com/color/48/000000/jenkins.png"
     }
 ]
