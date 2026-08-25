@@ -1,14 +1,14 @@
 # 👋 Hi, I'm Kakde Krushna Vasant
 
-🚀 Passionate Full-Stack Developer | 🌱 Continuous Learner | 💡 Problem Solver  
+🚀 Software Developer @ Devanta Tech | 🌱 Continuous Learner | 💡 Problem Solver  
 
-Welcome to my portfolio! I am a Computer Science graduate with strong hands-on experience in building scalable web applications using modern technologies. I enjoy turning complex problems into simple, efficient, and user-friendly solutions.
+Welcome to my portfolio! I'm a Computer Science graduate working full-time as a Software Developer, building IIoT and industrial cloud automation solutions with the MERN stack. I enjoy turning complex problems into simple, efficient, and user-friendly solutions.
 
 ---
 
 ## 🧑‍💻 About Me
 
-- 🎓 Background in Computer Science & Software Development  
+- 💼 Software Developer at Devanta Tech (promoted from intern after 6 months)
 - 💻 Experience in Frontend, Backend, and Database Design  
 - 🔗 Strong understanding of RESTful APIs & system integration  
 - 🌱 Always learning new technologies and best practices  

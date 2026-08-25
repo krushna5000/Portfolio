@@ -9,7 +9,7 @@
     },
     {
         "name": "Express.js",
-        "icon": "https://img.icons8.com/ios-filled/48/ffffff/express-js.png"
+        "icon": "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/express/express-original.svg"
     },
     {
         "name": "React Native",
@@ -45,7 +45,7 @@
     },
     {
         "name": "PostgreSQL",
-        "icon": "https://img.icons8.com/color/48/000000/postgresql.png"
+        "icon": "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/postgresql/postgresql-original.svg"
     },
     {
         "name": "MySQL",
@@ -57,7 +57,7 @@
     },
     {
         "name": "Supabase",
-        "icon": "https://img.icons8.com/external-tal-revivo-color-tal-revivo/48/external-supabase-an-open-source-firebase-alternative-logo-color-tal-revivo.png"
+        "icon": "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/supabase/supabase-original.svg"
     },
     {
         "name": "AWS",
@@ -69,7 +69,7 @@
     },
     {
         "name": "GitHub",
-        "icon": "https://img.icons8.com/glyph-neue/48/ffffff/github.png"
+        "icon": "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/github/github-original.svg"
     },
     {
         "name": "Postman",

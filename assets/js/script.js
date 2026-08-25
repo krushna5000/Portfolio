@@ -1,18 +1,17 @@
 $(document).ready(function () {
-    // Modern navbar functionality
+    // Mobile nav toggle
     $('#menu').click(function () {
         $(this).toggleClass('fa-times');
         $('.navbar').toggleClass('nav-toggle');
         $('body').toggleClass('menu-open');
     });
 
-    // Enhanced scroll functionality with header effects
+    // Header scroll state + scroll-spy
     $(window).on('scroll load', function () {
         $('#menu').removeClass('fa-times');
         $('.navbar').removeClass('nav-toggle');
         $('body').removeClass('menu-open');
 
-        // Add scrolled class to header for glassmorphism effect
         if (window.scrollY > 60) {
             $('header').addClass('scrolled');
             document.querySelector('#scroll-top').classList.add('active');
@@ -21,12 +20,11 @@ $(document).ready(function () {
             document.querySelector('#scroll-top').classList.remove('active');
         }
 
-        // Enhanced scroll spy with smooth transitions
         $('section').each(function () {
-            let height = $(this).height();
-            let offset = $(this).offset().top - 150;
-            let top = $(window).scrollTop();
-            let id = $(this).attr('id');
+            const height = $(this).height();
+            const offset = $(this).offset().top - 150;
+            const top = $(window).scrollTop();
+            const id = $(this).attr('id');
 
             if (top >= offset && top < offset + height) {
                 $('.navbar ul li a').removeClass('active');
@@ -35,53 +33,35 @@ $(document).ready(function () {
         });
     });
 
-    // Enhanced smooth scrolling with easing
+    // Smooth in-page scrolling
     $('a[href*="#"]').on('click', function (e) {
         const href = $(this).attr('href');
-
-        // Skip if it's an external link or doesn't start with #
-        if (!href || !href.startsWith('#') || href === '#') {
-            return;
-        }
+        if (!href || !href.startsWith('#') || href === '#') return;
 
         e.preventDefault();
         const target = $(href);
+        if (!target.length) return;
 
-        if (target.length) {
-            // Close mobile menu if open
-            $('#menu').removeClass('fa-times');
-            $('.navbar').removeClass('nav-toggle');
-            $('body').removeClass('menu-open');
+        $('#menu').removeClass('fa-times');
+        $('.navbar').removeClass('nav-toggle');
+        $('body').removeClass('menu-open');
 
-            // Update active state immediately
-            $('.navbar ul li a').removeClass('active');
-            $(this).addClass('active');
+        $('.navbar ul li a').removeClass('active');
+        $(this).addClass('active');
 
-            // Smooth scroll to target
-            $('html, body').animate({
-                scrollTop: target.offset().top - 80,
-            }, 800, 'swing', function() {
-                // Callback after animation completes
-                // Update URL hash without jumping
-                if (history.pushState) {
-                    history.pushState(null, null, href);
-                }
-            });
-        }
+        $('html, body').animate({ scrollTop: target.offset().top - 80 }, 700, 'swing', function () {
+            if (history.pushState) history.pushState(null, null, href);
+        });
     });
 
-    // Modern contact form handling
+    // Contact form loading state (Web3Forms handles the actual submit)
     const contactForm = document.querySelector('form[action*="web3forms"]');
     if (contactForm) {
-        contactForm.addEventListener('submit', function(e) {
+        contactForm.addEventListener('submit', function () {
             const button = this.querySelector('button[type="submit"]');
             const originalText = button.innerHTML;
-
-            // Show loading state
             button.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Sending...';
             button.disabled = true;
-
-            // Reset after form submission (Web3Forms handles the actual submission)
             setTimeout(() => {
                 button.innerHTML = originalText;
                 button.disabled = false;
@@ -89,178 +69,153 @@ $(document).ready(function () {
         });
     }
 
-    // Initialize modern animations and effects
-    initializeModernEffects();
+    initTypingAnimation();
+    initProjectFilters();
+    initReveal();
+    initStatCounters();
 
-    // Handle hash navigation on page load
     if (window.location.hash) {
         const target = $(window.location.hash);
         if (target.length) {
             setTimeout(() => {
-                $('html, body').animate({
-                    scrollTop: target.offset().top - 80,
-                }, 800, 'swing');
+                $('html, body').animate({ scrollTop: target.offset().top - 80 }, 700, 'swing');
             }, 100);
         }
     }
 });
 
-// Modern page visibility handling
-// Adjusted: Do not change title or favicon when tab is hidden.
 document.addEventListener('visibilitychange', function () {
-    if (document.visibilityState === "visible") {
-        document.title = "Portfolio | Krushna Kakde";
+    if (document.visibilityState === 'visible') {
+        document.title = 'Portfolio | Krushna Kakde';
     }
-    // When the tab is hidden, keep the current title and favicon unchanged.
 });
 
-// Modern effects initialization
-function initializeModernEffects() {
-    const reduceMotion = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-    if (typeof ScrollReveal !== 'undefined' && !reduceMotion) {
-        const sr = ScrollReveal({
-            origin: 'bottom',
-            distance: '60px',
-            duration: 900,
-            delay: 150,
-            easing: 'cubic-bezier(0.25, 0.46, 0.45, 0.94)',
-            interval: 80,
-            viewFactor: 0.15,
-            reset: false
-        });
-
-        // Animate different sections with different effects
-        sr.reveal('.heading', {
-            origin: 'top',
-            distance: '80px',
-            duration: 1200
-        });
-
-        sr.reveal('.home .content h2', {
-            origin: 'left',
-            distance: '100px',
-            duration: 900
-        });
-
-        sr.reveal('.home .content p', {
-            origin: 'left',
-            distance: '100px',
-            delay: 400
-        });
-
-        sr.reveal('.home .btn', {
-            origin: 'bottom',
-            delay: 600
-        });
-
-        sr.reveal('.home .socials', {
-            origin: 'bottom',
-            delay: 800
-        });
-
-        sr.reveal('.home .image', {
-            origin: 'right',
-            distance: '100px',
-            delay: 400
-        });
-
-        sr.reveal('.about .row .image', {
-            origin: 'left',
-            distance: '100px'
-        });
-
-        sr.reveal('.about .row .content', {
-            origin: 'right',
-            distance: '100px',
-            delay: 300
-        });
-
-        sr.reveal('.skills .container .bar', { interval: 80, scale: 0.9 });
-
-        sr.reveal('.education .box-container .box', { interval: 120, scale: 0.95 });
-
-        sr.reveal('.certificate', { interval: 100, scale: 0.95 });
-
-        sr.reveal('.project-card', { interval: 100, scale: 0.95 });
-
-        sr.reveal('.contact .container', { scale: 0.95, duration: 1000 });
-    }
-
-    // Initialize project filtering
-    initializeProjectFilters();
-
-    if (!reduceMotion) {
-        initializeParticles();
-    }
-
-    // Initialize typing animation enhancements
-    enhanceTypingAnimation();
-
-    setupParallax();
-    setupSoftSkillObserver();
+/* ---------- Typing animation ---------- */
+function initTypingAnimation() {
+    if (typeof Typed === 'undefined') return;
+    new Typed('.typing-text', {
+        strings: [
+            'Full Stack Development',
+            'Frontend Engineering',
+            'Backend Engineering',
+            'Mobile App Development',
+            'API Design',
+            'Database Management'
+        ],
+        loop: true,
+        typeSpeed: 55,
+        backSpeed: 28,
+        backDelay: 1400,
+        startDelay: 400,
+        fadeOut: true,
+        fadeOutClass: 'typed-fade-out',
+        fadeOutDelay: 400
+    });
 }
 
-
-// Enhanced typing animation
-var typed = new Typed(".typing-text", {
-    strings: [
-        "Full Stack Development",
-        "Frontend Development",
-        "Backend Development",
-        "Mobile App Development",
-        "UI/UX Design",
-        "Database Management"
-    ],
-    loop: true,
-    typeSpeed: 60,
-    backSpeed: 30,
-    backDelay: 1000,
-    startDelay: 500,
-    fadeOut: true,
-    fadeOutClass: 'typed-fade-out',
-    fadeOutDelay: 500
-});
-
-// Project filtering functionality
-function initializeProjectFilters() {
-    // Add filter buttons to projects section if they don't exist
-    const projectsSection = document.querySelector('.github-projects');
-    if (projectsSection && !document.querySelector('.project-filters')) {
-        const filtersHTML = `
-            <div class="project-filters">
-                <button class="filter-btn active" data-filter="all">All Projects</button>
-                <button class="filter-btn" data-filter="web">Web Apps</button>
-                <button class="filter-btn" data-filter="mobile">Mobile Apps</button>
-                <button class="filter-btn" data-filter="backend">Backend</button>
-                <button class="filter-btn" data-filter="ml">Machine Learning</button>
-            </div>
-        `;
-
-        const heading = projectsSection.querySelector('.heading');
-        if (heading) {
-            heading.insertAdjacentHTML('afterend', filtersHTML);
+/* ---------- Scroll reveal (IntersectionObserver based) ---------- */
+const revealObserver = new IntersectionObserver((entries) => {
+    entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+            entry.target.classList.add('in-view');
+            revealObserver.unobserve(entry.target);
         }
-    }
+    });
+}, { threshold: 0.15, rootMargin: '0px 0px -40px 0px' });
 
+function observeReveal(el, index = 0, extraClass = '') {
+    el.classList.add('reveal');
+    if (extraClass) el.classList.add(extraClass);
+    el.style.setProperty('--d', `${Math.min(index, 8) * 0.08}s`);
+    revealObserver.observe(el);
+}
+
+function initReveal() {
+    const reduceMotion = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    if (reduceMotion) return;
+
+    document.querySelectorAll('.heading').forEach((el) => observeReveal(el));
+
+    const heroLeft = document.querySelectorAll('.home .open-to-work-badge, .home .content h2, .home .content p, .home .hero-cta, .home .hero-stats, .home .socials');
+    heroLeft.forEach((el, i) => observeReveal(el, i, 'reveal-left'));
+    const heroImage = document.querySelector('.home .image');
+    if (heroImage) observeReveal(heroImage, 2, 'reveal-right');
+
+    const aboutImage = document.querySelector('.about .row .image');
+    if (aboutImage) observeReveal(aboutImage, 0, 'reveal-left');
+    const aboutContent = document.querySelectorAll('.about .row .content > *');
+    aboutContent.forEach((el, i) => observeReveal(el, i, 'reveal-right'));
+
+    document.querySelectorAll('.exp-item').forEach((el, i) => observeReveal(el, i));
+    document.querySelectorAll('.education .box').forEach((el, i) => observeReveal(el, i, 'reveal-scale'));
+    document.querySelectorAll('.project-card').forEach((el, i) => observeReveal(el, i, 'reveal-scale'));
+    document.querySelectorAll('.certificate').forEach((el, i) => observeReveal(el, i, 'reveal-scale'));
+    document.querySelectorAll('.soft-item').forEach((el, i) => observeReveal(el, i, 'reveal-scale'));
+
+    const contactContainer = document.querySelector('.contact .container');
+    if (contactContainer) observeReveal(contactContainer, 0, 'reveal-scale');
+}
+
+/* ---------- Animated stat counters ---------- */
+function initStatCounters() {
+    const reduceMotion = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    const nodes = document.querySelectorAll('.hero-stat-num, .about-stat-num');
+    if (reduceMotion || !nodes.length) return;
+
+    const counterObserver = new IntersectionObserver((entries) => {
+        entries.forEach((entry) => {
+            if (!entry.isIntersecting) return;
+            animateCount(entry.target);
+            counterObserver.unobserve(entry.target);
+        });
+    }, { threshold: 0.6 });
+
+    nodes.forEach((el) => counterObserver.observe(el));
+}
+
+function animateCount(el) {
+    const raw = el.textContent.trim();
+    const match = raw.match(/^(\d+(?:\.\d+)?)(.*)$/);
+    if (!match) return;
+
+    const target = parseFloat(match[1]);
+    const suffix = match[2] || '';
+    const decimals = match[1].includes('.') ? match[1].split('.')[1].length : 0;
+    const duration = 1200;
+    const start = performance.now();
+
+    function tick(now) {
+        const progress = Math.min((now - start) / duration, 1);
+        const eased = 1 - Math.pow(1 - progress, 3);
+        const value = target * eased;
+        el.textContent = value.toFixed(decimals) + suffix;
+        if (progress < 1) requestAnimationFrame(tick);
+        else el.textContent = target.toFixed(decimals) + suffix;
+    }
+    requestAnimationFrame(tick);
+}
+
+/* ---------- Project filtering + search ---------- */
+function initProjectFilters() {
+    const projectsSection = document.querySelector('.github-projects');
     const filterBtns = document.querySelectorAll('.filter-btn');
     const projectCards = document.querySelectorAll('.project-card');
     const searchInput = document.getElementById('project-search');
     const countEl = document.getElementById('project-count');
-    const container = projectsSection?.querySelector('.projects-container');
+
+    if (!projectsSection || !projectCards.length) return;
 
     function matchesFilter(card, filterValue) {
         if (!filterValue || filterValue === 'all') return true;
-        const category = card.getAttribute('data-category');
-        return category === filterValue;
+        return card.getAttribute('data-category') === filterValue;
     }
 
     function matchesQuery(card, query) {
         if (!query) return true;
         const name = (card.querySelector('h3')?.textContent || '').toLowerCase();
         const desc = (card.querySelector('p')?.textContent || '').toLowerCase();
-        const techs = Array.from(card.querySelectorAll('.project-tech .tech-tag')).map(t => t.textContent.toLowerCase()).join(' ');
-        const haystack = `${name} ${desc} ${techs}`;
-        return haystack.includes(query);
+        const techs = Array.from(card.querySelectorAll('.project-tech .tech-tag')).map((t) => t.textContent.toLowerCase()).join(' ');
+        return `${name} ${desc} ${techs}`.includes(query);
     }
 
     function applyFilters() {
@@ -269,345 +224,76 @@ function initializeProjectFilters() {
         const query = (searchInput?.value || '').trim().toLowerCase();
         let visible = 0;
 
-        projectCards.forEach(card => {
+        projectCards.forEach((card) => {
             const show = matchesFilter(card, filterValue) && matchesQuery(card, query);
-            if (show) {
-                card.style.display = 'flex';
-                card.style.animation = 'fadeInUp 0.6s ease forwards';
-                visible++;
-            } else {
-                card.style.animation = 'fadeOutDown 0.4s ease forwards';
-                setTimeout(() => { card.style.display = 'none'; }, 400);
-            }
+            card.style.display = show ? 'flex' : 'none';
+            if (show) visible++;
         });
 
         if (countEl) {
-            if (query || filterValue !== 'all') {
-                countEl.textContent = `Showing ${visible} project${visible === 1 ? '' : 's'}`;
-            } else {
-                countEl.textContent = 'Showing all';
-            }
+            countEl.textContent = (query || filterValue !== 'all')
+                ? `Showing ${visible} project${visible === 1 ? '' : 's'}`
+                : 'Showing all';
         }
     }
 
-    // Button click filtering
-    filterBtns.forEach(btn => {
+    filterBtns.forEach((btn) => {
         btn.addEventListener('click', () => {
-            filterBtns.forEach(b => b.classList.remove('active'));
+            filterBtns.forEach((b) => b.classList.remove('active'));
             btn.classList.add('active');
             applyFilters();
         });
     });
 
-    // Live search (debounced)
     if (searchInput) {
-        const debounced = debounce(applyFilters, 150);
-        searchInput.addEventListener('input', debounced);
+        searchInput.addEventListener('input', debounce(applyFilters, 150));
     }
 
-    // Initial state
     applyFilters();
 }
 
-// Simple debounce utility
 function debounce(fn, wait) {
     let t;
-    return function(...args) {
+    return function (...args) {
         clearTimeout(t);
         t = setTimeout(() => fn.apply(this, args), wait);
     };
 }
 
-function checkProjectCategory(projectName, category) {
-    const categories = {
-        web: ['portfolio', 'web-server', 'ticket_booking', 'login-form'],
-        mobile: ['tinyneedsapp', 'parentalcontrol'],
-        backend: ['spring', 'jdbc_connectivity', 'web-server'],
-        ml: ['movie-recommandation-ml-project']
-    };
-
-    return categories[category]?.some(keyword => projectName.includes(keyword)) || false;
-}
-
-async function fetchData(type = "skills") {
-    let response
-    type === "skills" ?
-        response = await fetch("skills.json")
-        :
-        response = await fetch("./projects/projects.json")
-    const data = await response.json();
-    return data;
+/* ---------- Skills grid ---------- */
+async function fetchSkills() {
+    const response = await fetch('skills.json');
+    return response.json();
 }
 
 function showSkills(skills) {
-    let skillsContainer = document.getElementById("skillsContainer");
-    let skillHTML = "";
+    const container = document.getElementById('skillsContainer');
+    if (!container) return;
 
-    skills.forEach((skill, index) => {
-        skillHTML += `
-        <div class="bar" style="animation-delay: ${index * 0.1}s">
-              <div class="info">
-                <img src="${skill.icon}" alt="${skill.name}" loading="lazy" />
-                <span>${skill.name}</span>
-              </div>
-            </div>`;
-    });
-
-    skillsContainer.innerHTML = skillHTML;
-
-    // Add intersection observer for skill animations
-    const skillBars = document.querySelectorAll('.skills .bar');
-    const skillObserver = new IntersectionObserver((entries) => {
-        entries.forEach(entry => {
-            if (entry.isIntersecting) {
-                entry.target.style.animation = 'slideInUp 0.6s ease forwards';
-                entry.target.style.opacity = '1';
-            }
-        });
-    }, { threshold: 0.1 });
-
-    skillBars.forEach(bar => {
-        bar.style.opacity = '0';
-        skillObserver.observe(bar);
-    });
-}
-
-function showProjects(projects) {
-    let projectsContainer = document.querySelector("#work .box-container");
-    let projectHTML = "";
-    projects.slice(0, 10).filter(project => project.category != "android").forEach(project => {
-        projectHTML += `
-        <div class="box tilt">
-      <img draggable="false" src="/assets/images/projects/${project.image}.png" alt="project" />
-      <div class="content">
-        <div class="tag">
-        <h3>${project.name}</h3>
+    container.innerHTML = skills.map((skill) => `
+        <div class="skill-card">
+            <div class="skill-icon"><img src="${skill.icon}" alt="${skill.name}" loading="lazy" /></div>
+            <span>${skill.name}</span>
         </div>
-        <div class="desc">
-          <p>${project.desc}</p>
-          <div class="btns">
-            <a href="${project.links.view}" class="btn" target="_blank"><i class="fas fa-eye"></i> View</a>
-            <a href="${project.links.code}" class="btn" target="_blank">Code <i class="fas fa-code"></i></a>
-          </div>
-        </div>
-      </div>
-    </div>`
-    });
-    projectsContainer.innerHTML = projectHTML;
+    `).join('');
 
-    // <!-- tilt js effect starts -->
-    VanillaTilt.init(document.querySelectorAll(".tilt"), {
-        max: 15,
-    });
-    // <!-- tilt js effect ends -->
+    const reduceMotion = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    if (reduceMotion) return;
 
-    /* ===== SCROLL REVEAL ANIMATION ===== */
-    const srtop = ScrollReveal({
-        origin: 'top',
-        distance: '80px',
-        duration: 1000,
-        reset: true
-    });
-
-    /* SCROLL PROJECTS */
-    srtop.reveal('.work .box', { interval: 200 });
-
+    document.querySelectorAll('#skillsContainer .skill-card').forEach((el, i) => observeReveal(el, i % 8, 'reveal-scale'));
 }
 
-fetchData().then(data => {
-    showSkills(data);
-});
+fetchSkills()
+    .then(showSkills)
+    .catch((error) => console.error('Error loading skills:', error));
 
-if (document.querySelector('#work')) {
-    fetchData("projects").then(data => {
-        showProjects(data);
-    });
-}
-
-// <!-- tilt js effect starts -->
-VanillaTilt.init(document.querySelectorAll(".tilt"), {
-    max: 15,
-});
-// <!-- tilt js effect ends -->
-
-
-// pre loader start
-// function loader() {
-//     document.querySelector('.loader-container').classList.add('fade-out');
-// }
-// function fadeOut() {
-//     setInterval(loader, 500);
-// }
-// window.onload = fadeOut;
-// pre loader end
-
-// disable developer mode
-document.onkeydown = function (e) {
-    if (e.keyCode == 123) {
-        return false;
-    }
-    if (e.ctrlKey && e.shiftKey && e.keyCode == 'I'.charCodeAt(0)) {
-        return false;
-    }
-    if (e.ctrlKey && e.shiftKey && e.keyCode == 'C'.charCodeAt(0)) {
-        return false;
-    }
-    if (e.ctrlKey && e.shiftKey && e.keyCode == 'J'.charCodeAt(0)) {
-        return false;
-    }
-    if (e.ctrlKey && e.keyCode == 'U'.charCodeAt(0)) {
-        return false;
-    }
-}
-
-// Start of Tawk.to Live Chat
+/* ---------- Live chat widget ---------- */
 var Tawk_API = Tawk_API || {}, Tawk_LoadStart = new Date();
 (function () {
-    var s1 = document.createElement("script"), s0 = document.getElementsByTagName("script")[0];
+    var s1 = document.createElement('script'), s0 = document.getElementsByTagName('script')[0];
     s1.async = true;
     s1.src = 'https://embed.tawk.to/60df10bf7f4b000ac03ab6a8/1f9jlirg6';
     s1.charset = 'UTF-8';
     s1.setAttribute('crossorigin', '*');
     s0.parentNode.insertBefore(s1, s0);
 })();
-// End of Tawk.to Live Chat
-
-
-/* ===== SCROLL REVEAL ANIMATION (legacy block gated) ===== */
-(function(){
-    const reduceMotion = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-    if (typeof ScrollReveal === 'undefined' || reduceMotion) return;
-    const srtop = ScrollReveal({
-        origin: 'top',
-        distance: '80px',
-        duration: 900,
-        reset: false
-    });
-
-    /* SCROLL HOME */
-    srtop.reveal('.home .content h3', { delay: 200 });
-    srtop.reveal('.home .content p', { delay: 200 });
-    srtop.reveal('.home .content .btn', { delay: 200 });
-
-    srtop.reveal('.home .image', { delay: 400 });
-    srtop.reveal('.home .linkedin', { interval: 400 });
-    srtop.reveal('.home .github', { interval: 500 });
-    srtop.reveal('.home .twitter', { interval: 600 });
-    srtop.reveal('.home .telegram', { interval: 400 });
-    srtop.reveal('.home .instagram', { interval: 400 });
-    srtop.reveal('.home .dev', { interval: 400 });
-
-    /* ENHANCED SCROLL ANIMATIONS */
-    srtop.reveal('.about .content h3', { delay: 150 });
-    srtop.reveal('.about .content .tag', { delay: 180 });
-    srtop.reveal('.about .content p', { delay: 210 });
-    srtop.reveal('.about .content .box-container', { delay: 240 });
-    srtop.reveal('.about .content .resumebtn', { delay: 270 });
-})();
-
-// Initialize particle effects
-function initializeParticles() {
-    const particlesContainer = document.getElementById('particles-js');
-    if (particlesContainer) {
-        // Create floating particles
-        for (let i = 0; i < 50; i++) {
-            createParticle(particlesContainer);
-        }
-    }
-}
-
-function createParticle(container) {
-    const particle = document.createElement('div');
-    particle.className = 'particle';
-    particle.style.cssText = `
-        position: absolute;
-        width: ${Math.random() * 4 + 2}px;
-        height: ${Math.random() * 4 + 2}px;
-        background: rgba(99, 102, 241, ${Math.random() * 0.5 + 0.2});
-        border-radius: 50%;
-        left: ${Math.random() * 100}%;
-        top: ${Math.random() * 100}%;
-        animation: float ${Math.random() * 10 + 10}s infinite linear;
-        pointer-events: none;
-    `;
-    container.appendChild(particle);
-}
-
-// Enhanced typing animation
-function enhanceTypingAnimation() {
-    const style = document.createElement('style');
-    style.textContent = `
-        .typed-cursor {
-            animation: blink 1s infinite;
-        }
-        @keyframes blink {
-            0%, 50% { opacity: 1; }
-            51%, 100% { opacity: 0; }
-        }
-        @keyframes float {
-            0%, 100% { transform: translateY(0px) rotate(0deg); }
-            33% { transform: translateY(-10px) rotate(120deg); }
-            66% { transform: translateY(5px) rotate(240deg); }
-        }
-        @keyframes slideInUp {
-            from {
-                opacity: 0;
-                transform: translateY(30px);
-            }
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
-        }
-        @keyframes fadeInUp {
-            from {
-                opacity: 0;
-                transform: translateY(30px);
-            }
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
-        }
-        @keyframes fadeOutDown {
-            from {
-                opacity: 1;
-                transform: translateY(0);
-            }
-            to {
-                opacity: 0;
-                transform: translateY(30px);
-            }
-        }
-        .particle {
-            z-index: 0;
-        }
-    `;
-    document.head.appendChild(style);
-}
-
-// Load skills data with enhanced error handling
-fetchData().then(data => {
-    showSkills(data);
-}).catch(error => {
-    console.error('Error loading skills:', error);
-});
-
-
-/* SCROLL SKILLS */
-srtop.reveal('.skills .container', { interval: 200 });
-srtop.reveal('.skills .container .bar', { delay: 400 });
-
-/* SCROLL EDUCATION */
-srtop.reveal('.education .box', { interval: 200 });
-
-/* SCROLL PROJECTS */
-srtop.reveal('.work .box', { interval: 200 });
-
-/* SCROLL EXPERIENCE */
-srtop.reveal('.experience .timeline', { delay: 400 });
-srtop.reveal('.experience .timeline .container', { interval: 400 });
-
-/* SCROLL CONTACT */
-srtop.reveal('.contact .container', { delay: 400 });
-srtop.reveal('.contact .container .form-group', { delay: 400 });
