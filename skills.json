@@ -3,150 +3,289 @@
         "name": "React.js",
         "category": "frontend",
         "note": "Component-driven UIs at Devanta Tech, TradeWithAi and more.",
-        "icon": "https://img.icons8.com/plasticine/48/000000/react.png"
+        "icon": "https://img.icons8.com/plasticine/48/000000/react.png",
+        "related": [
+            "JavaScript",
+            "React Native",
+            "Tailwind CSS",
+            "HTML5",
+            "CSS3"
+        ],
+        "mern": true
     },
     {
         "name": "React Native",
         "category": "frontend",
         "note": "Cross-platform mobile apps — TinyNeedsApp and its admin panel.",
-        "icon": "https://img.icons8.com/external-tal-revivo-color-tal-revivo/48/000000/external-react-a-javascript-library-for-building-user-interfaces-logo-color-tal-revivo.png"
+        "icon": "https://img.icons8.com/external-tal-revivo-color-tal-revivo/48/000000/external-react-a-javascript-library-for-building-user-interfaces-logo-color-tal-revivo.png",
+        "related": [
+            "React.js",
+            "JavaScript",
+            "Supabase"
+        ]
     },
     {
         "name": "JavaScript",
         "category": "frontend",
         "note": "Primary language, from browser games to full-stack apps.",
-        "icon": "https://img.icons8.com/color/48/000000/javascript--v1.png"
+        "icon": "https://img.icons8.com/color/48/000000/javascript--v1.png",
+        "related": [
+            "React.js",
+            "React Native",
+            "Node.js",
+            "Express.js",
+            "HTML5",
+            "CSS3"
+        ]
     },
     {
         "name": "HTML5",
         "category": "frontend",
         "note": "Semantic, accessible markup.",
-        "icon": "https://img.icons8.com/color/48/000000/html-5--v1.png"
+        "icon": "https://img.icons8.com/color/48/000000/html-5--v1.png",
+        "related": [
+            "CSS3",
+            "JavaScript",
+            "React.js"
+        ]
     },
     {
         "name": "CSS3",
         "category": "frontend",
         "note": "Responsive layouts, animation and design systems.",
-        "icon": "https://img.icons8.com/color/48/000000/css3.png"
+        "icon": "https://img.icons8.com/color/48/000000/css3.png",
+        "related": [
+            "HTML5",
+            "Tailwind CSS",
+            "JavaScript"
+        ]
     },
     {
         "name": "Tailwind CSS",
         "category": "frontend",
         "note": "Utility-first styling — used in TradeWithAi.",
-        "icon": "https://img.icons8.com/color/48/000000/tailwindcss.png"
+        "icon": "https://img.icons8.com/color/48/000000/tailwindcss.png",
+        "related": [
+            "CSS3",
+            "React.js",
+            "HTML5"
+        ]
     },
     {
         "name": "Node.js",
         "category": "backend",
         "note": "Runtime for REST APIs and services at Devanta Tech.",
-        "icon": "https://img.icons8.com/color/48/000000/nodejs.png"
+        "icon": "https://img.icons8.com/color/48/000000/nodejs.png",
+        "related": [
+            "Express.js",
+            "JavaScript",
+            "MongoDB",
+            "RESTful APIs",
+            "JWT Auth",
+            "PostgreSQL"
+        ],
+        "mern": true
     },
     {
         "name": "Express.js",
         "category": "backend",
         "note": "REST routing, middleware and JWT-protected endpoints.",
-        "icon": "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/express/express-original.svg"
+        "icon": "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/express/express-original.svg",
+        "related": [
+            "Node.js",
+            "MongoDB",
+            "RESTful APIs",
+            "JWT Auth",
+            "JavaScript"
+        ],
+        "mern": true
     },
     {
         "name": "Spring Boot",
         "category": "backend",
         "note": "Backends for TradeWithAi, Ticket Booking and Web Server.",
-        "icon": "https://img.icons8.com/color/48/000000/spring-logo.png"
+        "icon": "https://img.icons8.com/color/48/000000/spring-logo.png",
+        "related": [
+            "Java",
+            "MySQL",
+            "RESTful APIs",
+            "JWT Auth"
+        ]
     },
     {
         "name": "Java",
         "category": "backend",
         "note": "OOP, multithreading and JDBC-based applications.",
-        "icon": "https://img.icons8.com/color/48/000000/java-coffee-cup-logo--v1.png"
+        "icon": "https://img.icons8.com/color/48/000000/java-coffee-cup-logo--v1.png",
+        "related": [
+            "Spring Boot",
+            "MySQL",
+            "SQL"
+        ]
     },
     {
         "name": "RESTful APIs",
         "category": "backend",
         "note": "Resource-oriented API design for enterprise clients.",
-        "icon": "https://img.icons8.com/color/48/000000/api-settings.png"
+        "icon": "https://img.icons8.com/color/48/000000/api-settings.png",
+        "related": [
+            "Node.js",
+            "Express.js",
+            "Spring Boot",
+            "JWT Auth",
+            "Postman"
+        ]
     },
     {
         "name": "JWT Auth",
         "category": "backend",
         "note": "Secure authentication with role-based access control.",
-        "icon": "https://img.icons8.com/color/48/000000/key-security.png"
+        "icon": "https://img.icons8.com/color/48/000000/key-security.png",
+        "related": [
+            "Node.js",
+            "Express.js",
+            "Spring Boot",
+            "RESTful APIs"
+        ]
     },
     {
         "name": "MongoDB",
         "category": "database",
         "note": "Document database in the MERN stack at Devanta Tech.",
-        "icon": "https://img.icons8.com/color/48/000000/mongodb.png"
+        "icon": "https://img.icons8.com/color/48/000000/mongodb.png",
+        "related": [
+            "Node.js",
+            "Express.js",
+            "React.js"
+        ],
+        "mern": true
     },
     {
         "name": "PostgreSQL",
         "category": "database",
         "note": "Relational data for industrial cloud platforms.",
-        "icon": "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/postgresql/postgresql-original.svg"
+        "icon": "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/postgresql/postgresql-original.svg",
+        "related": [
+            "SQL",
+            "Drizzle ORM",
+            "Supabase",
+            "Node.js"
+        ]
     },
     {
         "name": "MySQL",
         "category": "database",
         "note": "Relational storage in TradeWithAi and JDBC projects.",
-        "icon": "https://img.icons8.com/color/48/000000/mysql-logo.png"
+        "icon": "https://img.icons8.com/color/48/000000/mysql-logo.png",
+        "related": [
+            "SQL",
+            "Spring Boot",
+            "Java"
+        ]
     },
     {
         "name": "SQL",
         "category": "database",
         "note": "Optimised queries and data integrity (certified).",
-        "icon": "https://img.icons8.com/color/48/000000/sql.png"
+        "icon": "https://img.icons8.com/color/48/000000/sql.png",
+        "related": [
+            "MySQL",
+            "PostgreSQL",
+            "Drizzle ORM"
+        ]
     },
     {
         "name": "Drizzle ORM",
         "category": "database",
         "note": "Type-safe, SQL-first data access layer.",
-        "icon": "https://img.icons8.com/color/48/000000/database.png"
+        "icon": "https://img.icons8.com/color/48/000000/database.png",
+        "related": [
+            "PostgreSQL",
+            "SQL",
+            "Node.js"
+        ]
     },
     {
         "name": "Firebase",
         "category": "database",
         "note": "Backend-as-a-service for auth and realtime data.",
-        "icon": "https://img.icons8.com/color/48/000000/firebase.png"
+        "icon": "https://img.icons8.com/color/48/000000/firebase.png",
+        "related": [
+            "JavaScript",
+            "React Native"
+        ]
     },
     {
         "name": "Supabase",
         "category": "database",
         "note": "Auth and realtime sync in TinyNeedsApp.",
-        "icon": "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/supabase/supabase-original.svg"
+        "icon": "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/supabase/supabase-original.svg",
+        "related": [
+            "PostgreSQL",
+            "React Native",
+            "SQL"
+        ]
     },
     {
         "name": "AWS",
         "category": "tools",
         "note": "Cloud Foundations — core cloud services and concepts.",
-        "icon": "https://img.icons8.com/color/48/000000/amazon-web-services.png"
+        "icon": "https://img.icons8.com/color/48/000000/amazon-web-services.png",
+        "related": [
+            "Jenkins",
+            "Git"
+        ]
     },
     {
         "name": "Jenkins",
         "category": "tools",
         "note": "CI automation for build and delivery pipelines.",
-        "icon": "https://img.icons8.com/color/48/000000/jenkins.png"
+        "icon": "https://img.icons8.com/color/48/000000/jenkins.png",
+        "related": [
+            "Git",
+            "GitHub",
+            "AWS"
+        ]
     },
     {
         "name": "Git",
         "category": "tools",
         "note": "Branching strategies and collaborative workflows.",
-        "icon": "https://img.icons8.com/color/48/000000/git.png"
+        "icon": "https://img.icons8.com/color/48/000000/git.png",
+        "related": [
+            "GitHub",
+            "Jenkins"
+        ]
     },
     {
         "name": "GitHub",
         "category": "tools",
         "note": "Code hosting, reviews and collaboration.",
-        "icon": "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/github/github-original.svg"
+        "icon": "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/github/github-original.svg",
+        "related": [
+            "Git",
+            "Jenkins"
+        ]
     },
     {
         "name": "Postman",
         "category": "tools",
         "note": "Designing, testing and documenting APIs (certified).",
-        "icon": "https://img.icons8.com/color/48/000000/postman.png"
+        "icon": "https://img.icons8.com/color/48/000000/postman.png",
+        "related": [
+            "RESTful APIs",
+            "JWT Auth",
+            "Express.js"
+        ]
     },
     {
         "name": "VS Code",
         "category": "tools",
         "note": "Daily-driver editor.",
-        "icon": "https://img.icons8.com/color/48/000000/visual-studio-code-2019.png"
+        "icon": "https://img.icons8.com/color/48/000000/visual-studio-code-2019.png",
+        "related": [
+            "JavaScript",
+            "Git"
+        ]
     }
 ]

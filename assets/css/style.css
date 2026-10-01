@@ -16,8 +16,29 @@
   --radius-lg: 2.2rem;
   --radius-full: 999px;
 
+  /* ------------------------------------------------------------------
+     MOTION SYSTEM — one vocabulary for the whole site.
+     Durations : fast (hover/feedback) · base (UI) · slow (reveals) · cine (hero/intro)
+     Easing    : --ease (decelerate, default) · --ease-in-out (transitions) · --ease-spring (playful settle)
+     Distance  : sm (micro) · md (reveal) · lg (slide-in)
+     Stagger   : delay between siblings (read by core.js as Motion.stagger)
+     Hover     : lift / scale used by cards and tiles
+     JS helpers live in core.js (reveal, stagger, splitWords) and effects.js
+     (magnetic, tilt, spotlight, parallax, cursor).
+     ------------------------------------------------------------------ */
   --ease: cubic-bezier(0.22, 1, 0.36, 1);
   --ease-in-out: cubic-bezier(0.65, 0, 0.35, 1);
+  --ease-spring: cubic-bezier(0.34, 1.56, 0.64, 1);
+  --dur-fast: 0.3s;
+  --dur-base: 0.6s;
+  --dur-slow: 0.9s;
+  --dur-cine: 1.3s;
+  --dist-sm: 1.2rem;
+  --dist-md: 3.2rem;
+  --dist-lg: 4.8rem;
+  --stagger: 0.08;
+  --lift: -6px;
+  --scale-hover: 1.04;
   --container: 118rem;
   --header-h: 7.2rem;
 
@@ -209,6 +230,13 @@ html::-webkit-scrollbar-thumb:hover { background: var(--primary); }
   will-change: transform;
   animation: blobDrift 22s ease-in-out infinite alternate;
 }
+.ambient__blob { translate: calc(var(--bx, 0) * -5rem) calc(var(--by, 0) * -4rem); transition: filter 1.6s ease, translate 1.2s var(--ease); }
+/* Scene tint: core.js sets html[data-scene] from the section in view; the blobs hue-shift smoothly */
+html[data-scene='experience'] .ambient__blob { filter: hue-rotate(38deg); }
+html[data-scene='github-projects'] .ambient__blob { filter: hue-rotate(-52deg); }
+html[data-scene='skills'] .ambient__blob { filter: hue-rotate(72deg); }
+html[data-scene='education'] .ambient__blob { filter: hue-rotate(-24deg); }
+html[data-scene='contact'] .ambient__blob { filter: hue-rotate(-70deg) saturate(1.2); }
 .ambient__blob--a { top: -26rem; left: -18rem; background: radial-gradient(closest-side, var(--blob-a), transparent); }
 .ambient__blob--b { top: 18%; right: -24rem; background: radial-gradient(closest-side, var(--blob-b), transparent); animation-delay: -8s; animation-duration: 28s; }
 .ambient__blob--c { bottom: -30rem; left: 22%; background: radial-gradient(closest-side, var(--blob-c), transparent); animation-delay: -14s; animation-duration: 32s; }
@@ -216,6 +244,25 @@ html::-webkit-scrollbar-thumb:hover { background: var(--primary); }
   0% { transform: translate3d(0, 0, 0) scale(1); }
   100% { transform: translate3d(6rem, 5rem, 0) scale(1.15); }
 }
+/* Light beams: two soft shafts that sway slowly from the top of the viewport */
+.ambient__beam {
+  position: absolute;
+  top: -20%;
+  width: 22rem;
+  height: 140%;
+  opacity: 0.5;
+  background: linear-gradient(180deg, rgba(var(--glow), 0.16), transparent 70%);
+  -webkit-mask-image: linear-gradient(90deg, transparent, #000, transparent);
+  mask-image: linear-gradient(90deg, transparent, #000, transparent);
+  transform-origin: 50% 0;
+  animation: beamSway 14s ease-in-out infinite alternate;
+  will-change: transform;
+}
+.ambient__beam--a { left: 18%; rotate: 14deg; }
+.ambient__beam--b { left: 62%; rotate: -18deg; animation-delay: -6s; animation-duration: 18s; opacity: 0.35; }
+@keyframes beamSway { from { transform: rotate(-4deg); } to { transform: rotate(5deg); } }
+:root[data-theme='light'] .ambient__beam { opacity: 0.28; }
+.ambient__particles { position: absolute; inset: 0; width: 100%; height: 100%; opacity: 0.9; }
 .ambient__grid {
   position: absolute;
   inset: 0;
@@ -462,7 +509,7 @@ button[type='submit']:active { --lift: -1px; }
    element returns to its natural styles afterwards and hover transforms work. */
 html.js [data-reveal]:not(.in-view) { opacity: 0; }
 html.js [data-reveal].in-view {
-  animation: revealUp 0.9s var(--ease) backwards;
+  animation: revealUp var(--dur-slow) var(--ease) backwards;
   animation-delay: var(--d, 0s);
 }
 html.js [data-reveal='left'].in-view { animation-name: revealLeft; }
@@ -470,11 +517,11 @@ html.js [data-reveal='right'].in-view { animation-name: revealRight; }
 html.js [data-reveal='scale'].in-view { animation-name: revealScale; }
 html.js [data-reveal='blur'].in-view { animation-name: revealBlur; }
 
-@keyframes revealUp { from { opacity: 0; translate: 0 3.2rem; } to { opacity: 1; translate: 0 0; } }
-@keyframes revealLeft { from { opacity: 0; translate: -4.8rem 0; } to { opacity: 1; translate: 0 0; } }
-@keyframes revealRight { from { opacity: 0; translate: 4.8rem 0; } to { opacity: 1; translate: 0 0; } }
-@keyframes revealScale { from { opacity: 0; translate: 0 2.4rem; scale: 0.92; } to { opacity: 1; translate: 0 0; scale: 1; } }
-@keyframes revealBlur { from { opacity: 0; filter: blur(1.4rem); translate: 0 2rem; } to { opacity: 1; filter: blur(0); translate: 0 0; } }
+@keyframes revealUp { from { opacity: 0; translate: 0 var(--dist-md); } to { opacity: 1; translate: 0 0; } }
+@keyframes revealLeft { from { opacity: 0; translate: calc(var(--dist-lg) * -1) 0; } to { opacity: 1; translate: 0 0; } }
+@keyframes revealRight { from { opacity: 0; translate: var(--dist-lg) 0; } to { opacity: 1; translate: 0 0; } }
+@keyframes revealScale { from { opacity: 0; translate: 0 calc(var(--dist-md) * 0.75); scale: 0.92; } to { opacity: 1; translate: 0 0; scale: 1; } }
+@keyframes revealBlur { from { opacity: 0; filter: blur(1.4rem); translate: 0 calc(var(--dist-md) * 0.6); } to { opacity: 1; filter: blur(0); translate: 0 0; } }
 
 /* ---------- Header / navigation ---------- */
 .scroll-progress {
@@ -858,37 +905,37 @@ main { overflow-x: clip; }
 /* Cross-fade between pages (index <-> project1) where View Transitions are supported */
 @media (prefers-reduced-motion: no-preference) {
   @view-transition { navigation: auto; }
-  ::view-transition-old(root) { animation: 0.35s ease both vtOut; }
-  ::view-transition-new(root) { animation: 0.5s var(--ease) both vtIn; }
+  ::view-transition-old(root) { animation: var(--dur-fast) ease both vtOut; }
+  ::view-transition-new(root) { animation: var(--dur-base) var(--ease) both vtIn; }
 }
 @keyframes vtOut { to { opacity: 0; transform: translateY(-1rem); } }
 @keyframes vtIn { from { opacity: 0; transform: translateY(1.6rem); } }
 
-@keyframes fadeUp { from { opacity: 0; translate: 0 2rem; } to { opacity: 1; translate: 0 0; } }
+@keyframes fadeUp { from { opacity: 0; translate: 0 calc(var(--dist-md) * 0.6); } to { opacity: 1; translate: 0 0; } }
 
 /* Section heads: the head itself is only a trigger; eyebrow, words and sub-line animate in sequence */
 html.js [data-reveal='head']:not(.in-view) { opacity: 1; }
 html.js [data-reveal='head'].in-view { animation: none; }
 html.js [data-reveal='head']:not(.in-view) .eyebrow,
 html.js [data-reveal='head']:not(.in-view) .section-sub { opacity: 0; }
-html.js [data-reveal='head'].in-view .eyebrow { animation: fadeUp 0.8s var(--ease) backwards; }
-html.js [data-reveal='head'].in-view .section-sub { animation: fadeUp 0.9s var(--ease) 0.6s backwards; }
+html.js [data-reveal='head'].in-view .eyebrow { animation: fadeUp var(--dur-slow) var(--ease) backwards; }
+html.js [data-reveal='head'].in-view .section-sub { animation: fadeUp var(--dur-slow) var(--ease) 0.6s backwards; }
 html.js [data-reveal='head'].in-view .eyebrow::before,
 html.js [data-reveal='head'].in-view .eyebrow::after { animation: lineGrow 1s var(--ease) 0.2s backwards; }
 @keyframes lineGrow { from { width: 0; } to { width: 3.2rem; } }
 
-.heading.is-split .w { display: inline-block; overflow: hidden; vertical-align: top; padding: 0 0.05em 0.16em; margin: 0 -0.05em -0.16em; }
-.heading.is-split .wi { display: inline-block; }
-html.js .heading.is-split .wi { opacity: 0; }
-html.js [data-reveal='head'].in-view .heading.is-split .wi {
+.is-split .w { display: inline-block; overflow: hidden; vertical-align: top; padding: 0 0.05em 0.16em; margin: 0 -0.05em -0.16em; }
+.is-split .wi { display: inline-block; }
+html.js .is-split .wi { opacity: 0; }
+html.js [data-reveal].in-view .is-split .wi {
   opacity: 1;
-  animation: wordUp 1s var(--ease) backwards;
+  animation: wordUp var(--dur-slow) var(--ease) backwards;
   animation-delay: calc(0.1s + var(--w, 0) * 0.1s);
 }
 @keyframes wordUp { from { opacity: 0; transform: translateY(115%) rotate(5deg); } to { opacity: 1; transform: none; } }
 
 /* gradient words keep a slow shimmer once they have landed */
-.heading.is-split .hs-grad .wi {
+.is-split .hs-grad .wi {
   background: var(--shimmer);
   background-size: 200% 100%;
   -webkit-background-clip: text;
@@ -896,14 +943,14 @@ html.js [data-reveal='head'].in-view .heading.is-split .wi {
   -webkit-text-fill-color: transparent;
   color: transparent;
 }
-html.js [data-reveal='head'].in-view .heading.is-split .hs-grad .wi {
-  animation: wordUp 1s var(--ease) backwards, shimmer 7s linear infinite;
+html.js [data-reveal].in-view .is-split .hs-grad .wi {
+  animation: wordUp var(--dur-slow) var(--ease) backwards, shimmer 7s linear infinite;
   animation-delay: calc(0.1s + var(--w, 0) * 0.1s), 1.4s;
 }
 @keyframes shimmer { to { background-position: 200% 0; } }
 
 /* Wipe-in for images / panels */
-html.js [data-reveal='clip'].in-view { animation: revealClip 1.2s var(--ease) backwards; animation-delay: var(--d, 0s); }
+html.js [data-reveal='clip'].in-view { animation: revealClip var(--dur-cine) var(--ease) backwards; animation-delay: var(--d, 0s); }
 @keyframes revealClip { from { opacity: 0; clip-path: inset(0 100% 0 0 round 2rem); } to { opacity: 1; clip-path: inset(0 0 0 0 round 2rem); } }
 
 /* Scroll parallax (value comes from effects.js) */
@@ -920,3 +967,11 @@ html.js [data-reveal='clip'].in-view { animation: revealClip 1.2s var(--ease) ba
   animation: ripple 0.75s ease-out forwards;
 }
 @keyframes ripple { to { transform: scale(1); opacity: 0; } }
+
+
+/* Underline that expands from the left on hover/focus */
+.link-u { background: linear-gradient(currentColor, currentColor) 0 100% / 0 1px no-repeat; transition: background-size var(--dur-fast) var(--ease), color var(--dur-fast); padding-bottom: 2px; }
+.link-u:hover, .link-u:focus-visible { background-size: 100% 1px; }
+
+/* Modal open: lock page scroll without a layout jump (scrollbar width is reserved) */
+body.modal-open { overflow: hidden; padding-right: var(--sbw, 0px); }

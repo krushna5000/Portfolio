@@ -1,10 +1,18 @@
 /* ==========================================================================
-   effects.js — pointer-driven polish, shared by every page.
-   Custom cursor, cursor glow, magnetic buttons, spotlight cards, 3D tilt,
-   mouse parallax and stat counters.
+   effects.js — interaction layer, shared by every page.
 
-   Everything pointer-related is gated to fine pointers (mouse / trackpad)
-   and skipped under prefers-reduced-motion, so touch devices pay nothing.
+   Always on (cheap, touch-safe):  stat counters · scroll parallax ·
+     scramble-decode labels · scroll-speed marquees · click ripple
+   Fine pointers only (mouse / trackpad, not reduced-motion):
+     custom cursor + labels · cursor glow · pointer-reactive background ·
+     card spotlight / tilt / image shift · magnetic buttons · hero letter lift ·
+     mouse-parallax layers
+
+   Performance rules followed here:
+     - one passive pointermove listener, work coalesced into one rAF per frame
+     - inside that frame: ALL layout reads first, THEN all style writes
+     - the cursor loop stops itself once the ring has caught up
+     - IntersectionObserver / visibility sets decide what is worth updating
    ========================================================================== */
 (function () {
   'use strict';
@@ -15,7 +23,7 @@
   var finePointer = mq('(hover: hover) and (pointer: fine)');
   var pointerFx = finePointer && !reduceMotion;
 
-  /* ---------- Stat counters (existing behaviour, now opt-in via data-count) ---------- */
+  /* ---------- Stat counters (opt-in via data-count) ---------- */
   function animateCount(el) {
     var raw = el.textContent.trim();
     var match = raw.match(/^(\d+(?:\.\d+)?)(.*)$/);
@@ -61,12 +69,16 @@
     window.__onCoreScroll = function (y) {
       if (prevScroll) prevScroll(y);
       var vh = window.innerHeight;
+      var writes = [];
+      // read pass
       visible.forEach(function (el) {
         // measure the parent: the element's own translate would feed back into its rect
         var r = el.parentElement.getBoundingClientRect();
         var speed = parseFloat(el.getAttribute('data-parallax-y')) || 0;
-        el.style.setProperty('--ps', ((r.top + r.height / 2 - vh / 2) * speed).toFixed(1) + 'px');
+        writes.push([el, ((r.top + r.height / 2 - vh / 2) * speed).toFixed(1) + 'px']);
       });
+      // write pass
+      writes.forEach(function (w) { w[0].style.setProperty('--ps', w[1]); });
     };
   }
 
@@ -108,21 +120,21 @@
     var lastY = window.scrollY, vel = 0, settling = false, scrollAnims = [];
     var NAMES = { marquee: 1, bandMove: 1 };
     var prevForVel = window.__onCoreScroll;
-    function collect() {
+    var collect = function () {
       scrollAnims = document.getAnimations().filter(function (a) { return a.animationName && NAMES[a.animationName]; });
-    }
-    function applyRate() {
+    };
+    var applyRate = function () {
       var rate = 1 + Math.min(Math.abs(vel) * 0.35, 9);
       if (!scrollAnims.length) collect();
       scrollAnims.forEach(function (a) { try { a.updatePlaybackRate(rate); } catch (err) { /* finished/removed */ } });
       return rate;
-    }
-    function settle() {
+    };
+    var settle = function () {
       vel *= 0.93;
       var rate = applyRate();
       if (rate > 1.03) requestAnimationFrame(settle);
       else { vel = 0; applyRate(); settling = false; }
-    }
+    };
     window.__onCoreScroll = function (y) {
       if (prevForVel) prevForVel(y);
       vel = vel * 0.6 + (y - lastY) * 0.4;
@@ -151,6 +163,10 @@
 
   if (!pointerFx) return;
 
+  /* ======================================================================
+     Fine-pointer layer
+     ====================================================================== */
+
   /* ---------- Custom cursor: dot (instant) + ring (eased follower) ---------- */
   var dot = document.createElement('div');
   var ring = document.createElement('div');
@@ -177,32 +193,49 @@
     else rafId = 0;
   }
 
+  // Cursor states: default · link/button (expand) · text (caret) · label (e.g. "View") · hidden over iframes
   function setCursorState(target) {
-    var isText = target.closest && target.closest(TEXT);
-    var onControl = target.closest && target.closest('a, button, input, textarea, select');
-    var labelEl = !onControl && target.closest ? target.closest('[data-cursor]') : null;
-    var isLink = !isText && !labelEl && target.closest && target.closest(INTERACTIVE);
+    var closest = target.closest ? function (s) { return target.closest(s); } : function () { return null; };
+    var isText = closest(TEXT);
+    var onControl = closest('a, button, input, textarea, select');
+    var labelEl = !onControl ? closest('[data-cursor]') : null;
+    var isLink = !isText && !labelEl && closest(INTERACTIVE);
     if (labelEl) ring.setAttribute('data-label', labelEl.getAttribute('data-cursor'));
     root.classList.toggle('cursor-label', !!labelEl);
-    var isFrame = target.tagName === 'IFRAME';
     root.classList.toggle('cursor-text', !!isText);
     root.classList.toggle('cursor-link', !!isLink);
-    root.classList.toggle('cursor-hidden', isFrame);
+    root.classList.toggle('cursor-hidden', target.tagName === 'IFRAME');
   }
 
-  /* ---------- One shared pointermove handler (rAF-throttled) ---------- */
+  /* ---------- Shared pointermove pipeline ---------- */
+  var ambient = document.querySelector('.ambient');
   var glow = document.querySelector('.ambient__glow');
   var lastTarget = null, lastEvent = null, moveQueued = false;
-  var hoverCard = null;     // spotlight / tilt target under the pointer
+  var hoverCard = null;       // spotlight / tilt target under the pointer
+  var activeScope = null;     // parallax scope under the pointer
   var magnets = [];
-  var activeScope = null; // parallax scope currently under the pointer
+
+  // Hero name: character centres are cached relative to the name box (they never move
+  // independently), so the per-frame cost is one rect read instead of one per letter.
   var heroName = document.querySelector('.hero__name');
-  var heroChars = [];
-  var charsActive = false;
-  // chars are created by home.js, which runs after this file — collect lazily
-  function collectChars() { heroChars = heroName ? Array.prototype.slice.call(heroName.querySelectorAll('.hero__char')) : []; }
-  window.addEventListener('load', collectChars);
-  setTimeout(collectChars, 800);
+  var charCache = [];   // [{el, cx, cy}] offsets from heroName's top-left
+  function cacheChars() {
+    if (!heroName) return;
+    // offsetLeft/Top are layout positions (unaffected by the entrance transform), so this is
+    // safe to run at any time. Words and the name share one offsetParent (.home).
+    charCache = Array.prototype.map.call(heroName.querySelectorAll('.hero__char'), function (el) {
+      var word = el.parentElement;
+      return {
+        el: el,
+        cx: word.offsetLeft - heroName.offsetLeft + el.offsetLeft + el.offsetWidth / 2,
+        cy: word.offsetTop - heroName.offsetTop + el.offsetTop + el.offsetHeight / 2,
+        hp: 0
+      };
+    });
+  }
+  window.addEventListener('load', function () { setTimeout(cacheChars, 600); });
+  window.addEventListener('resize', function () { setTimeout(cacheChars, 200); });
+  setTimeout(cacheChars, 1200); // chars are built by home.js after this file runs
 
   function onMove(e) {
     if (e.pointerType && e.pointerType !== 'mouse') return;
@@ -220,57 +253,75 @@
     var e = lastEvent;
     if (!e) return;
     var t = lastTarget;
+    var cx = e.clientX, cy = e.clientY;
+    var vw = window.innerWidth, vh = window.innerHeight;
 
     setCursorState(t);
 
+    /* ---- READ PHASE: gather every rect we need before touching styles ---- */
+    var card = t.closest ? t.closest('[data-spotlight], [data-tilt]') : null;
+    var cardRect = card ? card.getBoundingClientRect() : null;
+
+    var nameRect = charCache.length ? heroName.getBoundingClientRect() : null;
+
+    var magnetReads = magnets.map(function (m) {
+      var b = m.el.getBoundingClientRect();
+      return { m: m, b: b };
+    });
+
+    var scope = t.closest ? t.closest('[data-parallax-scope]') : null;
+    var scopeRect = scope ? scope.getBoundingClientRect() : null;
+
+    /* ---- WRITE PHASE ---- */
+    // Cursor glow + pointer-reactive background (normalised -0.5..0.5)
     if (glow) {
-      glow.style.setProperty('--gx', e.clientX + 'px');
-      glow.style.setProperty('--gy', e.clientY + 'px');
+      glow.style.setProperty('--gx', cx + 'px');
+      glow.style.setProperty('--gy', cy + 'px');
+    }
+    if (ambient) {
+      ambient.style.setProperty('--bx', (cx / vw - 0.5).toFixed(3));
+      ambient.style.setProperty('--by', (cy / vh - 0.5).toFixed(3));
     }
 
-    // Spotlight + tilt on the card under the pointer
-    var card = t.closest && t.closest('[data-spotlight], [data-tilt]');
+    // Card spotlight, tilt and image shift
     if (hoverCard && hoverCard !== card) resetCard(hoverCard);
     hoverCard = card;
     if (card) {
-      var r = card.getBoundingClientRect();
-      var x = e.clientX - r.left;
-      var y = e.clientY - r.top;
+      var x = cx - cardRect.left;
+      var y = cy - cardRect.top;
+      var nx = x / cardRect.width - 0.5;
+      var ny = y / cardRect.height - 0.5;
       card.style.setProperty('--mx', x + 'px');
       card.style.setProperty('--my', y + 'px');
+      card.style.setProperty('--nx', nx.toFixed(3));
+      card.style.setProperty('--ny', ny.toFixed(3));
       if (card.hasAttribute('data-tilt')) {
         var max = parseFloat(card.getAttribute('data-tilt')) || 6;
-        card.style.setProperty('--ry', ((x / r.width - 0.5) * 2 * max).toFixed(2) + 'deg');
-        card.style.setProperty('--rx', ((0.5 - y / r.height) * 2 * max).toFixed(2) + 'deg');
+        card.style.setProperty('--ry', (nx * 2 * max).toFixed(2) + 'deg');
+        card.style.setProperty('--rx', (-ny * 2 * max).toFixed(2) + 'deg');
       }
     }
 
     // Hero name: letters lift as the pointer approaches
-    if (heroChars.length) {
-      var nameRect = heroName.getBoundingClientRect();
-      var near = e.clientX > nameRect.left - 200 && e.clientX < nameRect.right + 200 && e.clientY > nameRect.top - 200 && e.clientY < nameRect.bottom + 200;
-      if (near || charsActive) {
-        heroChars.forEach(function (ch) {
-          var b = ch.getBoundingClientRect();
-          var d = Math.hypot(e.clientX - (b.left + b.width / 2), e.clientY - (b.top + b.height / 2));
-          ch.style.setProperty('--hp', near ? Math.max(0, 1 - d / 170).toFixed(3) : 0);
-        });
-        charsActive = near;
-      }
+    if (nameRect) {
+      var near = cx > nameRect.left - 200 && cx < nameRect.right + 200 && cy > nameRect.top - 200 && cy < nameRect.bottom + 200;
+      charCache.forEach(function (c) {
+        var hp = 0;
+        if (near) {
+          var d = Math.hypot(cx - (nameRect.left + c.cx), cy - (nameRect.top + c.cy));
+          hp = Math.max(0, 1 - d / 170);
+        }
+        if (Math.abs(hp - c.hp) > 0.01) { c.hp = hp; c.el.style.setProperty('--hp', hp.toFixed(3)); }
+      });
     }
 
     // Magnetic elements: pull towards the pointer inside a padded hit area
-    magnets.forEach(function (m) {
-      var b = m.el.getBoundingClientRect();
-      var cx = b.left + b.width / 2;
-      var cy = b.top + b.height / 2;
-      var dx = e.clientX - cx;
-      var dy = e.clientY - cy;
-      var pad = 60;
-      var inside = e.clientX > b.left - pad && e.clientX < b.right + pad && e.clientY > b.top - pad && e.clientY < b.bottom + pad;
+    magnetReads.forEach(function (r) {
+      var b = r.b, m = r.m, pad = 60;
+      var inside = cx > b.left - pad && cx < b.right + pad && cy > b.top - pad && cy < b.bottom + pad;
       if (inside) {
-        m.el.style.setProperty('--mx-btn', (dx * m.strength).toFixed(1) + 'px');
-        m.el.style.setProperty('--my-btn', (dy * m.strength).toFixed(1) + 'px');
+        m.el.style.setProperty('--mx-btn', ((cx - (b.left + b.width / 2)) * m.strength).toFixed(1) + 'px');
+        m.el.style.setProperty('--my-btn', ((cy - (b.top + b.height / 2)) * m.strength).toFixed(1) + 'px');
         m.active = true;
       } else if (m.active) {
         m.el.style.setProperty('--mx-btn', '0px');
@@ -280,22 +331,22 @@
     });
 
     // Mouse parallax layers inside [data-parallax-scope]
-    var scope = t.closest && t.closest('[data-parallax-scope]');
     if (activeScope && activeScope !== scope) {
       activeScope.style.setProperty('--px', 0);
       activeScope.style.setProperty('--py', 0);
     }
     activeScope = scope;
     if (scope) {
-      var sr = scope.getBoundingClientRect();
-      scope.style.setProperty('--px', (((e.clientX - sr.left) / sr.width) - 0.5).toFixed(3));
-      scope.style.setProperty('--py', (((e.clientY - sr.top) / sr.height) - 0.5).toFixed(3));
+      scope.style.setProperty('--px', (((cx - scopeRect.left) / scopeRect.width) - 0.5).toFixed(3));
+      scope.style.setProperty('--py', (((cy - scopeRect.top) / scopeRect.height) - 0.5).toFixed(3));
     }
   }
 
   function resetCard(card) {
     card.style.setProperty('--rx', '0deg');
     card.style.setProperty('--ry', '0deg');
+    card.style.setProperty('--nx', '0');
+    card.style.setProperty('--ny', '0');
   }
 
   Array.prototype.forEach.call(document.querySelectorAll('[data-magnetic]'), function (el) {
@@ -305,15 +356,17 @@
   document.addEventListener('pointermove', onMove, { passive: true });
   document.addEventListener('pointerdown', function () { root.classList.add('cursor-down'); });
   document.addEventListener('pointerup', function () { root.classList.remove('cursor-down'); });
-  document.documentElement.addEventListener('mouseleave', function () {
+  root.addEventListener('mouseleave', function () {
     root.classList.remove('cursor-on');
     magnets.forEach(function (m) {
       m.el.style.setProperty('--mx-btn', '0px');
       m.el.style.setProperty('--my-btn', '0px');
     });
     if (hoverCard) resetCard(hoverCard);
+    if (ambient) { ambient.style.setProperty('--bx', 0); ambient.style.setProperty('--by', 0); }
     var scope = document.querySelector('[data-parallax-scope]');
     if (scope) { scope.style.setProperty('--px', 0); scope.style.setProperty('--py', 0); }
+    charCache.forEach(function (c) { c.hp = 0; c.el.style.setProperty('--hp', 0); });
   });
-  document.documentElement.addEventListener('mouseenter', function () { root.classList.add('cursor-on'); });
+  root.addEventListener('mouseenter', function () { root.classList.add('cursor-on'); });
 })();

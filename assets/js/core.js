@@ -105,6 +105,8 @@
     });
     if (current) moveIndicator(current);
     else if (indicator) indicator.classList.remove('ready');
+    // The ambient background re-tints per scene (CSS: html[data-scene] .ambient)
+    root.setAttribute('data-scene', id || 'home');
   }
 
   var ticking = false;
@@ -156,7 +158,14 @@
     ro.observe(document.body);
   }
 
-  /* ---------- Section headings: split into masked words for a staggered rise ---------- */
+  /* ---------- Motion tokens: single source of truth lives in style.css (:root) ---------- */
+  function token(name, fallback) {
+    var v = parseFloat(getComputedStyle(root).getPropertyValue(name));
+    return isNaN(v) ? fallback : v;
+  }
+  var STAGGER = token('--stagger', 0.08);
+
+  /* ---------- Split text into masked words (headings, statements, hero tagline) ---------- */
   function splitHeading(h) {
     var label = h.textContent.replace(/\s+/g, ' ').trim();
     var n = 0;
@@ -190,12 +199,12 @@
     h.setAttribute('aria-label', label);
     h.classList.add('is-split');
   }
-  Array.prototype.forEach.call(document.querySelectorAll('.section-head .heading'), splitHeading);
+  Array.prototype.forEach.call(document.querySelectorAll('.section-head .heading, [data-words]'), splitHeading);
 
   /* ---------- Reveal on scroll ---------- */
   // [data-stagger] containers hand out incremental delays to their children.
   Array.prototype.forEach.call(document.querySelectorAll('[data-stagger]'), function (parent) {
-    var step = parseFloat(parent.getAttribute('data-stagger')) || 0.08;
+    var step = parseFloat(parent.getAttribute('data-stagger')) || STAGGER;
     var variant = parent.getAttribute('data-stagger-variant') || 'up';
     Array.prototype.forEach.call(parent.children, function (child, i) {
       if (!child.hasAttribute('data-reveal')) child.setAttribute('data-reveal', variant);
@@ -229,9 +238,18 @@
     if (revealObserver) revealObserver.observe(el); else reveal(el);
   };
 
+  // Small public surface so other modules reuse the same system instead of re-implementing it.
+  window.Motion = {
+    stagger: STAGGER,
+    reduced: reduceMotion,
+    reveal: window.observeReveal,
+    splitWords: splitHeading,
+    token: token
+  };
+
   /* ---------- Page-load entrance ---------- */
   // With the intro curtain (first visit of a session) the hero waits for the curtain to part.
-  var introDelay = root.classList.contains('intro-play') ? 1250 : 0;
+  var introDelay = root.classList.contains('intro-play') ? 950 : 0;
   var introStart = Date.now();
   function markLoaded() {
     if (root.classList.contains('loaded')) return;

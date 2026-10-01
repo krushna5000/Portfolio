@@ -72,12 +72,12 @@
     if (!target) return;
     new Typed('.typing-text', {
       strings: [
-        'Full Stack Development',
-        'Frontend Engineering',
-        'Backend Engineering',
-        'Mobile App Development',
-        'API Design',
-        'Database Management'
+        'MERN Stack Development',
+        'React.js Frontends',
+        'Node.js & Express APIs',
+        'MongoDB Data Modelling',
+        'JWT Authentication',
+        'Mobile App Development'
       ],
       loop: true,
       typeSpeed: 55,
@@ -182,7 +182,7 @@
       .map(function (c) {
         var items = groups[c.key].map(function (s) {
           var note = s.note ? '<span class="tech-note"><strong>' + esc(s.name) + '</strong><small>' + esc(s.note) + '</small></span>' : '';
-          return '<li class="tech-item" tabindex="0" data-letter="' + esc(s.name.charAt(0)) + '">' +
+          return '<li class="tech-item' + (s.mern ? ' is-mern' : '') + '" tabindex="0" data-name="' + esc(s.name) + '" data-letter="' + esc(s.name.charAt(0)) + '">' +
             '<span class="tech-icon"><img src="' + esc(s.icon) + '" alt="" loading="lazy" width="32" height="32"></span>' +
             '<span class="tech-name">' + esc(s.name) + '</span>' + note + '</li>';
         }).join('');
@@ -195,6 +195,28 @@
           '<ul class="tech-grid">' + items + '</ul>' +
         '</article>';
       }).join('');
+
+    // Relationship highlighting: hovering/focusing a technology lights up the ones it is
+    // genuinely used with (relations come from skills.json "related") and dims the rest.
+    var relMap = {};
+    skills.forEach(function (s) { relMap[s.name] = s.related || []; });
+    function link(tile) {
+      var rel = relMap[tile.getAttribute('data-name')] || [];
+      container.classList.add('is-linking');
+      Array.prototype.forEach.call(container.querySelectorAll('.tech-item'), function (t) {
+        var n = t.getAttribute('data-name');
+        t.classList.toggle('is-active', t === tile);
+        t.classList.toggle('is-related', rel.indexOf(n) > -1);
+      });
+    }
+    function unlink() {
+      container.classList.remove('is-linking');
+      Array.prototype.forEach.call(container.querySelectorAll('.tech-item'), function (t) { t.classList.remove('is-active', 'is-related'); });
+    }
+    container.addEventListener('mouseover', function (e) { var t = e.target.closest('.tech-item'); if (t) link(t); });
+    container.addEventListener('mouseleave', unlink);
+    container.addEventListener('focusin', function (e) { var t = e.target.closest('.tech-item'); if (t) link(t); });
+    container.addEventListener('focusout', function (e) { if (!container.contains(e.relatedTarget)) unlink(); });
 
     // Broken CDN icon → fall back to a letter tile instead of a broken image.
     container.addEventListener('error', function (e) {
@@ -221,9 +243,11 @@
   function renderMarquee(skills) {
     var host = document.querySelector('.marquee');
     if (!host) return;
+    // MERN technologies lead each row
+    var byMern = function (a, b) { return (b.mern ? 1 : 0) - (a.mern ? 1 : 0); };
     var rows = [
-      skills.filter(function (s) { return s.category === 'frontend' || s.category === 'backend'; }),
-      skills.filter(function (s) { return s.category === 'database' || s.category === 'tools'; })
+      skills.filter(function (s) { return s.category === 'frontend' || s.category === 'backend'; }).sort(byMern),
+      skills.filter(function (s) { return s.category === 'database' || s.category === 'tools'; }).sort(byMern)
     ];
     host.innerHTML = rows.map(function (list, i) {
       var items = list.map(function (s) {
@@ -240,8 +264,17 @@
   function loadSkills() {
     fetch('skills.json')
       .then(function (r) { return r.json(); })
-      .then(function (skills) { renderSkills(skills); renderMarquee(skills); })
-      .catch(function (err) { console.error('Error loading skills:', err); });
+      .then(function (skills) {
+        window.PortfolioData = window.PortfolioData || {};
+        window.PortfolioData.skills = skills;
+        renderSkills(skills);
+        renderMarquee(skills);
+      })
+      .catch(function (err) {
+        console.error('Error loading skills:', err);
+        var box = document.getElementById('skillsContainer');
+        if (box) box.style.minHeight = '0'; // don't leave the reserved space blank
+      });
   }
 
   /* ---------- Contact form feedback (submission itself is untouched) ---------- */

@@ -7,26 +7,26 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta name="theme-color" content="#07090f">
   <meta name="keywords"
-    content="Krushna Kakde, portfolio, Krushna, full stack developer, software developer, Devanta Tech, portfolio design, portfolio website, personal portfolio" />
+    content="Krushna Kakde, MERN stack developer, MERN stack, MongoDB, Express.js, React.js, Node.js, full stack developer, software developer, Devanta Tech, portfolio, personal portfolio" />
   <meta name="description"
-    content="Krushna Kakde — Software Developer at Devanta Tech. Full-Stack Engineer skilled in React.js, Node.js, MongoDB, PostgreSQL, building IIoT and cloud automation solutions." />
+    content="Krushna Kakde — MERN Stack Developer (Software Developer) at Devanta Tech. Builds full-stack apps with MongoDB, Express.js, React.js and Node.js, plus PostgreSQL — IIoT and cloud automation solutions." />
   <meta name="author" content="Krushna Vasant Kakde" />
   <link rel="canonical" href="https://krushna5000.github.io/Portfolio/" />
 
   <!-- Open Graph / Facebook -->
   <meta property="og:type" content="website" />
   <meta property="og:url" content="https://krushna5000.github.io/Portfolio/" />
-  <meta property="og:title" content="Krushna Vasant Kakde — Software Developer at Devanta Tech" />
+  <meta property="og:title" content="Krushna Vasant Kakde — MERN Stack Developer at Devanta Tech" />
   <meta property="og:description"
-    content="Full-Stack Software Developer at Devanta Tech, skilled in React.js, Node.js, MongoDB, PostgreSQL. Building IIoT and cloud automation solutions." />
+    content="MERN Stack Developer at Devanta Tech — MongoDB, Express.js, React.js, Node.js and PostgreSQL. Building IIoT and cloud automation solutions." />
   <meta property="og:image" content="https://krushna5000.github.io/Portfolio/assets/images/hero.png" />
 
   <!-- Twitter -->
   <meta name="twitter:card" content="summary_large_image" />
   <meta name="twitter:url" content="https://krushna5000.github.io/Portfolio/" />
-  <meta name="twitter:title" content="Krushna Vasant Kakde — Software Developer at Devanta Tech" />
+  <meta name="twitter:title" content="Krushna Vasant Kakde — MERN Stack Developer at Devanta Tech" />
   <meta name="twitter:description"
-    content="Full-Stack Software Developer at Devanta Tech, skilled in React.js, Node.js, MongoDB, PostgreSQL. Building IIoT and cloud automation solutions." />
+    content="MERN Stack Developer at Devanta Tech — MongoDB, Express.js, React.js, Node.js and PostgreSQL. Building IIoT and cloud automation solutions." />
   <meta name="twitter:image" content="https://krushna5000.github.io/Portfolio/assets/images/hero.png" />
 
   <!-- Structured data -->
@@ -37,6 +37,7 @@
     "name": "Krushna Vasant Kakde",
     "url": "https://krushna5000.github.io/Portfolio/",
     "jobTitle": "Software Developer",
+    "knowsAbout": ["MERN Stack", "MongoDB", "Express.js", "React.js", "Node.js", "REST APIs", "PostgreSQL"],
     "worksFor": {
       "@type": "Organization",
       "name": "Devanta Tech"
@@ -84,7 +85,7 @@
   <link id="favicon" rel="icon" type="image/png" sizes="any" href="assets/images/kru logo.png">
   <link rel="shortcut icon" type="image/png" href="assets/images/kru logo.png">
   <link rel="apple-touch-icon" href="assets/images/contact1.png?v=5">
-  <title>Krushna Vasant Kakde | Software Developer at Devanta Tech</title>
+  <title>Krushna Vasant Kakde | MERN Stack Developer at Devanta Tech</title>
 </head>
 
 <body>
@@ -95,9 +96,10 @@
     <div class="intro__panel intro__panel--top"></div>
     <div class="intro__panel intro__panel--bottom"></div>
     <div class="intro__brand">
-      <span class="intro__mark"><img src="assets/images/kru logo.png" alt="" width="80" height="80"></span>
+      <span class="intro__mark"><img src="assets/images/kru-logo-sm.png" alt="" width="80" height="80"></span>
       <span class="intro__name">KRUSHNA KAKDE</span>
       <span class="intro__bar"></span>
+      <span class="intro__pct"></span>
     </div>
   </div>
 
@@ -106,6 +108,8 @@
     <div class="ambient__blob ambient__blob--a"></div>
     <div class="ambient__blob ambient__blob--b"></div>
     <div class="ambient__blob ambient__blob--c"></div>
+    <div class="ambient__beam ambient__beam--a"></div>
+    <div class="ambient__beam ambient__beam--b"></div>
     <div class="ambient__grid"></div>
     <div class="ambient__noise"></div>
     <div class="ambient__glow"></div>
@@ -115,7 +119,7 @@
   <!-- navbar starts -->
   <header class="site-header">
     <a href="#home" class="logo" aria-label="Krushna — back to top">
-      <span class="logo__mark"><img src="assets/images/kru logo.png" alt="" width="38" height="38" /></span>
+      <span class="logo__mark"><img src="assets/images/kru-logo-sm.png" alt="" width="38" height="38" /></span>
       <span>Krushna</span>
     </a>
 
@@ -156,13 +160,13 @@
         <p class="hero__eyebrow hero-anim" style="--i:1">Hi there, I'm</p>
         <h1 class="hero__name" data-split>Krushna Kakde</h1>
 
-        <p class="hero__tagline hero-anim" style="--i:5">
-          Full-Stack Developer building <strong>scalable, modern and intelligent</strong> web applications.
+        <p class="hero__tagline" data-words>
+          <strong>MERN Stack</strong> Developer building scalable, modern and intelligent web applications.
         </p>
         <p class="hero__roles hero-anim" style="--i:6">I am into <span class="typing-text"></span></p>
         <p class="hero__intro hero-anim" style="--i:7">
-          MERN-stack and Spring Boot products, from secure REST APIs to polished interfaces — shipped for IIoT and
-          industrial cloud automation at Devanta Tech.
+          I build MERN-stack products end to end — MongoDB, Express.js, React.js and Node.js — with secure REST APIs
+          and polished interfaces for IIoT and industrial cloud automation at Devanta Tech.
         </p>
 
         <div class="hero-cta hero-anim" style="--i:8">
@@ -170,6 +174,7 @@
             download="Krushna_Kakde_Resume.pdf"><span>Resume</span> <i class="fas fa-download"></i></a>
           <a href="#github-projects" class="btn btn-outline" data-magnetic="0.22"><span>View Projects</span> <i
               class="fas fa-arrow-right"></i></a>
+          <a href="#contact" class="btn btn-ghost" data-magnetic="0.22"><span>Contact Me</span> <i class="fas fa-paper-plane"></i></a>
         </div>
 
         <div class="socials hero-anim" style="--i:9">
@@ -198,8 +203,18 @@
         <div class="layer layer--code" style="--depth:34">
           <div class="float float--slow code-card" aria-hidden="true">
             <div class="code-card__bar"><i></i><i></i><i></i><span>krushna.js</span></div>
-            <pre><code><span class="ln" style="--l:0"><span class="k">const</span> <span class="v">krushna</span> = {</span><span class="ln" style="--l:1">  <span class="p">role</span>: <span class="s">"Full-Stack Developer"</span>,</span><span class="ln" style="--l:2">  <span class="p">stack</span>: [<span class="s">"React"</span>, <span class="s">"Node"</span>, <span class="s">"MongoDB"</span>],</span><span class="ln" style="--l:3">  <span class="p">at</span>: <span class="s">"Devanta Tech"</span>,</span><span class="ln" style="--l:4">  <span class="p">focus</span>: <span class="s">"IIoT &amp; Cloud"</span></span><span class="ln" style="--l:5">};<span class="caret"></span></span></code></pre>
+            <pre><code><span class="ln" style="--l:0"><span class="k">const</span> <span class="v">krushna</span> = {</span><span class="ln" style="--l:1">  <span class="p">role</span>: <span class="s">"MERN Stack Developer"</span>,</span><span class="ln" style="--l:2">  <span class="p">stack</span>: [<span class="s">"M"</span>, <span class="s">"E"</span>, <span class="s">"R"</span>, <span class="s">"N"</span>],</span><span class="ln" style="--l:3">  <span class="p">at</span>: <span class="s">"Devanta Tech"</span>,</span><span class="ln" style="--l:4">  <span class="p">focus</span>: <span class="s">"IIoT &amp; Cloud"</span></span><span class="ln" style="--l:5">};<span class="caret"></span></span></code></pre>
           </div>
+        </div>
+
+        <div class="layer layer--snip1" style="--depth:72">
+          <div class="float float--slow snippet" aria-hidden="true">&lt;React /&gt;</div>
+        </div>
+        <div class="layer layer--snip2" style="--depth:50">
+          <div class="float float--alt snippet" aria-hidden="true">git push origin main</div>
+        </div>
+        <div class="layer layer--snip3" style="--depth:84">
+          <div class="float snippet" aria-hidden="true">{ api: "REST" }</div>
         </div>
 
         <div class="layer layer--chip1" style="--depth:56">
@@ -212,7 +227,7 @@
           <div class="float chip" aria-hidden="true"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/mongodb/mongodb-original.svg" alt="" width="26" height="26">MongoDB</div>
         </div>
         <div class="layer layer--chip4" style="--depth:30">
-          <div class="float float--alt chip" aria-hidden="true"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/postgresql/postgresql-original.svg" alt="" width="26" height="26">PostgreSQL</div>
+          <div class="float float--alt chip" aria-hidden="true"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/express/express-original.svg" alt="" width="26" height="26">Express.js</div>
         </div>
       </div>
 
@@ -242,8 +257,8 @@
         <div class="bento__bio card" data-spotlight data-reveal="right">
           <h3>I'm Krushna</h3>
           <span class="tag">Software Developer · Devanta Tech</span>
-          <p>Full-Stack Software Developer at Devanta Tech, building IIoT and industrial cloud automation solutions
-            with the MERN stack (MongoDB, Express.js, React.js, Node.js) and PostgreSQL. Skilled in RESTful API design,
+          <p>MERN Stack Developer at Devanta Tech, building IIoT and industrial cloud automation solutions
+            with MongoDB, Express.js, React.js and Node.js, alongside PostgreSQL. Skilled in RESTful API design,
             relational database management, and shipping production-grade user interfaces. Comfortable owning features
             end-to-end in Agile teams and passionate about writing clean, maintainable code.</p>
         </div>
@@ -272,6 +287,7 @@
           <h4>Software Developer</h4>
           <p>Devanta Tech · Jul 2026 – Present</p>
           <div class="chips">
+            <span class="tech-tag tech-tag--mern">MERN Stack</span>
             <span class="tech-tag">IIoT</span>
             <span class="tech-tag">Cloud Automation</span>
             <span class="tech-tag">REST APIs</span>
@@ -299,13 +315,13 @@
 
       <div class="exp-timeline">
 
-        <div class="exp-item" data-reveal="up">
+        <div class="exp-item" data-reveal="right">
           <div class="exp-dot"></div>
           <div class="exp-card card" data-spotlight>
             <div class="exp-header">
               <div class="exp-title-block">
                 <h3>Software Developer <span class="current-badge"><span class="dot-pulse"></span> Current</span></h3>
-                <p class="exp-company"><i class="fas fa-building"></i> Devanta Tech</p>
+                <p class="exp-company"><span class="exp-logo" aria-hidden="true">D</span> Devanta Tech</p>
               </div>
               <div class="exp-meta">
                 <span class="exp-duration"><i class="far fa-calendar-alt"></i> Jul 2026 – Present</span>
@@ -322,7 +338,9 @@
               <li>Partner with product, QA, and DevOps in Agile sprints to deliver Software Implementation and
                 Engineering &amp; Support Services projects on schedule.</li>
             </ul>
+            <div class="exp-highlights" role="group" aria-label="Highlights"><span>Owns modules end-to-end</span><span>JWT + role-based access</span><span>Architecture &amp; code reviews</span></div>
             <div class="exp-tags" data-stagger="0.05" data-stagger-variant="scale">
+              <span class="tech-tag tech-tag--mern">MERN Stack</span>
               <span class="tech-tag">MongoDB</span>
               <span class="tech-tag">Express.js</span>
               <span class="tech-tag">React.js</span>
@@ -335,13 +353,13 @@
           </div>
         </div>
 
-        <div class="exp-item" data-reveal="up">
+        <div class="exp-item" data-reveal="right">
           <div class="exp-dot"></div>
           <div class="exp-card card" data-spotlight>
             <div class="exp-header">
               <div class="exp-title-block">
                 <h3>MERN Stack Developer Intern</h3>
-                <p class="exp-company"><i class="fas fa-building"></i> Devanta Tech</p>
+                <p class="exp-company"><span class="exp-logo" aria-hidden="true">D</span> Devanta Tech</p>
               </div>
               <div class="exp-meta">
                 <span class="exp-duration"><i class="far fa-calendar-alt"></i> Jan 2026 – Jun 2026</span>
@@ -356,7 +374,9 @@
               <li>Collaborated in Agile sprints — sprint planning, code reviews, retrospectives — earning conversion to
                 a full-time Software Developer role after <strong>6 months</strong>.</li>
             </ul>
+            <div class="exp-highlights" role="group" aria-label="Highlights"><span>Converted to full-time after 6 months</span><span>Secure REST APIs</span><span>Agile sprints</span></div>
             <div class="exp-tags" data-stagger="0.05" data-stagger-variant="scale">
+              <span class="tech-tag tech-tag--mern">MERN Stack</span>
               <span class="tech-tag">MongoDB</span>
               <span class="tech-tag">Express.js</span>
               <span class="tech-tag">React.js</span>
@@ -367,13 +387,13 @@
           </div>
         </div>
 
-        <div class="exp-item" data-reveal="up">
+        <div class="exp-item" data-reveal="right">
           <div class="exp-dot"></div>
           <div class="exp-card card" data-spotlight>
             <div class="exp-header">
               <div class="exp-title-block">
                 <h3>MERN Stack Intern</h3>
-                <p class="exp-company"><i class="fas fa-building"></i> Farmseasy</p>
+                <p class="exp-company"><span class="exp-logo exp-logo--alt" aria-hidden="true">F</span> Farmseasy</p>
               </div>
               <div class="exp-meta">
                 <span class="exp-duration"><i class="far fa-calendar-alt"></i> Sep 2025 – Dec 2025</span>
@@ -388,7 +408,9 @@
               <li>Conducted user testing sessions to refine workflows, resulting in a <strong>15%</strong> increase in
                 user retention.</li>
             </ul>
+            <div class="exp-highlights" role="group" aria-label="Highlights"><span>6+ projects delivered</span><span>+30% user satisfaction</span><span>−20% handoff time</span><span>+15% retention</span></div>
             <div class="exp-tags" data-stagger="0.05" data-stagger-variant="scale">
+              <span class="tech-tag tech-tag--mern">MERN Stack</span>
               <span class="tech-tag">React.js</span>
               <span class="tech-tag">Node.js</span>
               <span class="tech-tag">MongoDB</span>
@@ -422,17 +444,18 @@
       </div>
 
       <div class="project-filters" data-reveal="up" style="--d:.08s" role="group" aria-label="Filter projects">
-        <button class="filter-btn active" data-filter="all">All</button>
-        <button class="filter-btn" data-filter="web">Web</button>
-        <button class="filter-btn" data-filter="mobile">Mobile</button>
-        <button class="filter-btn" data-filter="backend">Backend</button>
-        <button class="filter-btn" data-filter="ml">ML / AI</button>
+        <button type="button" class="filter-btn active" data-filter="all">All</button>
+        <button type="button" class="filter-btn" data-filter="web">Web</button>
+        <button type="button" class="filter-btn" data-filter="mobile">Mobile</button>
+        <button type="button" class="filter-btn" data-filter="backend">Backend</button>
+        <button type="button" class="filter-btn" data-filter="ml">ML / AI</button>
       </div>
 
       <div class="projects-container">
 
-        <article class="project-card featured card" data-category="web" data-spotlight data-tilt="3" data-reveal="scale">
+        <article class="project-card featured card" data-category="web" data-detail="project1.html" data-spotlight data-tilt="3" data-reveal="left" data-cursor="View">
           <div class="project-cover has-shot" style="--c1:#6366f1;--c2:#06b6d4">
+            <button class="card-open" type="button" aria-label="Open TradeWithAi details"><i class="fas fa-arrow-right"></i></button>
             <span class="cover-chrome" aria-hidden="true"><i></i><i></i><i></i></span>
             <img src="./assets/images/project/tradeWithAi1.png" loading="lazy" width="1919" height="870"
               alt="TradeWithAi dashboard showing live crypto market data and a Bitcoin chart">
@@ -457,8 +480,9 @@
           </div>
         </article>
 
-        <article class="project-card featured card" data-category="mobile" data-spotlight data-tilt="3" data-reveal="scale">
+        <article class="project-card featured card" data-category="mobile" data-spotlight data-tilt="3" data-reveal="scale" data-cursor="View">
           <div class="project-cover" style="--c1:#ec4899;--c2:#f97316">
+            <button class="card-open" type="button" aria-label="Open TinyNeedsApp details"><i class="fas fa-arrow-right"></i></button>
             <i class="fas fa-baby cover-icon"></i>
             <span class="cover-tag">Mobile</span>
             <span class="featured-badge"><i class="fas fa-star"></i> Featured</span>
@@ -482,8 +506,9 @@
           </div>
         </article>
 
-        <article class="project-card card" data-category="mobile" data-spotlight data-tilt="5" data-reveal="scale">
+        <article class="project-card card" data-category="mobile" data-spotlight data-tilt="5" data-reveal="right" data-cursor="View">
           <div class="project-cover" style="--c1:#8b5cf6;--c2:#6366f1">
+            <button class="card-open" type="button" aria-label="Open TinyNeedsApp Admin details"><i class="fas fa-arrow-right"></i></button>
             <i class="fas fa-shield-alt cover-icon"></i>
             <span class="cover-tag">Mobile</span>
           </div>
@@ -503,8 +528,9 @@
           </div>
         </article>
 
-        <article class="project-card card" data-category="web" data-spotlight data-tilt="5" data-reveal="scale">
+        <article class="project-card card" data-category="web" data-spotlight data-tilt="5" data-reveal="left" data-cursor="View">
           <div class="project-cover" style="--c1:#0ea5e9;--c2:#6366f1">
+            <button class="card-open" type="button" aria-label="Open Personal Portfolio details"><i class="fas fa-arrow-right"></i></button>
             <i class="fas fa-user-circle cover-icon"></i>
             <span class="cover-tag">Web</span>
           </div>
@@ -525,8 +551,9 @@
           </div>
         </article>
 
-        <article class="project-card card" data-category="backend" data-spotlight data-tilt="5" data-reveal="scale">
+        <article class="project-card card" data-category="backend" data-spotlight data-tilt="5" data-reveal="scale" data-cursor="View">
           <div class="project-cover" style="--c1:#10b981;--c2:#0ea5e9">
+            <button class="card-open" type="button" aria-label="Open Web Server details"><i class="fas fa-arrow-right"></i></button>
             <i class="fas fa-server cover-icon"></i>
             <span class="cover-tag">Backend</span>
           </div>
@@ -548,8 +575,9 @@
           </div>
         </article>
 
-        <article class="project-card card" data-category="web" data-spotlight data-tilt="5" data-reveal="scale">
+        <article class="project-card card" data-category="web" data-spotlight data-tilt="5" data-reveal="right" data-cursor="View">
           <div class="project-cover" style="--c1:#f59e0b;--c2:#ef4444">
+            <button class="card-open" type="button" aria-label="Open jdbc_connectivity details"><i class="fas fa-arrow-right"></i></button>
             <i class="fas fa-plug cover-icon"></i>
             <span class="cover-tag">Web</span>
           </div>
@@ -570,8 +598,9 @@
           </div>
         </article>
 
-        <article class="project-card card" data-category="web" data-spotlight data-tilt="5" data-reveal="scale">
+        <article class="project-card card" data-category="web" data-spotlight data-tilt="5" data-reveal="left" data-cursor="View">
           <div class="project-cover" style="--c1:#14b8a6;--c2:#6366f1">
+            <button class="card-open" type="button" aria-label="Open Ticket Booking System details"><i class="fas fa-arrow-right"></i></button>
             <i class="fas fa-ticket-alt cover-icon"></i>
             <span class="cover-tag">Web</span>
           </div>
@@ -591,8 +620,9 @@
           </div>
         </article>
 
-        <article class="project-card card" data-category="backend" data-spotlight data-tilt="5" data-reveal="scale">
+        <article class="project-card card" data-category="backend" data-spotlight data-tilt="5" data-reveal="scale" data-cursor="View">
           <div class="project-cover" style="--c1:#22c55e;--c2:#14b8a6">
+            <button class="card-open" type="button" aria-label="Open Spring Framework Project details"><i class="fas fa-arrow-right"></i></button>
             <i class="fas fa-leaf cover-icon"></i>
             <span class="cover-tag">Backend</span>
           </div>
@@ -612,8 +642,9 @@
           </div>
         </article>
 
-        <article class="project-card card" data-category="web" data-spotlight data-tilt="5" data-reveal="scale">
+        <article class="project-card card" data-category="web" data-spotlight data-tilt="5" data-reveal="right" data-cursor="View">
           <div class="project-cover" style="--c1:#a855f7;--c2:#ec4899">
+            <button class="card-open" type="button" aria-label="Open Tic-Tac-Toe Game details"><i class="fas fa-arrow-right"></i></button>
             <i class="fas fa-gamepad cover-icon"></i>
             <span class="cover-tag">Web</span>
           </div>
@@ -633,8 +664,9 @@
           </div>
         </article>
 
-        <article class="project-card card" data-category="ml" data-spotlight data-tilt="5" data-reveal="scale">
+        <article class="project-card card" data-category="ml" data-spotlight data-tilt="5" data-reveal="left" data-cursor="View">
           <div class="project-cover" style="--c1:#f43f5e;--c2:#8b5cf6">
+            <button class="card-open" type="button" aria-label="Open Movie Recommendation System details"><i class="fas fa-arrow-right"></i></button>
             <i class="fas fa-film cover-icon"></i>
             <span class="cover-tag">ML / AI</span>
           </div>
@@ -653,8 +685,9 @@
           </div>
         </article>
 
-        <article class="project-card card" data-category="backend" data-spotlight data-tilt="5" data-reveal="scale">
+        <article class="project-card card" data-category="backend" data-spotlight data-tilt="5" data-reveal="scale" data-cursor="View">
           <div class="project-cover" style="--c1:#0ea5e9;--c2:#22d3ee">
+            <button class="card-open" type="button" aria-label="Open JDBC Connectivity details"><i class="fas fa-arrow-right"></i></button>
             <i class="fas fa-database cover-icon"></i>
             <span class="cover-tag">Backend</span>
           </div>
@@ -685,7 +718,41 @@
       <div class="section-head" data-reveal="head" data-num="04">
         <span class="eyebrow">04 · Skills</span>
         <h2 class="heading">Skills &amp; <span>Abilities</span></h2>
-        <p class="section-sub">The tools I reach for — hover or tap a technology for the details.</p>
+        <p class="section-sub">MERN at the core, plus the tools around it — hover or tap a technology to see what it works with.</p>
+      </div>
+
+      <!-- MERN stack, end to end -->
+      <div class="mern" data-reveal="up">
+        <h3 class="subheading"><i class="fas fa-project-diagram"></i> The <span class="grad-text">MERN</span> stack, end to end</h3>
+        <div class="mern__flow">
+          <article class="mern__node card" data-spotlight>
+            <span class="mern__letter" aria-hidden="true">R</span>
+            <div class="mern__icons"><img class="mern__icon" src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/react/react-original.svg" alt="" width="52" height="52"></div>
+            <h4>React.js</h4>
+            <span class="mern__role">Client</span>
+            <p>Responsive, component-driven interfaces.</p>
+          </article>
+          <div class="mern__link" aria-hidden="true"><span class="mern__label">REST · JWT</span><i></i></div>
+          <article class="mern__node card" data-spotlight>
+            <span class="mern__letter" aria-hidden="true">E·N</span>
+            <div class="mern__icons">
+              <img class="mern__icon" src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/express/express-original.svg" alt="" width="52" height="52">
+              <img class="mern__icon" src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/nodejs/nodejs-original.svg" alt="" width="52" height="52">
+            </div>
+            <h4>Express.js + Node.js</h4>
+            <span class="mern__role">API layer</span>
+            <p>RESTful APIs with JWT authentication and role-based access.</p>
+          </article>
+          <div class="mern__link" aria-hidden="true"><span class="mern__label">queries</span><i></i></div>
+          <article class="mern__node card" data-spotlight>
+            <span class="mern__letter" aria-hidden="true">M</span>
+            <div class="mern__icons"><img class="mern__icon" src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/mongodb/mongodb-original.svg" alt="" width="52" height="52"></div>
+            <h4>MongoDB</h4>
+            <span class="mern__role">Database</span>
+            <p>Document data modelling for IIoT and cloud automation platforms.</p>
+          </article>
+        </div>
+        <p class="mern__foot">Used in production at <strong>Devanta Tech</strong> and <strong>Farmseasy</strong>.</p>
       </div>
 
       <!-- Rendered from skills.json by home.js, grouped by category -->
@@ -696,27 +763,27 @@
         <div class="expertise-grid" data-stagger="0.08" data-stagger-variant="scale">
           <article class="expertise-card card" data-spotlight>
             <span class="expertise-icon"><i class="fas fa-laptop-code"></i></span>
-            <h4>Frontend Development</h4>
-            <p>Responsive, component-driven interfaces with React, React Native and Tailwind CSS.</p>
+            <h4>React.js Frontends</h4>
+            <p>Responsive, component-driven interfaces with React.js — and React Native for mobile.</p>
             <div class="chips"><span class="tech-tag">React.js</span><span class="tech-tag">React Native</span><span class="tech-tag">Tailwind CSS</span></div>
           </article>
           <article class="expertise-card card" data-spotlight>
             <span class="expertise-icon"><i class="fas fa-server"></i></span>
-            <h4>Backend Development</h4>
-            <p>Secure, maintainable services built on Node.js / Express and Spring Boot.</p>
+            <h4>Node.js &amp; Express Backends</h4>
+            <p>Secure, maintainable services on Node.js and Express — with Spring Boot where Java fits.</p>
             <div class="chips"><span class="tech-tag">Node.js</span><span class="tech-tag">Express.js</span><span class="tech-tag">Spring Boot</span></div>
           </article>
           <article class="expertise-card card" data-spotlight>
             <span class="expertise-icon"><i class="fas fa-database"></i></span>
-            <h4>Database</h4>
-            <p>Relational and NoSQL data modelling, queries and ORM-based access.</p>
+            <h4>MongoDB &amp; Data</h4>
+            <p>NoSQL document modelling with MongoDB, alongside relational PostgreSQL and MySQL.</p>
             <div class="chips"><span class="tech-tag">MongoDB</span><span class="tech-tag">PostgreSQL</span><span class="tech-tag">MySQL</span></div>
           </article>
           <article class="expertise-card card" data-spotlight>
-            <span class="expertise-icon"><i class="fas fa-infinity"></i></span>
-            <h4>DevOps</h4>
-            <p>Version-controlled workflows, CI tooling and cloud fundamentals.</p>
-            <div class="chips"><span class="tech-tag">Git &amp; GitHub</span><span class="tech-tag">Jenkins</span><span class="tech-tag">AWS</span></div>
+            <span class="expertise-icon"><i class="fas fa-plug"></i></span>
+            <h4>API Development</h4>
+            <p>RESTful design with JWT authentication, role-based access and Postman-driven testing.</p>
+            <div class="chips"><span class="tech-tag">REST</span><span class="tech-tag">JWT Auth</span><span class="tech-tag">Postman</span></div>
           </article>
           <article class="expertise-card card" data-spotlight>
             <span class="expertise-icon"><i class="fas fa-microchip"></i></span>
@@ -725,10 +792,10 @@
             <div class="chips"><span class="tech-tag">IIoT</span><span class="tech-tag">Cloud Automation</span></div>
           </article>
           <article class="expertise-card card" data-spotlight>
-            <span class="expertise-icon"><i class="fas fa-plug"></i></span>
-            <h4>API Development</h4>
-            <p>RESTful design with JWT authentication, role-based access and Postman-driven testing.</p>
-            <div class="chips"><span class="tech-tag">REST</span><span class="tech-tag">JWT Auth</span><span class="tech-tag">Postman</span></div>
+            <span class="expertise-icon"><i class="fas fa-infinity"></i></span>
+            <h4>DevOps</h4>
+            <p>Version-controlled workflows, CI tooling and cloud fundamentals.</p>
+            <div class="chips"><span class="tech-tag">Git &amp; GitHub</span><span class="tech-tag">Jenkins</span><span class="tech-tag">AWS</span></div>
           </article>
         </div>
       </div>
@@ -928,20 +995,57 @@
     <!-- certificates section ends -->
 
 
+    <!-- terminal section starts -->
+    <section class="terminal-section section" id="terminal" data-nav="contact">
+      <div class="section-head" data-reveal="head" data-num="07">
+        <span class="eyebrow">07 · Terminal</span>
+        <h2 class="heading">Prefer the <span>command line?</span></h2>
+        <p class="section-sub">Type a command — or tap one below — to explore this portfolio the developer way.</p>
+      </div>
+
+      <div class="terminal" data-reveal="scale">
+        <div class="terminal__bar">
+          <i></i><i></i><i></i>
+          <span>krushna@portfolio — interactive demo</span>
+        </div>
+        <div class="terminal__out" role="log" aria-live="polite"></div>
+        <form class="terminal__form" autocomplete="off">
+          <label class="terminal__prompt" for="term-input">$</label>
+          <input id="term-input" class="terminal__input" type="text" autocomplete="off" autocapitalize="off"
+            autocorrect="off" spellcheck="false" placeholder='type "help"' aria-label="Terminal command">
+        </form>
+      </div>
+
+      <div class="terminal__chips" data-stagger="0.05" data-stagger-variant="scale">
+        <button type="button" class="chip-cmd" data-cmd="help">help</button>
+        <button type="button" class="chip-cmd" data-cmd="mern">mern</button>
+        <button type="button" class="chip-cmd" data-cmd="neofetch">neofetch</button>
+        <button type="button" class="chip-cmd" data-cmd="experience">experience</button>
+        <button type="button" class="chip-cmd" data-cmd="projects">projects</button>
+        <button type="button" class="chip-cmd" data-cmd="open 1">open 1</button>
+        <button type="button" class="chip-cmd" data-cmd="skills">skills</button>
+        <button type="button" class="chip-cmd" data-cmd="education">education</button>
+        <button type="button" class="chip-cmd" data-cmd="contact">contact</button>
+        <button type="button" class="chip-cmd" data-cmd="sudo hire krushna">sudo hire krushna</button>
+      </div>
+    </section>
+    <!-- terminal section ends -->
+
+
     <!-- contact section starts -->
     <section class="contact section" id="contact">
-      <div class="section-head" data-reveal="head" data-num="07">
-        <span class="eyebrow">07 · Contact</span>
+      <div class="section-head" data-reveal="head" data-num="08">
+        <span class="eyebrow">08 · Contact</span>
         <h2 class="heading">Get in <span>Touch</span></h2>
         <p class="section-sub">Have a project, an opportunity or just a question? My inbox is open.</p>
       </div>
 
       <div class="contact-grid">
         <div class="contact-info" data-reveal="left">
-          <h3>Let's build something <span class="grad-text">great together.</span></h3>
+          <h3 data-words>Let's build something <span class="grad-text">great together.</span></h3>
           <p>Send a message and I'll get back to you as soon as I can — or reach out directly on any of these.</p>
 
-          <ul class="contact-links">
+          <ul class="contact-links" data-stagger="0.1" data-stagger-variant="right">
             <li><a class="card" data-spotlight href="mailto:krushnak5000@gmail.com"><span class="ci"><i class="fas fa-envelope"></i></span><span><small>Email</small>krushnak5000@gmail.com</span></a></li>
             <li><a class="card" data-spotlight href="https://www.linkedin.com/in/krushna5000" target="_blank" rel="noopener"><span class="ci"><i class="fab fa-linkedin-in"></i></span><span><small>LinkedIn</small>/in/krushna5000</span></a></li>
             <li><a class="card" data-spotlight href="https://github.com/krushna5000" target="_blank" rel="noopener"><span class="ci"><i class="fab fa-github"></i></span><span><small>GitHub</small>github.com/krushna5000</span></a></li>
@@ -960,19 +1064,19 @@
               <div class="field">
                 <input type="text" id="f-name" name="name" placeholder=" " required autocomplete="name">
                 <label for="f-name">Name</label>
-                <i class='fas fa-user'></i>
+                <i class="fas fa-user"></i>
                 <span class="field-error" role="alert"></span>
               </div>
               <div class="field">
                 <input type="email" id="f-email" name="email" placeholder=" " required autocomplete="email">
                 <label for="f-email">Email</label>
-                <i class='fas fa-envelope'></i>
+                <i class="fas fa-envelope"></i>
                 <span class="field-error" role="alert"></span>
               </div>
               <div class="field">
                 <input type="text" id="f-phone" name="phone" placeholder=" " autocomplete="tel">
                 <label for="f-phone">Phone</label>
-                <i class='fas fa-phone-alt'></i>
+                <i class="fas fa-phone-alt"></i>
                 <span class="field-error" role="alert"></span>
               </div>
               <div class="field message">
@@ -997,8 +1101,8 @@
     <!-- outline text band -->
     <div class="band" aria-hidden="true" data-cursor="Pause">
       <div class="band__track">
-        <span>Full-Stack</span><span>IIoT</span><span>MERN</span><span>Spring Boot</span><span>REST APIs</span><span>Cloud</span>
-        <span>Full-Stack</span><span>IIoT</span><span>MERN</span><span>Spring Boot</span><span>REST APIs</span><span>Cloud</span>
+        <span>MERN Stack</span><span>MongoDB</span><span>Express</span><span>React</span><span>Node.js</span><span>REST APIs</span>
+        <span>MERN Stack</span><span>MongoDB</span><span>Express</span><span>React</span><span>Node.js</span><span>REST APIs</span>
       </div>
     </div>
 
@@ -1068,7 +1172,10 @@
 
   <script src="./assets/js/core.js"></script>
   <script src="./assets/js/effects.js"></script>
+  <script src="./assets/js/ambient.js"></script>
   <script src="./assets/js/home.js"></script>
+  <script src="./assets/js/project-modal.js"></script>
+  <script src="./assets/js/terminal.js"></script>
 
 </body>
 
