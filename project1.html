@@ -1,39 +1,83 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" data-theme="dark">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="theme-color" content="#07090f">
     <title>Trade With AI - Portfolio Details</title>
+
+    <!-- Apply saved theme + JS flag before first paint -->
+    <script>
+      (function () {
+        var r = document.documentElement, t = 'dark';
+        try { var s = localStorage.getItem('theme'); if (s === 'light' || s === 'dark') t = s; } catch (e) { }
+        r.setAttribute('data-theme', t);
+        r.classList.add('js');
+      })();
+    </script>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&family=Manrope:wght@600;700;800&display=swap">
     <link rel="stylesheet" href="./assets/css/style.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css"
       integrity="sha512-iBBXm8fW90+nuLcSKlbmrPcLa0OT92xO1BIsZ+ywDWZCvqsWgccV3gFoRBv0z+8dLJgyAHIhR35VZc2oM/gI1w=="
       crossorigin="anonymous" referrerpolicy="no-referrer" />
     <link rel="stylesheet" href="project.css">
 
-    <link id="favicon" rel="icon" type="image/png" sizes="any" href="assets\images\kru logo.png">
-    <link rel="shortcut icon" type="image/png" href="assets\images\kru logo.png">
+    <link id="favicon" rel="icon" type="image/png" sizes="any" href="assets/images/kru logo.png">
+    <link rel="shortcut icon" type="image/png" href="assets/images/kru logo.png">
 </head>
 <body>
-  <header>
-    <a href="/" class="logo">
-      <img src="assets/images/kru logo.png" alt="Krushna logo" style="height:42px; width:auto; vertical-align:middle; margin-right:12px;" />Krushna</a>
+  <a class="skip-link" href="#main">Skip to content</a>
 
-    <div id="menu" class="fas fa-bars"></div>
-    <nav class="navbar">
+  <div class="ambient" aria-hidden="true">
+    <div class="ambient__blob ambient__blob--a"></div>
+    <div class="ambient__blob ambient__blob--b"></div>
+    <div class="ambient__blob ambient__blob--c"></div>
+    <div class="ambient__grid"></div>
+    <div class="ambient__noise"></div>
+    <div class="ambient__glow"></div>
+  </div>
+  <div class="scroll-progress" aria-hidden="true"></div>
+
+  <header class="site-header">
+    <a href="index.html" class="logo" aria-label="Krushna — back to portfolio">
+      <span class="logo__mark"><img src="assets/images/kru logo.png" alt="" width="38" height="38" /></span>
+      <span>Krushna</span>
+    </a>
+
+    <nav class="navbar" id="primary-nav" aria-label="Primary">
       <ul>
-        <li><a class="active" href="index.html#home">Home</a></li>
+        <li><a href="index.html#home">Home</a></li>
         <li><a href="index.html#about">About</a></li>
         <li><a href="index.html#experience">Experience</a></li>
-        <li><a href="index.html#education">Education</a></li>
         <li><a href="index.html#github-projects">Projects</a></li>
         <li><a href="index.html#skills">Skills</a></li>
+        <li><a href="index.html#education">Education</a></li>
         <li><a href="index.html#contact">Contact</a></li>
       </ul>
     </nav>
+
+    <div class="header-actions">
+      <button id="theme-toggle" class="theme-toggle" type="button" aria-label="Toggle light / dark theme">
+        <i class="fas fa-moon"></i><i class="fas fa-sun"></i>
+      </button>
+      <button id="menu" type="button" aria-label="Open menu" aria-expanded="false" aria-controls="primary-nav">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
   </header>
 
-  <main class="project-container">
-    <section class="project-details">
+  <main id="main" class="project-container">
+    <div class="project-hero" data-reveal="blur">
+      <a href="index.html#github-projects" class="back-link"><i class="fas fa-arrow-left"></i> All projects</a>
+      <span class="eyebrow">Project details</span>
+      <h1>Trade With <span class="grad-text">AI</span></h1>
+      <p>An AI-powered crypto trading and management platform — Spring Boot, React and real-time market data.</p>
+    </div>
+
+    <section class="project-details card" data-reveal="up">
       <h2>Project Overview</h2>
       <p>
         TradeWithAI is an AI‑powered crypto trading and management platform built with <strong>Spring Boot</strong> (backend), <strong>React</strong> (frontend), and <strong>Tailwind CSS</strong> (styling). It integrates the <strong>Gemini API</strong> and <strong>CoinGecko API</strong> for real‑time market data, providing a seamless experience to <strong>buy</strong>, <strong>sell</strong>, <strong>track</strong>, and <strong>manage</strong> cryptocurrencies securely.
@@ -61,9 +105,9 @@
         <p>Initial dashboard view showcasing market data and Bitcoin chart.</p>
         <img src="assets/images/project/tradeWithAi1.png" alt="Trade With AI Dashboard Screenshot" class="project-image-gallery" loading="lazy">
         <p>Chatbot interaction window providing market information and technical explanations.</p>
-        <img src="assets/images/project/tradeWithAi2.png" alt="Trade With AI Chatbot Interaction Screenshot" class="project-image-gallery">
+        <img src="assets/images/project/tradeWithAi2.png" alt="Trade With AI Chatbot Interaction Screenshot" class="project-image-gallery" loading="lazy">
         <p>Sidebar navigation for various user functionalities.</p>
-        <img src="assets/images/project/tradeWithAi3.png" alt="Trade With AI Sidebar Navigation Screenshot" class="project-image-gallery">
+        <img src="assets/images/project/tradeWithAi3.png" alt="Trade With AI Sidebar Navigation Screenshot" class="project-image-gallery" loading="lazy">
       </div>
 
       <h3>Technology Stack</h3>
@@ -99,10 +143,10 @@
       </div>
 
       <div class="project-links">
-        <a href="https://github.com/krushna5000/TradeWithAi" target="_blank" class="link-btn github-btn">
-          GitHub Repository
+        <a href="https://github.com/krushna5000/TradeWithAi" target="_blank" rel="noopener" class="btn github-btn" data-magnetic="0.2">
+          <i class="fab fa-github"></i> GitHub Repository
         </a>
-        <a href="index.html" class="link-btn back-btn">
+        <a href="index.html" class="btn btn-outline back-btn" data-magnetic="0.2">
           ← Back to Portfolio
         </a>
       </div>
@@ -110,65 +154,59 @@
   </main>
 
   <!-- footer section starts -->
-  <section class="footer">
+  <footer class="footer">
+    <div class="footer__inner">
 
-    <div class="box-container">
+      <div class="box-container">
 
-      <div class="box">
-        <h3>Krushna's Portfolio</h3>
-        <p>Thank you for visiting my personal portfolio website. Connect with me over socials. <br /> <br /> Keep Rising
-          🚀. Connect with me!</p>
-      </div>
+        <div class="box">
+          <h3>Krushna's Portfolio</h3>
+          <p>Thank you for visiting my personal portfolio website. Connect with me over socials. <br /> <br /> Keep Rising
+            🚀. Connect with me!</p>
+        </div>
 
-      <div class="box">
-        <h3>quick links</h3>
-        <a href="index.html#home"><i class="fas fa-chevron-circle-right"></i> home</a>
-        <a href="index.html#about"><i class="fas fa-chevron-circle-right"></i> about</a>
-        <a href="index.html#experience"><i class="fas fa-chevron-circle-right"></i> experience</a>
-        <a href="index.html#education"><i class="fas fa-chevron-circle-right"></i> education</a>
-        <a href="index.html#github-projects"><i class="fas fa-chevron-circle-right"></i> projects</a>
-        <a href="index.html#skills"><i class="fas fa-chevron-circle-right"></i> skills</a>
-      </div>
+        <div class="box">
+          <h3>quick links</h3>
+          <a href="index.html#home"><i class="fas fa-chevron-circle-right"></i> home</a>
+          <a href="index.html#about"><i class="fas fa-chevron-circle-right"></i> about</a>
+          <a href="index.html#experience"><i class="fas fa-chevron-circle-right"></i> experience</a>
+          <a href="index.html#education"><i class="fas fa-chevron-circle-right"></i> education</a>
+          <a href="index.html#github-projects"><i class="fas fa-chevron-circle-right"></i> projects</a>
+          <a href="index.html#skills"><i class="fas fa-chevron-circle-right"></i> skills</a>
+        </div>
 
-      <div class="box">
-        <h3>contact info</h3>
-        <p> <i class="fas fa-phone"></i>+91 7743891860</p>
-        <p> <i class="fas fa-envelope"></i>krushnak5000@gmail.com</p>
-        <p> <i class="fas fa-map-marked-alt"></i>Chhatrapati Sambhaji Nagar, India</p>
-        <div class="share">
+        <div class="box">
+          <h3>contact info</h3>
+          <p> <i class="fas fa-phone"></i> +91 7743891860</p>
+          <p> <i class="fas fa-envelope"></i> krushnak5000@gmail.com</p>
+          <p> <i class="fas fa-map-marked-alt"></i> Chhatrapati Sambhaji Nagar, India</p>
+          <div class="share">
 
-          <a href="https://www.linkedin.com/in/krushna5000" class="fab fa-linkedin" aria-label="LinkedIn"
-            target="_blank"></a>
-          <a href="https://github.com/krushna5000" class="fab fa-github" aria-label="GitHub" target="_blank"></a>
-          <a href="mailto:Krushnak5000@gmail.com" class="fas fa-envelope" aria-label="Mail" target="_blank"></a>
+            <a href="https://www.linkedin.com/in/krushna5000" class="fab fa-linkedin" aria-label="LinkedIn"
+              target="_blank" rel="noopener"></a>
+            <a href="https://github.com/krushna5000" class="fab fa-github" aria-label="GitHub" target="_blank" rel="noopener"></a>
+            <a href="mailto:Krushnak5000@gmail.com" class="fas fa-envelope" aria-label="Mail"></a>
 
-          <a href="https://wa.me/917743891860" class="whatsapp" aria-label="WhatsApp" target="_blank"><i
-              class="fab fa-whatsapp"></i></a>
+            <a href="https://wa.me/917743891860" class="whatsapp" aria-label="WhatsApp" target="_blank" rel="noopener"><i
+                class="fab fa-whatsapp"></i></a>
 
+          </div>
         </div>
       </div>
+
+      <div class="credit">
+        <span>© 2026 • Krushna Kakde</span>
+        <span>Designed &amp; built with care</span>
+      </div>
+
     </div>
-
-    <h1 class="credit">© 2026 • Krushna Kakde</h1>
-
-  </section>
+  </footer>
   <!-- footer section ends -->
 
   <!-- scroll top btn -->
-  <a href="#home" aria-label="ScrollTop" class="fas fa-angle-up" id="scroll-top"></a>
+  <a href="#" aria-label="ScrollTop" class="fas fa-angle-up" id="scroll-top"></a>
 
-  <!-- jquery cdn -->
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"
-    integrity="sha512-894YE6QWD5I59HgZOGReFYm4dnWc1Qt5NtvYSaNcOP+u1T9qYdvdihz0PPSiiqn/+/3e7Jo4EaG7TubfWGUrMQ=="
-    crossorigin="anonymous" referrerpolicy="no-referrer"></script>
-
-  <!-- typed.js cdn -->
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/typed.js/2.0.5/typed.min.js"
-    integrity="sha512-1KbKusm/hAtkX5FScVR5G36wodIMnVd/aP04af06iyQTkD17szAMGNmxfNH+tEuFp3Og/P5G32L1qEC47CZbUQ=="
-    crossorigin="anonymous" referrerpolicy="no-referrer"></script>
-
-  <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/emailjs-com@3/dist/email.min.js"></script>
-
-  <script src="./assets/js/script.js"></script>
+  <script src="./assets/js/core.js"></script>
+  <script src="./assets/js/effects.js"></script>
 </body>
 </html>

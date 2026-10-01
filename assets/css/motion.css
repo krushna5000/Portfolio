@@ -1,0 +1,138 @@
+/* ==========================================================================
+   motion.css — index.html cinematic layer
+   Orbits, letter proximity, timeline spark, shine sweeps, idle floats,
+   outline text band and drifting section numbers.
+   Everything is transform / opacity based and disabled by reduced-motion.
+   ========================================================================== */
+
+/* ---------- Hero: orbiting rings behind the portrait ---------- */
+.hero__frame { z-index: 1; }
+.orbit {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  aspect-ratio: 1;
+  translate: -50% -50%;
+  border-radius: 50%;
+  border: 1px dashed rgba(var(--glow), 0.4);
+  pointer-events: none;
+  animation: orbit 46s linear infinite;
+}
+.orbit--1 { width: 138%; }
+.orbit--2 { width: 112%; animation-duration: 32s; animation-direction: reverse; border-style: solid; border-color: rgba(34, 211, 238, 0.22); }
+.orbit__dot {
+  position: absolute;
+  top: 0;
+  left: 50%;
+  width: 1.1rem;
+  height: 1.1rem;
+  margin: -0.55rem 0 0 -0.55rem;
+  border-radius: 50%;
+  background: var(--accent);
+  box-shadow: 0 0 18px 4px rgba(34, 211, 238, 0.55);
+}
+.orbit--2 .orbit__dot { top: auto; bottom: 0; margin: 0 0 -0.55rem -0.55rem; background: #818cf8; box-shadow: 0 0 18px 4px rgba(129, 140, 248, 0.6); }
+@keyframes orbit { to { transform: rotate(360deg); } }
+
+/* ---------- Hero name: letters lift toward the cursor (--hp set by effects.js) ---------- */
+.hero__char {
+  transform: translate3d(0, calc(var(--hp, 0) * -1.4rem), 0) scale(calc(1 + var(--hp, 0) * 0.1));
+  transition: transform 0.35s var(--ease-out-soft, cubic-bezier(0.22, 1, 0.36, 1));
+}
+
+/* ---------- Experience timeline: spark rides the filling line ---------- */
+.tl-spark {
+  position: absolute;
+  left: 1.2rem;
+  top: calc(var(--tl, 0) * 100%);
+  width: 1rem;
+  height: 1rem;
+  margin: -0.5rem 0 0 -0.5rem;
+  border-radius: 50%;
+  background: #fff;
+  box-shadow: 0 0 0 4px rgba(var(--glow), 0.35), 0 0 24px 6px rgba(34, 211, 238, 0.8);
+  opacity: calc(var(--tl, 0) * 40);
+  pointer-events: none;
+  z-index: 2;
+}
+.exp-timeline[style*='--tl: 1'] .tl-spark { opacity: 0; }
+.exp-dot::after {
+  content: '';
+  position: absolute;
+  inset: -3px;
+  border-radius: 50%;
+  border: 2px solid var(--primary);
+  opacity: 0;
+}
+.exp-item.in-view .exp-dot::after { animation: dotPing 1.6s var(--ease) 0.3s 1 backwards; }
+.exp-item:first-child.in-view .exp-dot::after { animation-iteration-count: infinite; animation-delay: 0.6s; animation-duration: 2.4s; }
+@keyframes dotPing { 0% { transform: scale(1); opacity: 0.9; } 100% { transform: scale(3); opacity: 0; } }
+
+@media (max-width: 700px) { .tl-spark { left: 0.6rem; } }
+
+/* ---------- Project covers: shine sweep + idle float ---------- */
+.project-cover:not(.has-shot)::after {
+  background:
+    linear-gradient(110deg, transparent 38%, rgba(255, 255, 255, 0.42) 50%, transparent 62%),
+    radial-gradient(60% 80% at 15% 0%, rgba(255, 255, 255, 0.35), transparent 60%);
+  background-size: 260% 100%, 100% 100%;
+  background-position: 160% 0, 0 0;
+  background-repeat: no-repeat;
+  transition: background-position 1.1s var(--ease);
+}
+.project-card:hover .project-cover:not(.has-shot)::after { background-position: -60% 0, 0 0; }
+
+.cover-icon { animation: iconFloat 5.5s ease-in-out infinite; }
+.project-card:nth-child(odd) .cover-icon { animation-delay: -2.2s; }
+.project-card:nth-child(3n) .cover-icon { animation-delay: -4s; }
+@keyframes iconFloat { 0%, 100% { translate: 0 0; } 50% { translate: 0 -0.9rem; } }
+
+/* tech tiles drift gently once their group is visible */
+.tech-group.in-view .tech-icon { animation: iconFloat 6.5s ease-in-out infinite; animation-delay: calc(var(--i, 0) * -0.55s); }
+.tech-item:hover .tech-icon { animation-play-state: paused; }
+
+/* ---------- Outline text band ---------- */
+.band { overflow: hidden; padding: 3rem 0; margin-top: 2rem; -webkit-mask-image: linear-gradient(90deg, transparent, #000 10%, #000 90%, transparent); mask-image: linear-gradient(90deg, transparent, #000 10%, #000 90%, transparent); }
+.band__track { display: flex; align-items: center; width: max-content; animation: bandMove 48s linear infinite; }
+.band__track > span {
+  flex: none;
+  padding-right: 4rem;
+  font-family: var(--font-head);
+  font-size: clamp(5.4rem, 11vw, 13rem);
+  font-weight: 800;
+  line-height: 1.1;
+  letter-spacing: -0.04em;
+  color: transparent;
+  -webkit-text-stroke: 1.5px var(--border-strong);
+  transition: color 0.5s, -webkit-text-stroke-color 0.5s;
+}
+.band__track > span:nth-child(4n + 2) { color: transparent; background: var(--shimmer); background-size: 200% 100%; -webkit-background-clip: text; background-clip: text; -webkit-text-stroke: 0; animation: shimmer 8s linear infinite; }
+.band__track > span:hover { -webkit-text-stroke-color: var(--primary); }
+@keyframes bandMove { to { transform: translate3d(-50%, 0, 0); } }
+
+/* ---------- Big drifting section numbers (scroll-driven where supported) ---------- */
+.section-head { position: relative; }
+.section-head[data-num]::before {
+  content: attr(data-num);
+  position: absolute;
+  left: 50%;
+  top: -0.55em;
+  z-index: -1;
+  translate: -50% 0;
+  font-family: var(--font-head);
+  font-size: clamp(14rem, 26vw, 28rem);
+  font-weight: 800;
+  line-height: 1;
+  letter-spacing: -0.06em;
+  color: transparent;
+  -webkit-text-stroke: 1px var(--border);
+  opacity: 0.9;
+  pointer-events: none;
+  user-select: none;
+}
+@supports (animation-timeline: view()) {
+  @media (prefers-reduced-motion: no-preference) {
+    .section-head[data-num]::before { animation: numDrift linear both; animation-timeline: view(); animation-range: entry 0% exit 100%; }
+    @keyframes numDrift { from { translate: -50% 6rem; opacity: 0; } 35% { opacity: 0.9; } to { translate: -50% -8rem; opacity: 0; } }
+  }
+}

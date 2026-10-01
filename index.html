@@ -1,10 +1,11 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" data-theme="dark">
 
 <head>
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#07090f">
   <meta name="keywords"
     content="Krushna Kakde, portfolio, Krushna, full stack developer, software developer, Devanta Tech, portfolio design, portfolio website, personal portfolio" />
   <meta name="description"
@@ -47,805 +48,1027 @@
   }
   </script>
 
-  <!-- Custom CSS -->
+  <!-- Apply saved theme + JS flag before first paint (prevents a theme flash) -->
+  <script>
+    (function () {
+      var r = document.documentElement, t = 'dark';
+      try { var s = localStorage.getItem('theme'); if (s === 'light' || s === 'dark') t = s; } catch (e) { }
+      r.setAttribute('data-theme', t);
+      r.classList.add('js');
+      // Cinematic intro curtain: once per session, never with a deep link or reduced motion
+      try {
+        var calm = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+        if (!calm && !location.hash && !sessionStorage.getItem('introSeen')) {
+          r.classList.add('intro-play');
+          sessionStorage.setItem('introSeen', '1');
+        }
+      } catch (e) { }
+    })();
+  </script>
+
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet"
+    href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&family=Manrope:wght@600;700;800&display=swap">
+
+  <!-- Design system + section styles -->
   <link rel="stylesheet" href="./assets/css/style.css">
+  <link rel="stylesheet" href="./assets/css/sections.css">
+  <link rel="stylesheet" href="./assets/css/motion.css">
   <!-- Font Awesome -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css"
     integrity="sha512-iBBXm8fW90+nuLcSKlbmrPcLa0OT92xO1BIsZ+ywDWZCvqsWgccV3gFoRBv0z+8dLJgyAHIhR35VZc2oM/gI1w=="
     crossorigin="anonymous" referrerpolicy="no-referrer" />
   <!-- Favicon -->
-  <link id="favicon" rel="icon" type="image/png" sizes="any" href="assets\images\kru logo.png">
-  <link rel="shortcut icon" type="image/png" href="assets\images\kru logo.png">
+  <link id="favicon" rel="icon" type="image/png" sizes="any" href="assets/images/kru logo.png">
+  <link rel="shortcut icon" type="image/png" href="assets/images/kru logo.png">
   <link rel="apple-touch-icon" href="assets/images/contact1.png?v=5">
   <title>Krushna Vasant Kakde | Software Developer at Devanta Tech</title>
 </head>
 
-
-
 <body>
+  <a class="skip-link" href="#main">Skip to content</a>
 
+  <!-- intro curtain (CSS-timed; removes itself even if JS fails) -->
+  <div class="intro" aria-hidden="true">
+    <div class="intro__panel intro__panel--top"></div>
+    <div class="intro__panel intro__panel--bottom"></div>
+    <div class="intro__brand">
+      <span class="intro__mark"><img src="assets/images/kru logo.png" alt="" width="80" height="80"></span>
+      <span class="intro__name">KRUSHNA KAKDE</span>
+      <span class="intro__bar"></span>
+    </div>
+  </div>
+
+  <!-- ambient background -->
+  <div class="ambient" aria-hidden="true">
+    <div class="ambient__blob ambient__blob--a"></div>
+    <div class="ambient__blob ambient__blob--b"></div>
+    <div class="ambient__blob ambient__blob--c"></div>
+    <div class="ambient__grid"></div>
+    <div class="ambient__noise"></div>
+    <div class="ambient__glow"></div>
+  </div>
+  <div class="scroll-progress" aria-hidden="true"></div>
 
   <!-- navbar starts -->
-  <header>
-    <a href="/" class="logo">
-      <img src="assets/images/kru logo.png" alt="Krushna logo"
-        style="height:34px; width:auto; vertical-align:middle; margin-right:10px;" />Krushna</a>
+  <header class="site-header">
+    <a href="#home" class="logo" aria-label="Krushna — back to top">
+      <span class="logo__mark"><img src="assets/images/kru logo.png" alt="" width="38" height="38" /></span>
+      <span>Krushna</span>
+    </a>
 
-    <div id="menu" class="fas fa-bars"></div>
-    <nav class="navbar">
+    <nav class="navbar" id="primary-nav" aria-label="Primary">
       <ul>
+        <li class="nav-indicator" aria-hidden="true" role="presentation"></li>
         <li><a class="active" href="#home">Home</a></li>
         <li><a href="#about">About</a></li>
         <li><a href="#experience">Experience</a></li>
-        <li><a href="#education">Education</a></li>
         <li><a href="#github-projects">Projects</a></li>
         <li><a href="#skills">Skills</a></li>
+        <li><a href="#education">Education</a></li>
         <li><a href="#contact">Contact</a></li>
       </ul>
     </nav>
+
+    <div class="header-actions">
+      <button id="theme-toggle" class="theme-toggle" type="button" aria-label="Toggle light / dark theme">
+        <i class="fas fa-moon"></i><i class="fas fa-sun"></i>
+      </button>
+      <button id="menu" type="button" aria-label="Open menu" aria-expanded="false" aria-controls="primary-nav">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
   </header>
   <!-- navbar ends -->
 
+  <main id="main">
 
-  <!-- hero section starts -->
-  <section class="home" id="home">
-    <div id="particles-js"></div>
-
-    <div class="content">
-      <div class="open-to-work-badge">
-        <span class="dot-pulse"></span>
-        <span>Software Developer @ Devanta Tech</span>
-      </div>
-      <h2>Hi There,<br /> I'm Krushna <span>Kakde</span></h2>
-      <p>I am into <span class="typing-text"></span></p>
-
-      <div class="hero-cta">
-        <a href="assets/Krushna_Kakde_Resume.pdf" class="btn" target="_blank" download="Krushna_Kakde_Resume.pdf"><span>Resume</span> <i class="fas fa-download"></i></a>
-        <a href="#github-projects" class="btn btn-outline"><span>View Projects</span> <i class="fas fa-arrow-right"></i></a>
-      </div>
-
-      <div class="hero-stats">
-        <div class="hero-stat">
-          <span class="hero-stat-num">1</span>
-          <span class="hero-stat-label">Full-Time Role</span>
+    <!-- hero section starts -->
+    <section class="home section" id="home">
+      <div class="hero__content" data-parallax-y="0.05">
+        <div class="open-to-work-badge hero-anim" style="--i:0">
+          <span class="dot-pulse"></span>
+          <span>Software Developer @ Devanta Tech</span>
         </div>
-        <div class="hero-stat">
-          <span class="hero-stat-num">10+</span>
-          <span class="hero-stat-label">Projects</span>
+
+        <p class="hero__eyebrow hero-anim" style="--i:1">Hi there, I'm</p>
+        <h1 class="hero__name" data-split>Krushna Kakde</h1>
+
+        <p class="hero__tagline hero-anim" style="--i:5">
+          Full-Stack Developer building <strong>scalable, modern and intelligent</strong> web applications.
+        </p>
+        <p class="hero__roles hero-anim" style="--i:6">I am into <span class="typing-text"></span></p>
+        <p class="hero__intro hero-anim" style="--i:7">
+          MERN-stack and Spring Boot products, from secure REST APIs to polished interfaces — shipped for IIoT and
+          industrial cloud automation at Devanta Tech.
+        </p>
+
+        <div class="hero-cta hero-anim" style="--i:8">
+          <a href="assets/Krushna_Kakde_Resume.pdf" class="btn" data-magnetic="0.22" target="_blank" rel="noopener"
+            download="Krushna_Kakde_Resume.pdf"><span>Resume</span> <i class="fas fa-download"></i></a>
+          <a href="#github-projects" class="btn btn-outline" data-magnetic="0.22"><span>View Projects</span> <i
+              class="fas fa-arrow-right"></i></a>
         </div>
-        <div class="hero-stat">
-          <span class="hero-stat-num">5+</span>
-          <span class="hero-stat-label">Certifications</span>
-        </div>
-        <div class="hero-stat">
-          <span class="hero-stat-num">7.43</span>
-          <span class="hero-stat-label">GPA / 10</span>
+
+        <div class="socials hero-anim" style="--i:9">
+          <ul class="social-icons">
+            <li><a class="linkedin" aria-label="LinkedIn" href="https://www.linkedin.com/in/krushna5000"
+                target="_blank" rel="noopener" data-magnetic="0.35"><i class="fab fa-linkedin"></i></a></li>
+            <li><a class="github" aria-label="GitHub" href="https://github.com/krushna5000" target="_blank"
+                rel="noopener" data-magnetic="0.35"><i class="fab fa-github"></i></a></li>
+            <li><a class="whatsapp" aria-label="WhatsApp" href="https://wa.me/917743891860" target="_blank"
+                rel="noopener" data-magnetic="0.35"><i class="fab fa-whatsapp"></i></a></li>
+            <li><a class="email" aria-label="Email" href="mailto:krushnak5000@gmail.com" data-magnetic="0.35"><i
+                  class="fas fa-envelope"></i></a></li>
+          </ul>
         </div>
       </div>
 
-      <div class="socials">
-        <ul class="social-icons">
-          <li><a class="linkedin" aria-label="LinkedIn" href="https://www.linkedin.com/in/krushna5000"
-              target="_blank"><i class="fab fa-linkedin"></i></a></li>
-          <li><a class="github" aria-label="GitHub" href="https://github.com/krushna5000" target="_blank"><i
-                class="fab fa-github"></i></a></li>
-          <li><a class="whatsapp" aria-label="WhatsApp" href="https://wa.me/917743891860" target="_blank"><i
-                class="fab fa-whatsapp"></i></a></li>
-          <li><a class="email" aria-label="Email" href="mailto:krushnak5000@gmail.com"><i
-                class="fas fa-envelope"></i></a></li>
-        </ul>
+      <div class="hero__visual hero-anim" style="--i:4" data-parallax-scope data-parallax-y="0.1">
+        <div class="hero__halo" aria-hidden="true"></div>
+        <div class="orbit orbit--1" aria-hidden="true"><span class="orbit__dot"></span></div>
+        <div class="orbit orbit--2" aria-hidden="true"><span class="orbit__dot"></span></div>
+        <div class="hero__frame" data-tilt="5" data-cursor="Hello">
+          <img draggable="false" src="./assets/images/hero.png" width="584" height="800" fetchpriority="high"
+            alt="Portrait of Krushna Kakde">
+        </div>
+
+        <div class="layer layer--code" style="--depth:34">
+          <div class="float float--slow code-card" aria-hidden="true">
+            <div class="code-card__bar"><i></i><i></i><i></i><span>krushna.js</span></div>
+            <pre><code><span class="ln" style="--l:0"><span class="k">const</span> <span class="v">krushna</span> = {</span><span class="ln" style="--l:1">  <span class="p">role</span>: <span class="s">"Full-Stack Developer"</span>,</span><span class="ln" style="--l:2">  <span class="p">stack</span>: [<span class="s">"React"</span>, <span class="s">"Node"</span>, <span class="s">"MongoDB"</span>],</span><span class="ln" style="--l:3">  <span class="p">at</span>: <span class="s">"Devanta Tech"</span>,</span><span class="ln" style="--l:4">  <span class="p">focus</span>: <span class="s">"IIoT &amp; Cloud"</span></span><span class="ln" style="--l:5">};<span class="caret"></span></span></code></pre>
+          </div>
+        </div>
+
+        <div class="layer layer--chip1" style="--depth:56">
+          <div class="float chip" aria-hidden="true"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/react/react-original.svg" alt="" width="26" height="26">React</div>
+        </div>
+        <div class="layer layer--chip2" style="--depth:44">
+          <div class="float float--alt chip" aria-hidden="true"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/nodejs/nodejs-original.svg" alt="" width="26" height="26">Node.js</div>
+        </div>
+        <div class="layer layer--chip3" style="--depth:62">
+          <div class="float chip" aria-hidden="true"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/mongodb/mongodb-original.svg" alt="" width="26" height="26">MongoDB</div>
+        </div>
+        <div class="layer layer--chip4" style="--depth:30">
+          <div class="float float--alt chip" aria-hidden="true"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/postgresql/postgresql-original.svg" alt="" width="26" height="26">PostgreSQL</div>
+        </div>
       </div>
-    </div>
-    <div class="image">
-      <img draggable="false" class="tilt" src="./assets/images/hero.png" alt="Illustration of Krushna Kakde">
-    </div>
-  </section>
-  <!-- hero section ends -->
+
+      <a href="#about" class="scroll-cue hero-anim" style="--i:11" aria-label="Scroll to About"><span></span></a>
+    </section>
+    <!-- hero section ends -->
+
+    <!-- tech marquee (rows are rendered from skills.json by home.js) -->
+    <div class="marquee" aria-hidden="true" data-reveal="up" data-cursor="Pause"></div>
 
 
-  <!-- about section starts -->
-
-
-  <section class="about" id="about">
-    <h2 class="heading"><i class="fas fa-user-alt"></i> About <span>Me</span></h2>
-
-    <div class="row">
-
-      <div class="image">
-        <img draggable="false" class="tilt" src="./assets/images/profile2.jpg" loading="lazy" alt="Krushna Kakde profile photo">
+    <!-- about section starts -->
+    <section class="about section" id="about">
+      <div class="section-head" data-reveal="head" data-num="01">
+        <span class="eyebrow">01 · About</span>
+        <h2 class="heading">About <span>Me</span></h2>
+        <p class="section-sub">Engineer first, always shipping — a quick look at who's behind the code.</p>
       </div>
-      <div class="content">
-        <h3>I'm Krushna</h3>
-        <span class="tag">Software Developer · Devanta Tech</span>
 
-        <p>Full-Stack Software Developer at Devanta Tech, building IIoT and industrial cloud automation solutions with the MERN stack (MongoDB, Express.js, React.js, Node.js) and PostgreSQL. Skilled in RESTful API design, relational database management, and shipping production-grade user interfaces. Comfortable owning features end-to-end in Agile teams and passionate about writing clean, maintainable code.</p>
+      <div class="bento">
+        <div class="bento__photo card" data-spotlight data-tilt="4" data-reveal="clip" data-cursor="Hi!">
+          <img data-parallax-y="0.06" draggable="false" src="./assets/images/profile2.jpg" loading="lazy" width="748" height="1024"
+            alt="Krushna Kakde profile photo">
+          <div class="bento__photo-tag"><i class="fas fa-map-marker-alt"></i> Chhatrapati Sambhaji Nagar, India</div>
+        </div>
 
-        <div class="about-stats">
-          <div class="about-stat">
-            <span class="about-stat-num">2</span>
+        <div class="bento__bio card" data-spotlight data-reveal="right">
+          <h3>I'm Krushna</h3>
+          <span class="tag">Software Developer · Devanta Tech</span>
+          <p>Full-Stack Software Developer at Devanta Tech, building IIoT and industrial cloud automation solutions
+            with the MERN stack (MongoDB, Express.js, React.js, Node.js) and PostgreSQL. Skilled in RESTful API design,
+            relational database management, and shipping production-grade user interfaces. Comfortable owning features
+            end-to-end in Agile teams and passionate about writing clean, maintainable code.</p>
+        </div>
+
+        <div class="about-stats" data-stagger="0.09" data-stagger-variant="scale">
+          <div class="about-stat card" data-spotlight>
+            <span class="about-stat-num" data-count>2</span>
             <span class="about-stat-label">Roles</span>
           </div>
-          <div class="about-stat">
-            <span class="about-stat-num">10+</span>
+          <div class="about-stat card" data-spotlight>
+            <span class="about-stat-num" data-count>10+</span>
             <span class="about-stat-label">Projects Built</span>
           </div>
-          <div class="about-stat">
-            <span class="about-stat-num">5+</span>
+          <div class="about-stat card" data-spotlight>
+            <span class="about-stat-num" data-count>5+</span>
             <span class="about-stat-label">Certifications</span>
           </div>
-          <div class="about-stat">
-            <span class="about-stat-num">7.43</span>
+          <div class="about-stat card" data-spotlight>
+            <span class="about-stat-num" data-count>7.43</span>
             <span class="about-stat-label">GPA / 10</span>
           </div>
         </div>
 
-        <div class="box-container">
-          <div class="box">
-            <p><span> Email : </span> krushnak5000@gmail.com</p>
-            <p><span> Phone : </span> +91 7743891860</p>
-            <p><span> Place : </span> Chhatrapati Sambhaji Nagar, India</p>
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- about section ends -->
-
-
-  <!-- experience section starts -->
-  <section class="experience" id="experience">
-    <h2 class="heading"><i class="fas fa-briefcase"></i> Work <span>Experience</span></h2>
-
-    <div class="exp-timeline">
-
-      <div class="exp-item">
-        <div class="exp-dot"></div>
-        <div class="exp-card">
-          <div class="exp-header">
-            <div class="exp-title-block">
-              <h3>Software Developer <span class="current-badge"><span class="dot-pulse"></span> Current</span></h3>
-              <p class="exp-company"><i class="fas fa-building"></i> Devanta Tech</p>
-            </div>
-            <div class="exp-meta">
-              <span class="exp-duration"><i class="far fa-calendar-alt"></i> Jul 2026 – Present</span>
-              <span class="exp-type on-site"><i class="fas fa-map-marker-alt"></i> On-site</span>
-            </div>
-          </div>
-          <ul class="exp-points">
-            <li>Own end-to-end development of full-stack modules for IIoT and industrial cloud automation platforms, from design through deployment, using MongoDB, Express.js, React.js, and Node.js.</li>
-            <li>Design and ship RESTful APIs with secure JWT authentication and role-based access control, translating enterprise client requirements into reliable, production-ready backend services.</li>
-            <li>Contribute to architecture decisions and code reviews, driving improvements in code quality, API performance, and system reliability across the engineering team.</li>
-            <li>Partner with product, QA, and DevOps in Agile sprints to deliver Software Implementation and Engineering & Support Services projects on schedule.</li>
-          </ul>
-          <div class="exp-tags">
-            <span class="tech-tag">MongoDB</span>
-            <span class="tech-tag">Express.js</span>
-            <span class="tech-tag">React.js</span>
-            <span class="tech-tag">Node.js</span>
-            <span class="tech-tag">PostgreSQL</span>
-            <span class="tech-tag">JWT Auth</span>
-            <span class="tech-tag">REST APIs</span>
-            <span class="tech-tag">Agile/Scrum</span>
-          </div>
-        </div>
-      </div>
-
-      <div class="exp-item">
-        <div class="exp-dot"></div>
-        <div class="exp-card">
-          <div class="exp-header">
-            <div class="exp-title-block">
-              <h3>MERN Stack Developer Intern</h3>
-              <p class="exp-company"><i class="fas fa-building"></i> Devanta Tech</p>
-            </div>
-            <div class="exp-meta">
-              <span class="exp-duration"><i class="far fa-calendar-alt"></i> Jan 2026 – Jun 2026</span>
-              <span class="exp-type on-site"><i class="fas fa-map-marker-alt"></i> On-site</span>
-            </div>
-          </div>
-          <ul class="exp-points">
-            <li>Built and maintained full-stack features using MongoDB, Express.js, React.js, and Node.js for IIoT and industrial cloud automation solutions.</li>
-            <li>Designed and implemented RESTful APIs with secure JWT authentication, converting business requirements into reliable backend logic for enterprise clients.</li>
-            <li>Collaborated in Agile sprints — sprint planning, code reviews, retrospectives — earning conversion to a full-time Software Developer role after 6 months.</li>
-          </ul>
-          <div class="exp-tags">
-            <span class="tech-tag">MongoDB</span>
-            <span class="tech-tag">Express.js</span>
-            <span class="tech-tag">React.js</span>
-            <span class="tech-tag">Node.js</span>
-            <span class="tech-tag">JWT Auth</span>
+        <div class="bento__now card" data-spotlight data-reveal="up">
+          <span class="bento__label"><span class="dot-pulse"></span> Currently</span>
+          <h4>Software Developer</h4>
+          <p>Devanta Tech · Jul 2026 – Present</p>
+          <div class="chips">
+            <span class="tech-tag">IIoT</span>
+            <span class="tech-tag">Cloud Automation</span>
             <span class="tech-tag">REST APIs</span>
           </div>
         </div>
+
+        <div class="bento__contact card" data-spotlight data-reveal="up" style="--d:.1s">
+          <span class="bento__label"><i class="fas fa-address-card"></i> Details</span>
+          <p><span> Email : </span> krushnak5000@gmail.com</p>
+          <p><span> Phone : </span> +91 7743891860</p>
+          <p><span> Place : </span> Chhatrapati Sambhaji Nagar, India</p>
+        </div>
+      </div>
+    </section>
+    <!-- about section ends -->
+
+
+    <!-- experience section starts -->
+    <section class="experience section" id="experience">
+      <div class="section-head" data-reveal="head" data-num="02">
+        <span class="eyebrow">02 · Experience</span>
+        <h2 class="heading">Work <span>Experience</span></h2>
+        <p class="section-sub">From MERN intern to full-time developer — building production software for industry.</p>
       </div>
 
-      <div class="exp-item">
-        <div class="exp-dot"></div>
-        <div class="exp-card">
-          <div class="exp-header">
-            <div class="exp-title-block">
-              <h3>MERN Stack Intern</h3>
-              <p class="exp-company"><i class="fas fa-building"></i> Farmseasy</p>
+      <div class="exp-timeline">
+
+        <div class="exp-item" data-reveal="up">
+          <div class="exp-dot"></div>
+          <div class="exp-card card" data-spotlight>
+            <div class="exp-header">
+              <div class="exp-title-block">
+                <h3>Software Developer <span class="current-badge"><span class="dot-pulse"></span> Current</span></h3>
+                <p class="exp-company"><i class="fas fa-building"></i> Devanta Tech</p>
+              </div>
+              <div class="exp-meta">
+                <span class="exp-duration"><i class="far fa-calendar-alt"></i> Jul 2026 – Present</span>
+                <span class="exp-type on-site"><i class="fas fa-map-marker-alt"></i> On-site</span>
+              </div>
             </div>
-            <div class="exp-meta">
-              <span class="exp-duration"><i class="far fa-calendar-alt"></i> Sep 2025 – Dec 2025</span>
-              <span class="exp-type hybrid"><i class="fas fa-laptop-house"></i> Hybrid</span>
+            <ul class="exp-points">
+              <li>Own end-to-end development of full-stack modules for IIoT and industrial cloud automation platforms,
+                from design through deployment, using MongoDB, Express.js, React.js, and Node.js.</li>
+              <li>Design and ship RESTful APIs with secure JWT authentication and role-based access control,
+                translating enterprise client requirements into reliable, production-ready backend services.</li>
+              <li>Contribute to architecture decisions and code reviews, driving improvements in code quality, API
+                performance, and system reliability across the engineering team.</li>
+              <li>Partner with product, QA, and DevOps in Agile sprints to deliver Software Implementation and
+                Engineering &amp; Support Services projects on schedule.</li>
+            </ul>
+            <div class="exp-tags" data-stagger="0.05" data-stagger-variant="scale">
+              <span class="tech-tag">MongoDB</span>
+              <span class="tech-tag">Express.js</span>
+              <span class="tech-tag">React.js</span>
+              <span class="tech-tag">Node.js</span>
+              <span class="tech-tag">PostgreSQL</span>
+              <span class="tech-tag">JWT Auth</span>
+              <span class="tech-tag">REST APIs</span>
+              <span class="tech-tag">Agile/Scrum</span>
             </div>
           </div>
-          <ul class="exp-points">
-            <li>Delivered 6+ industry-level projects for startups, including wireframes, prototypes, and high-fidelity designs that improved user satisfaction by 30%.</li>
-            <li>Collaborated with developers to implement responsive mobile and web app interfaces using React, reducing design-to-development handoff time by 20%.</li>
-            <li>Conducted user testing sessions to refine workflows, resulting in a 15% increase in user retention.</li>
-          </ul>
-          <div class="exp-tags">
-            <span class="tech-tag">React.js</span>
-            <span class="tech-tag">Node.js</span>
-            <span class="tech-tag">MongoDB</span>
-            <span class="tech-tag">Express.js</span>
-            <span class="tech-tag">UI/UX Design</span>
+        </div>
+
+        <div class="exp-item" data-reveal="up">
+          <div class="exp-dot"></div>
+          <div class="exp-card card" data-spotlight>
+            <div class="exp-header">
+              <div class="exp-title-block">
+                <h3>MERN Stack Developer Intern</h3>
+                <p class="exp-company"><i class="fas fa-building"></i> Devanta Tech</p>
+              </div>
+              <div class="exp-meta">
+                <span class="exp-duration"><i class="far fa-calendar-alt"></i> Jan 2026 – Jun 2026</span>
+                <span class="exp-type on-site"><i class="fas fa-map-marker-alt"></i> On-site</span>
+              </div>
+            </div>
+            <ul class="exp-points">
+              <li>Built and maintained full-stack features using MongoDB, Express.js, React.js, and Node.js for IIoT
+                and industrial cloud automation solutions.</li>
+              <li>Designed and implemented RESTful APIs with secure JWT authentication, converting business
+                requirements into reliable backend logic for enterprise clients.</li>
+              <li>Collaborated in Agile sprints — sprint planning, code reviews, retrospectives — earning conversion to
+                a full-time Software Developer role after <strong>6 months</strong>.</li>
+            </ul>
+            <div class="exp-tags" data-stagger="0.05" data-stagger-variant="scale">
+              <span class="tech-tag">MongoDB</span>
+              <span class="tech-tag">Express.js</span>
+              <span class="tech-tag">React.js</span>
+              <span class="tech-tag">Node.js</span>
+              <span class="tech-tag">JWT Auth</span>
+              <span class="tech-tag">REST APIs</span>
+            </div>
           </div>
+        </div>
+
+        <div class="exp-item" data-reveal="up">
+          <div class="exp-dot"></div>
+          <div class="exp-card card" data-spotlight>
+            <div class="exp-header">
+              <div class="exp-title-block">
+                <h3>MERN Stack Intern</h3>
+                <p class="exp-company"><i class="fas fa-building"></i> Farmseasy</p>
+              </div>
+              <div class="exp-meta">
+                <span class="exp-duration"><i class="far fa-calendar-alt"></i> Sep 2025 – Dec 2025</span>
+                <span class="exp-type hybrid"><i class="fas fa-laptop-house"></i> Hybrid</span>
+              </div>
+            </div>
+            <ul class="exp-points">
+              <li>Delivered <strong>6+</strong> industry-level projects for startups, including wireframes, prototypes,
+                and high-fidelity designs that improved user satisfaction by <strong>30%</strong>.</li>
+              <li>Collaborated with developers to implement responsive mobile and web app interfaces using React,
+                reducing design-to-development handoff time by <strong>20%</strong>.</li>
+              <li>Conducted user testing sessions to refine workflows, resulting in a <strong>15%</strong> increase in
+                user retention.</li>
+            </ul>
+            <div class="exp-tags" data-stagger="0.05" data-stagger-variant="scale">
+              <span class="tech-tag">React.js</span>
+              <span class="tech-tag">Node.js</span>
+              <span class="tech-tag">MongoDB</span>
+              <span class="tech-tag">Express.js</span>
+              <span class="tech-tag">UI/UX Design</span>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </section>
+    <!-- experience section ends -->
+
+
+    <!-- Projects section starts -->
+    <section class="github-projects section" id="github-projects">
+      <div class="section-head" data-reveal="head" data-num="03">
+        <span class="eyebrow">03 · Projects</span>
+        <h2 class="heading">My <span>Projects</span></h2>
+        <p class="section-sub">Explore my diverse portfolio of web applications, mobile apps, and innovative solutions.
+        </p>
+      </div>
+
+      <div class="project-search-row" data-reveal="up">
+        <div class="project-search-wrap">
+          <i class="fas fa-search"></i>
+          <input type="text" id="project-search" placeholder="Search projects by name or tech..." autocomplete="off"
+            aria-label="Search projects">
+        </div>
+        <span id="project-count" class="project-count-label" aria-live="polite"></span>
+      </div>
+
+      <div class="project-filters" data-reveal="up" style="--d:.08s" role="group" aria-label="Filter projects">
+        <button class="filter-btn active" data-filter="all">All</button>
+        <button class="filter-btn" data-filter="web">Web</button>
+        <button class="filter-btn" data-filter="mobile">Mobile</button>
+        <button class="filter-btn" data-filter="backend">Backend</button>
+        <button class="filter-btn" data-filter="ml">ML / AI</button>
+      </div>
+
+      <div class="projects-container">
+
+        <article class="project-card featured card" data-category="web" data-spotlight data-tilt="3" data-reveal="scale">
+          <div class="project-cover has-shot" style="--c1:#6366f1;--c2:#06b6d4">
+            <span class="cover-chrome" aria-hidden="true"><i></i><i></i><i></i></span>
+            <img src="./assets/images/project/tradeWithAi1.png" loading="lazy" width="1919" height="870"
+              alt="TradeWithAi dashboard showing live crypto market data and a Bitcoin chart">
+            <span class="featured-badge"><i class="fas fa-star"></i> Featured</span>
+          </div>
+          <div class="project-body">
+            <h3>TradeWithAi</h3>
+            <p>Developed a Full Stack Trading Platform leveraging modern technologies to gain hands-on expertise in
+              cryptocurrency trading systems. Enhanced skills in end-to-end application design, development, and
+              deployment.
+            </p>
+            <div class="project-tech">
+              <span class="tech-tag">React </span>
+              <span class="tech-tag">MySql</span>
+              <span class="tech-tag">Spring Boot</span>
+              <span class="tech-tag">Spring Security</span>
+            </div>
+            <div class="project-links">
+              <a href="https://github.com/krushna5000/TradeWithAi" class="btn" target="_blank" rel="noopener"><i class="fab fa-github"></i>GitHub</a>
+              <a href="project1.html" class="btn" target="_blank" rel="noopener"><i class="fas fa-info-circle"></i>Details</a>
+            </div>
+          </div>
+        </article>
+
+        <article class="project-card featured card" data-category="mobile" data-spotlight data-tilt="3" data-reveal="scale">
+          <div class="project-cover" style="--c1:#ec4899;--c2:#f97316">
+            <i class="fas fa-baby cover-icon"></i>
+            <span class="cover-tag">Mobile</span>
+            <span class="featured-badge"><i class="fas fa-star"></i> Featured</span>
+          </div>
+          <div class="project-body">
+            <h3>TinyNeedsApp</h3>
+            <p>Cross-platform mobile shopping app for baby essentials with secure Stripe payment integration, Supabase
+              authentication, and real-time database sync. Optimized checkout flow reducing user drop-offs by 20%.</p>
+            <div class="project-tech">
+              <span class="tech-tag">React Native</span>
+              <span class="tech-tag">Expo</span>
+              <span class="tech-tag">Supabase</span>
+              <span class="tech-tag">Stripe</span>
+              <span class="tech-tag">JavaScript</span>
+            </div>
+            <div class="project-links">
+              <a href="https://github.com/krushna5000/Parenting-Pathways" class="btn" target="_blank" rel="noopener">
+                <i class="fab fa-github"></i> View Code
+              </a>
+            </div>
+          </div>
+        </article>
+
+        <article class="project-card card" data-category="mobile" data-spotlight data-tilt="5" data-reveal="scale">
+          <div class="project-cover" style="--c1:#8b5cf6;--c2:#6366f1">
+            <i class="fas fa-shield-alt cover-icon"></i>
+            <span class="cover-tag">Mobile</span>
+          </div>
+          <div class="project-body">
+            <h3>TinyNeedsApp Admin</h3>
+            <p>Administrative panel for managing TinyNeedsApp with advanced analytics and user management features.</p>
+            <div class="project-tech">
+              <span class="tech-tag">React Native</span>
+              <span class="tech-tag">Admin Panel</span>
+              <span class="tech-tag">Analytics</span>
+            </div>
+            <div class="project-links">
+              <a href="https://github.com/krushna5000/TinyNeedsAppAdmin" class="btn" target="_blank" rel="noopener">
+                <i class="fab fa-github"></i> View Code
+              </a>
+            </div>
+          </div>
+        </article>
+
+        <article class="project-card card" data-category="web" data-spotlight data-tilt="5" data-reveal="scale">
+          <div class="project-cover" style="--c1:#0ea5e9;--c2:#6366f1">
+            <i class="fas fa-user-circle cover-icon"></i>
+            <span class="cover-tag">Web</span>
+          </div>
+          <div class="project-body">
+            <h3>Personal Portfolio</h3>
+            <p>Modern, responsive portfolio website showcasing my skills, projects, and professional journey.</p>
+            <div class="project-tech">
+              <span class="tech-tag">HTML5</span>
+              <span class="tech-tag">CSS3</span>
+              <span class="tech-tag">JavaScript</span>
+            </div>
+            <div class="project-links">
+              <a href="https://github.com/krushna5000/Portfolio" class="btn" target="_blank" rel="noopener"><i
+                  class="fab fa-github"></i>View Code</a>
+              <a href="https://krushna5000.github.io/Portfolio/" class="btn" target="_blank" rel="noopener"><i
+                  class="fas fa-user-tie"></i>Live Link</a>
+            </div>
+          </div>
+        </article>
+
+        <article class="project-card card" data-category="backend" data-spotlight data-tilt="5" data-reveal="scale">
+          <div class="project-cover" style="--c1:#10b981;--c2:#0ea5e9">
+            <i class="fas fa-server cover-icon"></i>
+            <span class="cover-tag">Backend</span>
+          </div>
+          <div class="project-body">
+            <h3>Web Server</h3>
+            <p>Implemented Single-Threaded and Multi-Threaded Server-Client architectures in Java, later optimized with
+              Thread Pooling for efficient connection handling and resource management.</p>
+            <div class="project-tech">
+              <span class="tech-tag">Spring Boot</span>
+              <span class="tech-tag">Multithreaded</span>
+              <span class="tech-tag">SingleThreaded</span>
+              <span class="tech-tag">Thread Pool</span>
+            </div>
+            <div class="project-links">
+              <a href="https://github.com/krushna5000/Web-Server" class="btn" target="_blank" rel="noopener">
+                <i class="fab fa-github"></i> View Code
+              </a>
+            </div>
+          </div>
+        </article>
+
+        <article class="project-card card" data-category="web" data-spotlight data-tilt="5" data-reveal="scale">
+          <div class="project-cover" style="--c1:#f59e0b;--c2:#ef4444">
+            <i class="fas fa-plug cover-icon"></i>
+            <span class="cover-tag">Web</span>
+          </div>
+          <div class="project-body">
+            <h3>jdbc_connectivity</h3>
+            <p>Built database-driven applications in Java using JDBC, implementing CRUD operations, prepared
+              statements, and
+              secure connectivity with relational databases.</p>
+            <div class="project-tech">
+              <span class="tech-tag">Spring Boot</span>
+              <span class="tech-tag">Mysql</span>
+            </div>
+            <div class="project-links">
+              <a href="https://github.com/krushna5000/Portfolio" class="btn" target="_blank" rel="noopener">
+                <i class="fab fa-github"></i> View Code
+              </a>
+            </div>
+          </div>
+        </article>
+
+        <article class="project-card card" data-category="web" data-spotlight data-tilt="5" data-reveal="scale">
+          <div class="project-cover" style="--c1:#14b8a6;--c2:#6366f1">
+            <i class="fas fa-ticket-alt cover-icon"></i>
+            <span class="cover-tag">Web</span>
+          </div>
+          <div class="project-body">
+            <h3>Ticket Booking System</h3>
+            <p>Full-stack web application for online ticket booking with payment integration and seat selection.</p>
+            <div class="project-tech">
+              <span class="tech-tag">Java</span>
+              <span class="tech-tag">Spring Boot</span>
+              <span class="tech-tag">MySQL</span>
+            </div>
+            <div class="project-links">
+              <a href="https://github.com/krushna5000/ticket_booking" class="btn" target="_blank" rel="noopener">
+                <i class="fab fa-github"></i> View Code
+              </a>
+            </div>
+          </div>
+        </article>
+
+        <article class="project-card card" data-category="backend" data-spotlight data-tilt="5" data-reveal="scale">
+          <div class="project-cover" style="--c1:#22c55e;--c2:#14b8a6">
+            <i class="fas fa-leaf cover-icon"></i>
+            <span class="cover-tag">Backend</span>
+          </div>
+          <div class="project-body">
+            <h3>Spring Framework Project</h3>
+            <p>Enterprise-level backend application built with Spring Framework demonstrating best practices.</p>
+            <div class="project-tech">
+              <span class="tech-tag">Spring Boot</span>
+              <span class="tech-tag">JPA</span>
+              <span class="tech-tag">REST API</span>
+            </div>
+            <div class="project-links">
+              <a href="https://github.com/krushna5000/Spring" class="btn" target="_blank" rel="noopener">
+                <i class="fab fa-github"></i> View Code
+              </a>
+            </div>
+          </div>
+        </article>
+
+        <article class="project-card card" data-category="web" data-spotlight data-tilt="5" data-reveal="scale">
+          <div class="project-cover" style="--c1:#a855f7;--c2:#ec4899">
+            <i class="fas fa-gamepad cover-icon"></i>
+            <span class="cover-tag">Web</span>
+          </div>
+          <div class="project-body">
+            <h3>Tic-Tac-Toe Game</h3>
+            <p>Interactive web-based game with AI opponent and multiplayer functionality using vanilla JavaScript.</p>
+            <div class="project-tech">
+              <span class="tech-tag">JavaScript</span>
+              <span class="tech-tag">HTML5</span>
+              <span class="tech-tag">CSS3</span>
+            </div>
+            <div class="project-links">
+              <a href="https://github.com/krushna5000/tick-tac-toe-game" class="btn" target="_blank" rel="noopener">
+                <i class="fab fa-github"></i> View Code
+              </a>
+            </div>
+          </div>
+        </article>
+
+        <article class="project-card card" data-category="ml" data-spotlight data-tilt="5" data-reveal="scale">
+          <div class="project-cover" style="--c1:#f43f5e;--c2:#8b5cf6">
+            <i class="fas fa-film cover-icon"></i>
+            <span class="cover-tag">ML / AI</span>
+          </div>
+          <div class="project-body">
+            <h3>Movie Recommendation System</h3>
+            <p>Machine learning project that recommends movies based on user preferences and viewing history.</p>
+            <div class="project-tech">
+              <span class="tech-tag">Python</span>
+              <span class="tech-tag">ML</span>
+              <span class="tech-tag">Pandas</span>
+            </div>
+            <div class="project-links">
+              <a href="https://github.com/krushna5000/Movie-Recommandation-ML-Project" class="btn" target="_blank" rel="noopener">
+                <i class="fab fa-github"></i> View Code</a>
+            </div>
+          </div>
+        </article>
+
+        <article class="project-card card" data-category="backend" data-spotlight data-tilt="5" data-reveal="scale">
+          <div class="project-cover" style="--c1:#0ea5e9;--c2:#22d3ee">
+            <i class="fas fa-database cover-icon"></i>
+            <span class="cover-tag">Backend</span>
+          </div>
+          <div class="project-body">
+            <h3>JDBC Connectivity</h3>
+            <p>Database connectivity project demonstrating CRUD operations and connection pooling with Java.</p>
+            <div class="project-tech">
+              <span class="tech-tag">Java</span>
+              <span class="tech-tag">JDBC</span>
+              <span class="tech-tag">MySQL</span>
+            </div>
+            <div class="project-links">
+              <a href="https://github.com/krushna5000/jdbc_connectivity" class="btn" target="_blank" rel="noopener">
+                <i class="fab fa-github"></i> View Code
+              </a>
+            </div>
+          </div>
+        </article>
+      </div>
+
+      <p id="project-empty" class="project-empty" hidden>No projects match your search — try a different keyword or filter.</p>
+    </section>
+    <!-- Projects section ends -->
+
+
+    <!-- skills section starts -->
+    <section class="skills section" id="skills">
+      <div class="section-head" data-reveal="head" data-num="04">
+        <span class="eyebrow">04 · Skills</span>
+        <h2 class="heading">Skills &amp; <span>Abilities</span></h2>
+        <p class="section-sub">The tools I reach for — hover or tap a technology for the details.</p>
+      </div>
+
+      <!-- Rendered from skills.json by home.js, grouped by category -->
+      <div class="tech-groups" id="skillsContainer"></div>
+
+      <div class="expertise">
+        <h3 class="subheading" data-reveal="up"><i class="fas fa-layer-group"></i> Areas of <span class="grad-text">Expertise</span></h3>
+        <div class="expertise-grid" data-stagger="0.08" data-stagger-variant="scale">
+          <article class="expertise-card card" data-spotlight>
+            <span class="expertise-icon"><i class="fas fa-laptop-code"></i></span>
+            <h4>Frontend Development</h4>
+            <p>Responsive, component-driven interfaces with React, React Native and Tailwind CSS.</p>
+            <div class="chips"><span class="tech-tag">React.js</span><span class="tech-tag">React Native</span><span class="tech-tag">Tailwind CSS</span></div>
+          </article>
+          <article class="expertise-card card" data-spotlight>
+            <span class="expertise-icon"><i class="fas fa-server"></i></span>
+            <h4>Backend Development</h4>
+            <p>Secure, maintainable services built on Node.js / Express and Spring Boot.</p>
+            <div class="chips"><span class="tech-tag">Node.js</span><span class="tech-tag">Express.js</span><span class="tech-tag">Spring Boot</span></div>
+          </article>
+          <article class="expertise-card card" data-spotlight>
+            <span class="expertise-icon"><i class="fas fa-database"></i></span>
+            <h4>Database</h4>
+            <p>Relational and NoSQL data modelling, queries and ORM-based access.</p>
+            <div class="chips"><span class="tech-tag">MongoDB</span><span class="tech-tag">PostgreSQL</span><span class="tech-tag">MySQL</span></div>
+          </article>
+          <article class="expertise-card card" data-spotlight>
+            <span class="expertise-icon"><i class="fas fa-infinity"></i></span>
+            <h4>DevOps</h4>
+            <p>Version-controlled workflows, CI tooling and cloud fundamentals.</p>
+            <div class="chips"><span class="tech-tag">Git &amp; GitHub</span><span class="tech-tag">Jenkins</span><span class="tech-tag">AWS</span></div>
+          </article>
+          <article class="expertise-card card" data-spotlight>
+            <span class="expertise-icon"><i class="fas fa-microchip"></i></span>
+            <h4>IoT / IIoT</h4>
+            <p>Full-stack modules for industrial cloud automation platforms at Devanta Tech.</p>
+            <div class="chips"><span class="tech-tag">IIoT</span><span class="tech-tag">Cloud Automation</span></div>
+          </article>
+          <article class="expertise-card card" data-spotlight>
+            <span class="expertise-icon"><i class="fas fa-plug"></i></span>
+            <h4>API Development</h4>
+            <p>RESTful design with JWT authentication, role-based access and Postman-driven testing.</p>
+            <div class="chips"><span class="tech-tag">REST</span><span class="tech-tag">JWT Auth</span><span class="tech-tag">Postman</span></div>
+          </article>
         </div>
       </div>
 
-    </div>
-  </section>
-  <!-- experience section ends -->
-
-
-  <!-- skills section starts -->
-  <section class="skills" id="skills">
-
-    <h2 class="heading"><i class="fas fa-laptop-code"></i> Skills & <span>Abilities</span></h2>
-
-    <div class="container">
-      <div class="skills-grid" id="skillsContainer">
-      </div>
       <!-- Soft skills subsection -->
       <div class="soft-skills">
-        <h3 class="subheading"><i class="fas fa-users"></i> Soft <span>Skills</span></h3>
-        <div class="soft-list">
+        <h3 class="subheading" data-reveal="up"><i class="fas fa-users"></i> Soft <span class="grad-text">Skills</span></h3>
+        <div class="soft-list" data-stagger="0.07" data-stagger-variant="scale">
           <div class="soft-item">Communication</div>
           <div class="soft-item">Adaptability</div>
           <div class="soft-item">Problem-solving</div>
           <div class="soft-item">Teamwork</div>
         </div>
       </div>
-    </div>
-  </section>
-  <!-- skills section ends -->
+    </section>
+    <!-- skills section ends -->
 
 
-  <!-- education section starts -->
-  <section class="education" id="education">
+    <!-- education section starts -->
+    <section class="education section" id="education">
+      <div class="section-head" data-reveal="head" data-num="05">
+        <span class="eyebrow">05 · Education</span>
+        <h2 class="heading">My <span>Education</span></h2>
+        <p class="section-sub qoute">Education is not the learning of facts, but the training of the mind to think.</p>
+      </div>
 
-    <h1 class="heading"><i class="fas fa-graduation-cap"></i> My <span>Education</span></h1>
+      <div class="box-container" data-stagger="0.12" data-stagger-variant="scale">
 
-    <p class="qoute">Education is not the learning of facts, but the training of the mind to think.</p>
-
-    <div class="box-container">
-
-      <div class="box">
-        <div class="image">
-          <img draggable="false" src="./assets/images/educat/DIEMS.png" loading="lazy" alt="Deogiri Institute of Engineering and Management Studies">
+        <div class="box card" data-spotlight>
+          <div class="image" data-reveal="clip">
+            <img data-parallax-y="0.03" draggable="false" src="./assets/images/educat/DIEMS.png" loading="lazy"
+              alt="Deogiri Institute of Engineering and Management Studies">
+          </div>
+          <div class="content">
+            <h3>B.E. · Computer Engineering</h3>
+            <p>Deogiri Institute of Engineering and Management Studies</p>
+            <div class="edu-meta">
+              <span class="year">2022 – 2026</span>
+              <span class="status">Completed</span>
+            </div>
+            <div class="edu-badges">
+              <span class="badge">Data Structures</span>
+              <span class="badge">DBMS</span>
+              <span class="badge">OOP</span>
+              <span class="badge">OS</span>
+            </div>
+            <ul class="edu-highlights">
+              <li>CGPA: 7.43 / 10 · Graduated May 2026</li>
+              <li>Coursework in Algorithms, Networks, and Software Engineering</li>
+              <li>Built multiple full-stack projects; active in hackathons and coding contests</li>
+            </ul>
+          </div>
         </div>
-        <div class="content">
-          <h3>B.E. · Computer Engineering</h3>
-          <p>Deogiri Institute of Engineering and Management Studies</p>
-          <div class="edu-meta">
-            <span class="year">2022 – 2026</span>
-            <span class="status">Completed</span>
+
+        <div class="box card" data-spotlight>
+          <div class="image" data-reveal="clip">
+            <img data-parallax-y="0.03" draggable="false" src="./assets/images/educat/college.jpg" loading="lazy"
+              alt="Jaybhavani Vidya Mandir, Gadi">
           </div>
-          <div class="edu-badges">
-            <span class="badge">Data Structures</span>
-            <span class="badge">DBMS</span>
-            <span class="badge">OOP</span>
-            <span class="badge">OS</span>
+          <div class="content">
+            <h3>HSC · Science</h3>
+            <p>Jaybhavani Vidya Mandir, Gadi</p>
+            <div class="edu-meta">
+              <span class="year">2019 – 2021</span>
+              <span class="status">Completed</span>
+            </div>
+            <div class="edu-badges">
+              <span class="badge">Physics</span>
+              <span class="badge">Chemistry</span>
+              <span class="badge">Mathematics</span>
+            </div>
+            <ul class="edu-highlights">
+              <li>Percentage: 89.83%</li>
+              <li>Led academic projects and group studies</li>
+            </ul>
           </div>
-          <ul class="edu-highlights">
-            <li>CGPA: 7.43 / 10 · Graduated May 2026</li>
-            <li>Coursework in Algorithms, Networks, and Software Engineering</li>
-            <li>Built multiple full-stack projects; active in hackathons and coding contests</li>
+        </div>
+
+        <div class="box card" data-spotlight>
+          <div class="image" data-reveal="clip">
+            <img data-parallax-y="0.03" draggable="false" src="./assets/images/educat/school.jpg" loading="lazy"
+              alt="Shiv Sharda Public School, Shivajinagar, Gadi">
+          </div>
+          <div class="content">
+            <h3>SSC</h3>
+            <p>Shiv Sharda Public School, Shivajinagar, Gadi</p>
+            <div class="edu-meta">
+              <span class="year">2018 – 2019</span>
+              <span class="status">Completed</span>
+            </div>
+            <div class="edu-badges">
+              <span class="badge">Merit</span>
+              <span class="badge">Discipline</span>
+            </div>
+            <ul class="edu-highlights">
+              <li>Percentage: 88%</li>
+              <li>Strong foundation in math and science</li>
+            </ul>
+          </div>
+        </div>
+
+      </div>
+    </section>
+    <!-- education section ends -->
+
+
+    <!-- certificates section starts -->
+    <section class="certificates section" id="certificates" data-nav="education">
+      <div class="section-head" data-reveal="head" data-num="06">
+        <span class="eyebrow">06 · Credentials</span>
+        <h2 class="heading">Certifications &amp; <span>Achievements</span></h2>
+      </div>
+
+      <div class="certificates-container" data-stagger="0.07" data-stagger-variant="scale">
+        <div class="certificate card" data-spotlight>
+          <h3>Oracle Cloud Certified Generative AI Professional</h3>
+          <p class="cert-desc">Achieved Oracle Cloud Infrastructure 2025 Certified Generative AI Professional
+            credential,
+            validating expertise in applying GenAI on OCI for real-world solutions.</p>
+          <a href="https://drive.google.com/file/d/1OkyLnUjTMTxNTqHjhbEbnFOZJxH9jUPw/view?usp=sharing" class="btn"
+            target="_blank" rel="noopener">View Certificate <i class="fas fa-external-link-alt"></i></a>
+        </div>
+
+        <div class="certificate card" data-spotlight>
+          <h3>Oracle Cloud Certified AI Foundations Associate</h3>
+          <p class="cert-desc">Earned Oracle Cloud Infrastructure 2025 Certified AI Foundations Associate credential,
+            demonstrating strong knowledge of core AI concepts and OCI services.</p>
+          <a href="https://drive.google.com/file/d/1rUJ4Lfm6Q7PXEX1N7oFlzbyH05OVcY-w/view?usp=sharing" class="btn"
+            target="_blank" rel="noopener">View Certificate <i class="fas fa-external-link-alt"></i></a>
+        </div>
+
+        <div class="certificate card" data-spotlight>
+          <h3>Postman API Fundamentals Student Expert</h3>
+          <p class="cert-desc">Recognized as a Postman API Fundamentals Student Expert for proficiency in designing,
+            testing, and collaborating on APIs using Postman.</p>
+          <a href="https://drive.google.com/file/d/1oIfqkNC6yJzt1ahPW2vC13X6J8UJrTTx/view?usp=sharing" class="btn"
+            target="_blank" rel="noopener">View Certificate <i class="fas fa-external-link-alt"></i></a>
+        </div>
+
+        <div class="certificate card" data-spotlight>
+          <h3>Project Management Foundations</h3>
+          <p class="cert-desc">Mastered essential principles of project planning, execution, and stakeholder
+            management.
+          </p>
+          <a href="https://drive.google.com/file/d/1rVV3BKd4Q6pIJ49YKZkxLXUChuErKfQs/view?usp=sharing" class="btn"
+            target="_blank" rel="noopener">View Certificate <i class="fas fa-external-link-alt"></i></a>
+        </div>
+
+        <div class="certificate card" data-spotlight>
+          <h3>Introduction to Prompt Engineering for Generative AI</h3>
+          <p class="cert-desc">Gained hands-on experience in designing effective prompts to maximize AI performance.
+          </p>
+          <a href="https://drive.google.com/file/d/1vdBobG5XKPOuFrEj9apDHvFMsJFxVp_2/view?usp=sharing" class="btn"
+            target="_blank" rel="noopener">View Certificate <i class="fas fa-external-link-alt"></i></a>
+        </div>
+
+        <div class="certificate card" data-spotlight>
+          <h3>Git &amp; GitHub</h3>
+          <p class="cert-desc">Proficient in version control, branching strategies, and collaborative software
+            workflows.
+          </p>
+          <a href="https://drive.google.com/file/d/1W81grY8NFt5e1NWsKs37392RHHx35TQi/view?usp=sharing" class="btn"
+            target="_blank" rel="noopener">View Certificate <i class="fas fa-external-link-alt"></i></a>
+        </div>
+
+        <div class="certificate card" data-spotlight>
+          <h3>SQL Database Management</h3>
+          <p class="cert-desc">Skilled in writing optimized queries, managing databases, and ensuring data integrity.
+          </p>
+          <a href="https://drive.google.com/file/d/14pnlI82dbzICmXKIfrDjZ1hTQuw7MhGj/view?usp=sharing" class="btn"
+            target="_blank" rel="noopener">View Certificate <i class="fas fa-external-link-alt"></i></a>
+        </div>
+
+        <div class="certificate card" data-spotlight>
+          <h3>UI/UX Design Workshop</h3>
+          <p class="cert-desc">Learned principles of user-centric design, wireframing, and interactive prototyping.</p>
+          <a href="https://drive.google.com/file/d/1r9G42fYvWlCszL4mbiAm0TJNXuolfCrv/view?usp=sharing" class="btn"
+            target="_blank" rel="noopener">View Certificate <i class="fas fa-external-link-alt"></i></a>
+        </div>
+
+        <div class="certificate card" data-spotlight>
+          <h3>Excel Skills for Business: Essentials</h3>
+          <p class="cert-desc">An online non-credit course authorized by Macquarie University and offered through
+            Coursera.</p>
+          <a href="https://drive.google.com/file/d/1wGzuG4B7sE-XiZKnZNePayelo8QdrxPL/view?usp=sharing" class="btn"
+            target="_blank" rel="noopener">View Certificate <i class="fas fa-external-link-alt"></i></a>
+        </div>
+
+        <div class="certificate card" data-spotlight>
+          <h3>AI Tools Workshop — Be 10X</h3>
+          <p class="cert-desc"></p>
+          <a href="https://drive.google.com/file/d/1RjPFzeoelDzT9pZE4DMVnw8zB-fftLoO/view?usp=sharing" class="btn"
+            target="_blank" rel="noopener">View Certificate <i class="fas fa-external-link-alt"></i></a>
+        </div>
+      </div>
+    </section>
+    <!-- certificates section ends -->
+
+
+    <!-- contact section starts -->
+    <section class="contact section" id="contact">
+      <div class="section-head" data-reveal="head" data-num="07">
+        <span class="eyebrow">07 · Contact</span>
+        <h2 class="heading">Get in <span>Touch</span></h2>
+        <p class="section-sub">Have a project, an opportunity or just a question? My inbox is open.</p>
+      </div>
+
+      <div class="contact-grid">
+        <div class="contact-info" data-reveal="left">
+          <h3>Let's build something <span class="grad-text">great together.</span></h3>
+          <p>Send a message and I'll get back to you as soon as I can — or reach out directly on any of these.</p>
+
+          <ul class="contact-links">
+            <li><a class="card" data-spotlight href="mailto:krushnak5000@gmail.com"><span class="ci"><i class="fas fa-envelope"></i></span><span><small>Email</small>krushnak5000@gmail.com</span></a></li>
+            <li><a class="card" data-spotlight href="https://www.linkedin.com/in/krushna5000" target="_blank" rel="noopener"><span class="ci"><i class="fab fa-linkedin-in"></i></span><span><small>LinkedIn</small>/in/krushna5000</span></a></li>
+            <li><a class="card" data-spotlight href="https://github.com/krushna5000" target="_blank" rel="noopener"><span class="ci"><i class="fab fa-github"></i></span><span><small>GitHub</small>github.com/krushna5000</span></a></li>
+            <li><a class="card" data-spotlight href="https://wa.me/917743891860" target="_blank" rel="noopener"><span class="ci"><i class="fab fa-whatsapp"></i></span><span><small>WhatsApp</small>+91 7743891860</span></a></li>
           </ul>
-        </div>
-      </div>
-
-      <div class="box">
-        <div class="image">
-          <img draggable="false" src="./assets/images/educat/college.jpg" loading="lazy" alt="Jaybhavani Vidya Mandir, Gadi">
-        </div>
-        <div class="content">
-          <h3>HSC · Science</h3>
-          <p>Jaybhavani Vidya Mandir, Gadi</p>
-          <div class="edu-meta">
-            <span class="year">2019 – 2021</span>
-            <span class="status">Completed</span>
-          </div>
-          <div class="edu-badges">
-            <span class="badge">Physics</span>
-            <span class="badge">Chemistry</span>
-            <span class="badge">Mathematics</span>
-          </div>
-          <ul class="edu-highlights">
-            <li>Percentage: 89.83%</li>
-            <li>Led academic projects and group studies</li>
-          </ul>
-        </div>
-      </div>
-
-      <div class="box">
-        <div class="image">
-          <img draggable="false" src="./assets/images/educat/school.jpg" loading="lazy" alt="Shiv Sharda Public School, Shivajinagar, Gadi">
-        </div>
-        <div class="content">
-          <h3>SSC</h3>
-          <p>Shiv Sharda Public School, Shivajinagar, Gadi</p>
-          <div class="edu-meta">
-            <span class="year">2018 – 2019</span>
-            <span class="status">Completed</span>
-          </div>
-          <div class="edu-badges">
-            <span class="badge">Merit</span>
-            <span class="badge">Discipline</span>
-          </div>
-          <ul class="edu-highlights">
-            <li>Percentage: 88%</li>
-            <li>Strong foundation in math and science</li>
-          </ul>
-        </div>
-      </div>
-
-    </div>
-  </section>
-  <!-- education section ends -->
-
-
-
-  <!-- Modern projects section starts -->
-  <section class="github-projects" id="github-projects">
-    <h2 class="heading"><i class="fab fa-github"></i> My <span>Projects</span></h2>
-    <p class="qoute">Explore my diverse portfolio of web applications, mobile apps, and innovative solutions.</p>
-
-    <div class="project-search-row">
-      <div class="project-search-wrap">
-        <i class="fas fa-search"></i>
-        <input type="text" id="project-search" placeholder="Search projects by name or tech..." autocomplete="off">
-      </div>
-      <span id="project-count" class="project-count-label"></span>
-    </div>
-
-    <div class="project-filters">
-      <button class="filter-btn active" data-filter="all">All</button>
-      <button class="filter-btn" data-filter="web">Web</button>
-      <button class="filter-btn" data-filter="mobile">Mobile</button>
-      <button class="filter-btn" data-filter="backend">Backend</button>
-      <button class="filter-btn" data-filter="ml">ML / AI</button>
-    </div>
-
-    <div class="projects-container">
-
-      <div class="project-card featured" data-category="web">
-        <span class="featured-badge"><i class="fas fa-star"></i> Featured</span>
-        <div class="project-image" style="background: linear-gradient(135deg, #6366f1, #06b6d4);">
-          <i class="fas fa-chart-line"></i>
-        </div>
-        <h3>TradeWithAi</h3>
-        <p>Developed a Full Stack Trading Platform leveraging modern technologies to gain hands-on expertise in
-          cryptocurrency trading systems. Enhanced skills in end-to-end application design, development, and deployment.
-        </p>
-        <div class="project-tech">
-          <span class="tech-tag">React </span>
-          <span class="tech-tag">MySql</span>
-          <span class="tech-tag">Spring Boot</span>
-          <span class="tech-tag">Spring Security</span>
-        </div>
-        <div class="project-links">
-          <a href="https://github.com/krushna5000/TradeWithAi" class="btn" target="_blank"><i class="fab fa-github"></i>GitHub</a>
-          <a href="project1.html" class="btn" target="_blank"><i class="fas fa-info-circle"></i>Details</a>
-        </div>
-      </div>
-
-
-      <div class="project-card featured" data-category="mobile">
-        <span class="featured-badge"><i class="fas fa-star"></i> Featured</span>
-        <div class="project-image" style="background: linear-gradient(135deg, #ec4899, #f97316);">
-          <i class="fas fa-baby"></i>
-        </div>
-        <h3>TinyNeedsApp</h3>
-        <p>Cross-platform mobile shopping app for baby essentials with secure Stripe payment integration, Supabase authentication, and real-time database sync. Optimized checkout flow reducing user drop-offs by 20%.</p>
-        <div class="project-tech">
-          <span class="tech-tag">React Native</span>
-          <span class="tech-tag">Expo</span>
-          <span class="tech-tag">Supabase</span>
-          <span class="tech-tag">Stripe</span>
-          <span class="tech-tag">JavaScript</span>
-        </div>
-        <div class="project-links">
-          <a href="https://github.com/krushna5000/Parenting-Pathways" class="btn" target="_blank">
-            <i class="fab fa-github"></i> View Code
-          </a>
-        </div>
-      </div>
-
-      <div class="project-card" data-category="mobile">
-        <div class="project-image">
-          <i class="fas fa-shield-alt"></i>
-        </div>
-        <h3>TinyNeedsApp Admin</h3>
-        <p>Administrative panel for managing TinyNeedsApp with advanced analytics and user management features.</p>
-        <div class="project-tech">
-          <span class="tech-tag">React Native</span>
-          <span class="tech-tag">Admin Panel</span>
-          <span class="tech-tag">Analytics</span>
-        </div>
-        <div class="project-links">
-          <a href="https://github.com/krushna5000/TinyNeedsAppAdmin" class="btn" target="_blank">
-            <i class="fab fa-github"></i> View Code
-          </a>
-        </div>
-      </div>
-
-      <div class="project-card" data-category="web">
-        <div class="project-image">
-          <i class="fas fa-user-circle"></i>
-        </div>
-        <h3>Personal Portfolio</h3>
-        <p>Modern, responsive portfolio website showcasing my skills, projects, and professional journey.</p>
-        <div class="project-tech">
-          <span class="tech-tag">HTML5</span>
-          <span class="tech-tag">CSS3</span>
-          <span class="tech-tag">JavaScript</span>
-        </div>
-        <div class="project-links">
-          <a href="https://github.com/krushna5000/Portfolio" class="btn" target="_blank"><i
-              class="fab fa-github"></i>View Code</a>
-          <a href="https://krushna5000.github.io/Portfolio/" class="btn" target="_blank"><i
-              class="fa-solid fa-user-tie"></i>Live Link</a>
-        </div>
-      </div>
-
-      <div class="project-card" data-category="backend">
-        <div class="project-image">
-          <i class="fas fa-mobile-alt"></i>
-        </div>
-        <h3>Web Server</h3>
-        <p>Implemented Single-Threaded and Multi-Threaded Server-Client architectures in Java, later optimized with
-          Thread Pooling for efficient connection handling and resource management.</p>
-        <div class="project-tech">
-          <span class="tech-tag">Spring Boot</span>
-          <span class="tech-tag">Multithreaded</span>
-          <span class="tech-tag">SingleThreaded</span>
-          <span class="tech-tag">Thread Pool</span>
-
-        </div>
-        <div class="project-links">
-          <a href="https://github.com/krushna5000/Web-Server" class="btn" target="_blank">
-            <i class="fab fa-github"></i> View Code
-          </a>
-        </div>
-      </div>
-
-      <div class="project-card" data-category="web">
-        <div class="project-image">
-          <i class="fas fa-user-circle"></i>
-        </div>
-        <h3>jdbc_connectivity</h3>
-        <p>Built database-driven applications in Java using JDBC, implementing CRUD operations, prepared statements, and
-          secure connectivity with relational databases.</p>
-        <div class="project-tech">
-          <span class="tech-tag">Spring Boot</span>
-          <span class="tech-tag">Mysql</span>
-        </div>
-        <div class="project-links">
-          <a href="https://github.com/krushna5000/Portfolio" class="btn" target="_blank">
-            <i class="fab fa-github"></i> View Code
-          </a>
-        </div>
-      </div>
-
-
-      <div class="project-card" data-category="web">
-        <div class="project-image">
-          <i class="fas fa-ticket-alt"></i>
-        </div>
-        <h3>Ticket Booking System</h3>
-        <p>Full-stack web application for online ticket booking with payment integration and seat selection.</p>
-        <div class="project-tech">
-          <span class="tech-tag">Java</span>
-          <span class="tech-tag">Spring Boot</span>
-          <span class="tech-tag">MySQL</span>
-        </div>
-        <div class="project-links">
-          <a href="https://github.com/krushna5000/ticket_booking" class="btn" target="_blank">
-            <i class="fab fa-github"></i> View Code
-          </a>
-        </div>
-      </div>
-
-      <div class="project-card" data-category="backend">
-        <div class="project-image">
-          <i class="fas fa-leaf"></i>
-        </div>
-        <h3>Spring Framework Project</h3>
-        <p>Enterprise-level backend application built with Spring Framework demonstrating best practices.</p>
-        <div class="project-tech">
-          <span class="tech-tag">Spring Boot</span>
-          <span class="tech-tag">JPA</span>
-          <span class="tech-tag">REST API</span>
-        </div>
-        <div class="project-links">
-          <a href="https://github.com/krushna5000/Spring" class="btn" target="_blank">
-            <i class="fab fa-github"></i> View Code
-          </a>
-        </div>
-      </div>
-
-      <div class="project-card" data-category="web">
-        <div class="project-image">
-          <i class="fas fa-gamepad"></i>
-        </div>
-        <h3>Tic-Tac-Toe Game</h3>
-        <p>Interactive web-based game with AI opponent and multiplayer functionality using vanilla JavaScript.</p>
-        <div class="project-tech">
-          <span class="tech-tag">JavaScript</span>
-          <span class="tech-tag">HTML5</span>
-          <span class="tech-tag">CSS3</span>
-        </div>
-        <div class="project-links">
-          <a href="https://github.com/krushna5000/tick-tac-toe-game" class="btn" target="_blank">
-            <i class="fab fa-github"></i> View Code
-          </a>
-        </div>
-      </div>
-
-      <div class="project-card" data-category="ml">
-        <div class="project-image">
-          <i class="fas fa-film"></i>
-        </div>
-        <h3>Movie Recommendation System</h3>
-        <p>Machine learning project that recommends movies based on user preferences and viewing history.</p>
-        <div class="project-tech">
-          <span class="tech-tag">Python</span>
-          <span class="tech-tag">ML</span>
-          <span class="tech-tag">Pandas</span>
-        </div>
-        <div class="project-links">
-          <a href="https://github.com/krushna5000/Movie-Recommandation-ML-Project" class="btn" target="_blank">
-            <i class="fab fa-github"></i> View Code</a>
-        </div>
-      </div>
-
-      <div class="project-card" data-category="backend">
-        <div class="project-image">
-          <i class="fas fa-database"></i>
-        </div>
-        <h3>JDBC Connectivity</h3>
-        <p>Database connectivity project demonstrating CRUD operations and connection pooling with Java.</p>
-        <div class="project-tech">
-          <span class="tech-tag">Java</span>
-          <span class="tech-tag">JDBC</span>
-          <span class="tech-tag">MySQL</span>
-        </div>
-        <div class="project-links">
-          <a href="https://github.com/krushna5000/jdbc_connectivity" class="btn" target="_blank">
-            <i class="fab fa-github"></i> View Code
-          </a>
-        </div>
-      </div>
-    </div>
-  </section>
-
-
-
-  <!-- certificates section starts -->
-  <section class="certificates" id="certificates">
-    <h2 class="heading">
-      <i class="fas fa-certificate"></i> Certifications & Achievements
-    </h2>
-
-
-    <div class="certificates-container">
-      <div class="certificate">
-        <h3>Oracle Cloud Certified Generative AI Professional</h3>
-        <p class="cert-desc">Achieved Oracle Cloud Infrastructure 2025 Certified Generative AI Professional credential,
-          validating expertise in applying GenAI on OCI for real-world solutions.</p>
-        <a href="https://drive.google.com/file/d/1OkyLnUjTMTxNTqHjhbEbnFOZJxH9jUPw/view?usp=sharing" class="btn"
-          target="_blank">View Certificate</a>
-      </div>
-
-      <div class="certificate">
-        <h3>Oracle Cloud Certified AI Foundations Associate</h3>
-        <p class="cert-desc">Earned Oracle Cloud Infrastructure 2025 Certified AI Foundations Associate credential,
-          demonstrating strong knowledge of core AI concepts and OCI services.</p>
-        <a href="https://drive.google.com/file/d/1rUJ4Lfm6Q7PXEX1N7oFlzbyH05OVcY-w/view?usp=sharing" class="btn"
-          target="_blank">View Certificate</a>
-      </div>
-
-      <div class="certificate">
-        <h3>Postman API Fundamentals Student Expert</h3>
-        <p class="cert-desc">Recognized as a Postman API Fundamentals Student Expert for proficiency in designing,
-          testing, and collaborating on APIs using Postman.</p>
-        <a href="https://drive.google.com/file/d/1oIfqkNC6yJzt1ahPW2vC13X6J8UJrTTx/view?usp=sharing" class="btn"
-          target="_blank">View Certificate</a>
-      </div>
-
-      <div class="certificate">
-        <h3>Project Management Foundations</h3>
-        <p class="cert-desc">Mastered essential principles of project planning, execution, and stakeholder management.
-        </p>
-        <a href="https://drive.google.com/file/d/1rVV3BKd4Q6pIJ49YKZkxLXUChuErKfQs/view?usp=sharing" class="btn"
-          target="_blank">View Certificate</a>
-      </div>
-
-      <div class="certificate">
-        <h3>Introduction to Prompt Engineering for Generative AI</h3>
-        <p class="cert-desc">Gained hands-on experience in designing effective prompts to maximize AI performance.</p>
-        <a href="https://drive.google.com/file/d/1vdBobG5XKPOuFrEj9apDHvFMsJFxVp_2/view?usp=sharing" class="btn"
-          target="_blank">View Certificate</a>
-      </div>
-
-      <div class="certificate">
-        <h3>Git & GitHub</h3>
-        <p class="cert-desc">Proficient in version control, branching strategies, and collaborative software workflows.
-        </p>
-        <a href="https://drive.google.com/file/d/1W81grY8NFt5e1NWsKs37392RHHx35TQi/view?usp=sharing" class="btn"
-          target="_blank">View Certificate</a>
-      </div>
-
-      <div class="certificate">
-        <h3>SQL Database Management</h3>
-        <p class="cert-desc">Skilled in writing optimized queries, managing databases, and ensuring data integrity.</p>
-        <a href="https://drive.google.com/file/d/14pnlI82dbzICmXKIfrDjZ1hTQuw7MhGj/view?usp=sharing" class="btn"
-          target="_blank">View Certificate</a>
-      </div>
-
-      <div class="certificate">
-        <h3>UI/UX Design Workshop</h3>
-        <p class="cert-desc">Learned principles of user-centric design, wireframing, and interactive prototyping.</p>
-        <a href="https://drive.google.com/file/d/1r9G42fYvWlCszL4mbiAm0TJNXuolfCrv/view?usp=sharing" class="btn"
-          target="_blank">View Certificate</a>
-      </div>
-
-      <div class="certificate">
-        <h3>Excel Skills for Business: Essentials</h3>
-        <p class="cert-desc">Excel Skills for Business: Essentialsan online non-credit course authorized by Macquarie
-          University and offered throughCoursera</p>
-        <a href="https://drive.google.com/file/d/1wGzuG4B7sE-XiZKnZNePayelo8QdrxPL/view?usp=sharing" class="btn"
-          target="_blank">View Certificate</a>
-      </div>
-
-      <div class="certificate">
-        <h3>Ai Tools workshop Be 10X</h3>
-        <p class="cert-desc"></p>
-        <a href="https://drive.google.com/file/d/1RjPFzeoelDzT9pZE4DMVnw8zB-fftLoO/view?usp=sharing" class="btn"
-          target="_blank">View Certificate</a>
-      </div>
-    </div>
-  </section>
-
-  <!-- certificates section ends -->
-
-
-
-
-  <!-- contact section starts -->
-  <section class="contact" id="contact">
-    <h2 class="heading"><i class="fas fa-headset"></i> Get in <span>Touch</span></h2>
-
-    <div class="container">
-      <div class="content">
-        <div class="image-box">
-          <img draggable="false" src="./assets/images/contact1.png" loading="lazy" alt="Contact illustration">
+          <p class="contact-place"><i class="fas fa-map-marker-alt"></i> Chhatrapati Sambhaji Nagar, India</p>
         </div>
 
-        <!-- ✅ Corrected Form -->
-        <form action="https://api.web3forms.com/submit" method="POST">
+        <div class="contact-form-wrap card" data-spotlight data-reveal="right">
+          <!-- Submission is handled natively by Web3Forms (unchanged) -->
+          <form action="https://api.web3forms.com/submit" method="POST">
 
-          <!-- ✅ Your Web3Forms Access Key -->
-          <input type="hidden" name="access_key" value="faa64dea-ddbf-4604-8185-c6dbb175c6f9">
+            <input type="hidden" name="access_key" value="faa64dea-ddbf-4604-8185-c6dbb175c6f9">
 
-          <div class="form-group">
-            <div class="field">
-              <input type="text" name="name" placeholder="Name" required>
-              <i class='fas fa-user'></i>
+            <div class="form-group">
+              <div class="field">
+                <input type="text" id="f-name" name="name" placeholder=" " required autocomplete="name">
+                <label for="f-name">Name</label>
+                <i class='fas fa-user'></i>
+                <span class="field-error" role="alert"></span>
+              </div>
+              <div class="field">
+                <input type="email" id="f-email" name="email" placeholder=" " required autocomplete="email">
+                <label for="f-email">Email</label>
+                <i class='fas fa-envelope'></i>
+                <span class="field-error" role="alert"></span>
+              </div>
+              <div class="field">
+                <input type="text" id="f-phone" name="phone" placeholder=" " autocomplete="tel">
+                <label for="f-phone">Phone</label>
+                <i class='fas fa-phone-alt'></i>
+                <span class="field-error" role="alert"></span>
+              </div>
+              <div class="field message">
+                <textarea id="f-message" placeholder=" " name="message" required></textarea>
+                <label for="f-message">Message</label>
+                <i class="fas fa-comment-dots"></i>
+                <span class="field-error" role="alert"></span>
+              </div>
             </div>
-            <div class="field">
-              <input type="email" name="email" placeholder="Email" required>
-              <i class='fas fa-envelope'></i>
-            </div>
-            <div class="field">
-              <input type="text" name="phone" placeholder="Phone">
-              <i class='fas fa-phone-alt'></i>
-            </div>
-            <div class="message">
-              <textarea placeholder="Message" name="message" required></textarea>
-              <i class="fas fa-comment-dots"></i>
-            </div>
-          </div>
 
-          <div class="button-area">
-            <button type="submit">
-              Send <i class="fa fa-paper-plane"></i>
-            </button>
-          </div>
-        </form>
+            <div class="button-area">
+              <button type="submit" data-magnetic="0.12">
+                Send <i class="fa fa-paper-plane"></i>
+              </button>
+            </div>
+          </form>
+        </div>
+      </div>
+    </section>
+    <!-- contact section ends -->
+
+    <!-- outline text band -->
+    <div class="band" aria-hidden="true" data-cursor="Pause">
+      <div class="band__track">
+        <span>Full-Stack</span><span>IIoT</span><span>MERN</span><span>Spring Boot</span><span>REST APIs</span><span>Cloud</span>
+        <span>Full-Stack</span><span>IIoT</span><span>MERN</span><span>Spring Boot</span><span>REST APIs</span><span>Cloud</span>
       </div>
     </div>
-  </section>
 
+  </main>
 
 
   <!-- footer section starts -->
-  <section class="footer">
+  <footer class="footer">
+    <div class="footer__inner">
 
-    <div class="box-container">
+      <div class="box-container">
 
-      <div class="box">
-        <h3>Krushna's Portfolio</h3>
-        <p>Thank you for visiting my personal portfolio website. Connect with me over socials. <br /> <br /> Keep Rising
-          🚀. Connect with me!</p>
-      </div>
+        <div class="box">
+          <h3>Krushna's Portfolio</h3>
+          <p>Thank you for visiting my personal portfolio website. Connect with me over socials. <br /> <br /> Keep
+            Rising
+            🚀. Connect with me!</p>
+        </div>
 
-      <div class="box">
-        <h3>quick links</h3>
-        <a href="#home"><i class="fas fa-chevron-circle-right"></i> home</a>
-        <a href="#about"><i class="fas fa-chevron-circle-right"></i> about</a>
-        <a href="#experience"><i class="fas fa-chevron-circle-right"></i> experience</a>
-        <a href="#skills"><i class="fas fa-chevron-circle-right"></i> skills</a>
-        <a href="#education"><i class="fas fa-chevron-circle-right"></i> education</a>
-        <a href="#github-projects"><i class="fas fa-chevron-circle-right"></i> projects</a>
-      </div>
+        <div class="box">
+          <h3>quick links</h3>
+          <a href="#home"><i class="fas fa-chevron-circle-right"></i> home</a>
+          <a href="#about"><i class="fas fa-chevron-circle-right"></i> about</a>
+          <a href="#experience"><i class="fas fa-chevron-circle-right"></i> experience</a>
+          <a href="#skills"><i class="fas fa-chevron-circle-right"></i> skills</a>
+          <a href="#education"><i class="fas fa-chevron-circle-right"></i> education</a>
+          <a href="#github-projects"><i class="fas fa-chevron-circle-right"></i> projects</a>
+        </div>
 
-      <div class="box">
-        <h3>contact info</h3>
-        <p> <i class="fas fa-phone"></i>  +91 7743891860</p>
-        <p> <i class="fas fa-envelope"></i>  krushnak5000@gmail.com</p>
-        <p> <i class="fas fa-map-marked-alt"></i>  Chhatrapati Sambhaji Nagar, India</p>
-        <div class="share">
+        <div class="box">
+          <h3>contact info</h3>
+          <p> <i class="fas fa-phone"></i> +91 7743891860</p>
+          <p> <i class="fas fa-envelope"></i> krushnak5000@gmail.com</p>
+          <p> <i class="fas fa-map-marked-alt"></i> Chhatrapati Sambhaji Nagar, India</p>
+          <div class="share">
 
-          <a href="https://www.linkedin.com/in/krushna5000" class="fab fa-linkedin" aria-label="LinkedIn"
-            target="_blank"></a>
-          <a href="https://github.com/krushna5000" class="fab fa-github" aria-label="GitHub" target="_blank"></a>
-          <a href="mailto:Krushnak5000@gmail.com" class="fas fa-envelope" aria-label="Mail" target="_blank"></a>
+            <a href="https://www.linkedin.com/in/krushna5000" class="fab fa-linkedin" aria-label="LinkedIn"
+              target="_blank" rel="noopener"></a>
+            <a href="https://github.com/krushna5000" class="fab fa-github" aria-label="GitHub" target="_blank" rel="noopener"></a>
+            <a href="mailto:Krushnak5000@gmail.com" class="fas fa-envelope" aria-label="Mail"></a>
 
-          <a href="https://wa.me/917743891860" class="whatsapp" aria-label="WhatsApp" target="_blank"><i
-              class="fab fa-whatsapp"></i></a>
+            <a href="https://wa.me/917743891860" class="whatsapp" aria-label="WhatsApp" target="_blank" rel="noopener"><i
+                class="fab fa-whatsapp"></i></a>
 
+          </div>
         </div>
       </div>
+
+      <div class="credit">
+        <span>© 2026 • Krushna Vasant Kakde</span>
+        <span>Designed &amp; built with care</span>
+      </div>
+
     </div>
-
-    <h1 class="credit">© 2026 • Krushna Vasant Kakde</h1>
-
-  </section>
+  </footer>
   <!-- footer section ends -->
 
 
   <!-- scroll top btn -->
   <a href="#home" aria-label="ScrollTop" class="fas fa-angle-up" id="scroll-top"></a>
-  <!-- scroll back to top -->
 
 
-  <!-- ==== ALL MAJOR JAVASCRIPT CDNS STARTS ==== -->
-  <!-- jquery cdn -->
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"
-    integrity="sha512-894YE6QWD5I59HgZOGReFYm4dnWc1Qt5NtvYSaNcOP+u1T9qYdvdihz0PPSiiqn/+/3e7Jo4EaG7TubfWGUrMQ=="
-    crossorigin="anonymous" referrerpolicy="no-referrer"></script>
-
-  <!-- typed.js cdn -->
+  <!-- typed.js cdn (existing dependency; jQuery is no longer needed) -->
   <script src="https://cdnjs.cloudflare.com/ajax/libs/typed.js/2.0.5/typed.min.js"
     integrity="sha512-1KbKusm/hAtkX5FScVR5G36wodIMnVd/aP04af06iyQTkD17szAMGNmxfNH+tEuFp3Og/P5G32L1qEC47CZbUQ=="
     crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 
-  <!-- particle.js links -->
-
-
-
-  <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/emailjs-com@3/dist/email.min.js"></script>
-
-  <!-- ==== ALL MAJOR JAVASCRIPT CDNS ENDS ==== -->
-
-  <script src="./assets/js/script.js"></script>
+  <script src="./assets/js/core.js"></script>
+  <script src="./assets/js/effects.js"></script>
+  <script src="./assets/js/home.js"></script>
 
 </body>
 

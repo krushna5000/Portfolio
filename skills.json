@@ -1,102 +1,152 @@
 [
     {
         "name": "React.js",
+        "category": "frontend",
+        "note": "Component-driven UIs at Devanta Tech, TradeWithAi and more.",
         "icon": "https://img.icons8.com/plasticine/48/000000/react.png"
     },
     {
-        "name": "Node.js",
-        "icon": "https://img.icons8.com/color/48/000000/nodejs.png"
-    },
-    {
-        "name": "Express.js",
-        "icon": "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/express/express-original.svg"
-    },
-    {
         "name": "React Native",
+        "category": "frontend",
+        "note": "Cross-platform mobile apps — TinyNeedsApp and its admin panel.",
         "icon": "https://img.icons8.com/external-tal-revivo-color-tal-revivo/48/000000/external-react-a-javascript-library-for-building-user-interfaces-logo-color-tal-revivo.png"
     },
     {
         "name": "JavaScript",
+        "category": "frontend",
+        "note": "Primary language, from browser games to full-stack apps.",
         "icon": "https://img.icons8.com/color/48/000000/javascript--v1.png"
     },
     {
         "name": "HTML5",
+        "category": "frontend",
+        "note": "Semantic, accessible markup.",
         "icon": "https://img.icons8.com/color/48/000000/html-5--v1.png"
     },
     {
         "name": "CSS3",
+        "category": "frontend",
+        "note": "Responsive layouts, animation and design systems.",
         "icon": "https://img.icons8.com/color/48/000000/css3.png"
     },
     {
         "name": "Tailwind CSS",
+        "category": "frontend",
+        "note": "Utility-first styling — used in TradeWithAi.",
         "icon": "https://img.icons8.com/color/48/000000/tailwindcss.png"
     },
     {
+        "name": "Node.js",
+        "category": "backend",
+        "note": "Runtime for REST APIs and services at Devanta Tech.",
+        "icon": "https://img.icons8.com/color/48/000000/nodejs.png"
+    },
+    {
+        "name": "Express.js",
+        "category": "backend",
+        "note": "REST routing, middleware and JWT-protected endpoints.",
+        "icon": "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/express/express-original.svg"
+    },
+    {
         "name": "Spring Boot",
+        "category": "backend",
+        "note": "Backends for TradeWithAi, Ticket Booking and Web Server.",
         "icon": "https://img.icons8.com/color/48/000000/spring-logo.png"
     },
     {
         "name": "Java",
+        "category": "backend",
+        "note": "OOP, multithreading and JDBC-based applications.",
         "icon": "https://img.icons8.com/color/48/000000/java-coffee-cup-logo--v1.png"
     },
     {
-        "name": "MongoDB",
-        "icon": "https://img.icons8.com/color/48/000000/mongodb.png"
-    },
-    {
-        "name": "PostgreSQL",
-        "icon": "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/postgresql/postgresql-original.svg"
-    },
-    {
-        "name": "MySQL",
-        "icon": "https://img.icons8.com/color/48/000000/mysql-logo.png"
-    },
-    {
-        "name": "Firebase",
-        "icon": "https://img.icons8.com/color/48/000000/firebase.png"
-    },
-    {
-        "name": "Supabase",
-        "icon": "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/supabase/supabase-original.svg"
-    },
-    {
-        "name": "AWS",
-        "icon": "https://img.icons8.com/color/48/000000/amazon-web-services.png"
-    },
-    {
-        "name": "Git",
-        "icon": "https://img.icons8.com/color/48/000000/git.png"
-    },
-    {
-        "name": "GitHub",
-        "icon": "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/github/github-original.svg"
-    },
-    {
-        "name": "Postman",
-        "icon": "https://img.icons8.com/color/48/000000/postman.png"
-    },
-    {
-        "name": "SQL",
-        "icon": "https://img.icons8.com/color/48/000000/sql.png"
-    },
-    {
-        "name": "Drizzle ORM",
-        "icon": "https://img.icons8.com/color/48/000000/database.png"
-    },
-    {
         "name": "RESTful APIs",
+        "category": "backend",
+        "note": "Resource-oriented API design for enterprise clients.",
         "icon": "https://img.icons8.com/color/48/000000/api-settings.png"
     },
     {
         "name": "JWT Auth",
+        "category": "backend",
+        "note": "Secure authentication with role-based access control.",
         "icon": "https://img.icons8.com/color/48/000000/key-security.png"
     },
     {
-        "name": "VS Code",
-        "icon": "https://img.icons8.com/color/48/000000/visual-studio-code-2019.png"
+        "name": "MongoDB",
+        "category": "database",
+        "note": "Document database in the MERN stack at Devanta Tech.",
+        "icon": "https://img.icons8.com/color/48/000000/mongodb.png"
+    },
+    {
+        "name": "PostgreSQL",
+        "category": "database",
+        "note": "Relational data for industrial cloud platforms.",
+        "icon": "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/postgresql/postgresql-original.svg"
+    },
+    {
+        "name": "MySQL",
+        "category": "database",
+        "note": "Relational storage in TradeWithAi and JDBC projects.",
+        "icon": "https://img.icons8.com/color/48/000000/mysql-logo.png"
+    },
+    {
+        "name": "SQL",
+        "category": "database",
+        "note": "Optimised queries and data integrity (certified).",
+        "icon": "https://img.icons8.com/color/48/000000/sql.png"
+    },
+    {
+        "name": "Drizzle ORM",
+        "category": "database",
+        "note": "Type-safe, SQL-first data access layer.",
+        "icon": "https://img.icons8.com/color/48/000000/database.png"
+    },
+    {
+        "name": "Firebase",
+        "category": "database",
+        "note": "Backend-as-a-service for auth and realtime data.",
+        "icon": "https://img.icons8.com/color/48/000000/firebase.png"
+    },
+    {
+        "name": "Supabase",
+        "category": "database",
+        "note": "Auth and realtime sync in TinyNeedsApp.",
+        "icon": "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/supabase/supabase-original.svg"
+    },
+    {
+        "name": "AWS",
+        "category": "tools",
+        "note": "Cloud Foundations — core cloud services and concepts.",
+        "icon": "https://img.icons8.com/color/48/000000/amazon-web-services.png"
     },
     {
         "name": "Jenkins",
+        "category": "tools",
+        "note": "CI automation for build and delivery pipelines.",
         "icon": "https://img.icons8.com/color/48/000000/jenkins.png"
+    },
+    {
+        "name": "Git",
+        "category": "tools",
+        "note": "Branching strategies and collaborative workflows.",
+        "icon": "https://img.icons8.com/color/48/000000/git.png"
+    },
+    {
+        "name": "GitHub",
+        "category": "tools",
+        "note": "Code hosting, reviews and collaboration.",
+        "icon": "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/github/github-original.svg"
+    },
+    {
+        "name": "Postman",
+        "category": "tools",
+        "note": "Designing, testing and documenting APIs (certified).",
+        "icon": "https://img.icons8.com/color/48/000000/postman.png"
+    },
+    {
+        "name": "VS Code",
+        "category": "tools",
+        "note": "Daily-driver editor.",
+        "icon": "https://img.icons8.com/color/48/000000/visual-studio-code-2019.png"
     }
 ]
